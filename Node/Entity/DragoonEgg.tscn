@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://bh1o2bpjaftlc"]
+
+[ext_resource type="PackedScene" uid="uid://b53wy0jhmch7l" path="res://Node/Entity/Entity.tscn" id="1_t63i6"]
+[ext_resource type="Script" uid="uid://bucjjdtlhgw6t" path="res://Node/Entity/DragoonEgg.gd" id="2_owogl"]
+[ext_resource type="SpriteFrames" uid="uid://dbqioprmab1qb" path="res://Ressources/Sprite/Unit/DragoonEgg.tres" id="3_uprdw"]
+
+[node name="DragoonEgg" instance=ExtResource("1_t63i6")]
+script = ExtResource("2_owogl")
+
+[node name="AnimatedSprite" parent="." index="0"]
+sprite_frames = ExtResource("3_uprdw")
+animation = &"1-MovingWest"
