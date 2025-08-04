@@ -1,5 +1,6 @@
 class_name Arena extends Node2D
 
+@onready var tiles:TileMapLayer = $Tiles
 @onready var entitySpawn:TileMapLayer = $EntitySpawn
 @onready var buildingSpawn:TileMapLayer = $BuildingSpawn
 
@@ -31,3 +32,9 @@ func getBuidingMap(player:int):
 			list.append([tileData.terrain, i.x, i.y])
 	
 	return list
+
+func isIn(pos:Vector2i)->bool:
+	return tiles.get_cell_tile_data(pos) != null
+func getCenter()->Vector2i:
+	return tiles.get_used_rect().get_center()
+	

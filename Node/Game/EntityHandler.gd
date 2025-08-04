@@ -5,13 +5,16 @@ const DRAGOON_PACKED_CHICK:PackedScene = preload("res://Node/Entity/DragoonChick
 const DRAGOON_PACKED_LONG:PackedScene = preload("res://Node/Entity/DragoonLong.tscn")
 const DRAGOON_PACKED_BEEG:PackedScene = preload("res://Node/Entity/DragoonBeeg.tscn")
 
-@onready var arena:Arena = $"../ArenaHandler/Arena"
+@export var arenaHandler:ArenaHandler
+
 @onready var team0:Node2D = $Team0
 @onready var team1:Node2D = $Team1
 
-func _ready() -> void:
+func reset() -> void:
+	for i in team0.get_children():i.queue_free()
+	for i in team1.get_children():i.queue_free()
 	for team in range(2):
-		loadStartingEntity(team,arena.getEntityMap(team))
+		loadStartingEntity(team,arenaHandler.arena.getEntityMap(team))
 
 func loadStartingEntity(team:int,list:Array):
 	for i in list:

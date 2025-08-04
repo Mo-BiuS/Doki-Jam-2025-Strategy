@@ -1,17 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=7 format=3 uid="uid://bhdsiv24l5m1b"]
 
-[ext_resource type="PackedScene" uid="uid://chud2bv8sugni" path="res://Node/Arena/Base/Arena.tscn" id="1_i0qvy"]
+[ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
+[ext_resource type="Script" uid="uid://c7esx0lbv3mvq" path="res://Node/Game/ArenaHandler.gd" id="2_g1w7o"]
 [ext_resource type="Script" uid="uid://bdjkx32t0cint" path="res://Node/Game/EntityHandler.gd" id="3_8v1kq"]
+[ext_resource type="Texture2D" uid="uid://dn8r36gpsugms" path="res://Ressources/Sprite/UI/Cursor.png" id="4_e62rc"]
+[ext_resource type="Script" uid="uid://cbjdh6pkrtsw7" path="res://Node/Game/Cursor.gd" id="6_g1w7o"]
 
-[node name="Game" type="Node2D"]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor")]
+script = ExtResource("1_6e2ot")
+arenaHandler = NodePath("ArenaHandler")
+buildingHandler = NodePath("BuildingHandler")
+entityHandler = NodePath("EntityHandler")
+cursor = NodePath("InteractiveUI/Cursor")
 
 [node name="ArenaHandler" type="Node2D" parent="."]
+script = ExtResource("2_g1w7o")
 
-[node name="Arena" parent="ArenaHandler" instance=ExtResource("1_i0qvy")]
-
-[node name="BuildingHandler" type="Node2D" parent="."]
+[node name="BuildingHandler" type="Node2D" parent="." node_paths=PackedStringArray("arenaHandler")]
 script = ExtResource("2_8v1kq")
+arenaHandler = NodePath("../ArenaHandler")
 
 [node name="Neutral" type="Node2D" parent="BuildingHandler"]
 
@@ -19,12 +27,25 @@ script = ExtResource("2_8v1kq")
 
 [node name="Team1" type="Node2D" parent="BuildingHandler"]
 
-[node name="EntityHandler" type="Node2D" parent="."]
+[node name="EntityHandler" type="Node2D" parent="." node_paths=PackedStringArray("arenaHandler")]
+z_index = 2
 script = ExtResource("3_8v1kq")
+arenaHandler = NodePath("../ArenaHandler")
 
 [node name="Team0" type="Node2D" parent="EntityHandler"]
 
 [node name="Team1" type="Node2D" parent="EntityHandler"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(637, 280)
+[node name="InteractiveUI" type="Node2D" parent="."]
+
+[node name="Cursor" type="Sprite2D" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler")]
+z_index = 1
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("4_e62rc")
+script = ExtResource("6_g1w7o")
+arenaHandler = NodePath("../../ArenaHandler")
+
+[node name="Camera" type="Camera2D" parent="InteractiveUI/Cursor"]
+scale = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
