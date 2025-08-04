@@ -28,7 +28,7 @@ func loadStartingBuilding(team:int,list:Array):
 		
 		if entity != null:
 			entity.team = team
-			entity.position = Vector2i(i[1]*64+32,i[2]*64+32)
+			entity.setPosition(Vector2i(i[1],i[2]))
 			match team:
 				0:neutral.add_child(entity)
 				1:team0.add_child(entity)
@@ -45,3 +45,9 @@ func getCapitalPos(player:int)->Vector2i:
 		if i is Capital:
 			return i.position/64
 	return Vector2i(-1,-1)
+
+func getBuildingAtPos(pos:Vector2i) -> Building:
+	for tab in [neutral, team0, team1]:
+		for b in tab.get_children():
+			if b.tilePos == pos : return b
+	return null

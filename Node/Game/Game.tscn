@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=8 format=3 uid="uid://bhdsiv24l5m1b"]
 
 [ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bdjkx32t0cint" path="res://Node/Game/EntityHandler.gd" id="3_8v1kq"]
 [ext_resource type="Texture2D" uid="uid://dn8r36gpsugms" path="res://Ressources/Sprite/UI/Cursor.png" id="4_e62rc"]
 [ext_resource type="Script" uid="uid://cbjdh6pkrtsw7" path="res://Node/Game/Cursor.gd" id="6_g1w7o"]
+[ext_resource type="PackedScene" uid="uid://d2sc4mbovli68" path="res://Node/UI/GameUI.tscn" id="7_yq4x2"]
 
 [node name="Game" type="Node2D" node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor")]
 script = ExtResource("1_6e2ot")
@@ -49,3 +50,10 @@ arenaHandler = NodePath("../../ArenaHandler")
 [node name="Camera" type="Camera2D" parent="InteractiveUI/Cursor"]
 scale = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
+
+[node name="GameUI" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler") instance=ExtResource("7_yq4x2")]
+arenaHandler = NodePath("../ArenaHandler")
+buildingHandler = NodePath("../BuildingHandler")
+entityHandler = NodePath("../EntityHandler")
+
+[connection signal="movedToNewTile" from="InteractiveUI/Cursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]

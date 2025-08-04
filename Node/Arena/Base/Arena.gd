@@ -1,12 +1,11 @@
 class_name Arena extends Node2D
 
 @onready var tiles:TileMapLayer = $Tiles
+@onready var roads:TileMapLayer = $Road
 @onready var entitySpawn:TileMapLayer = $EntitySpawn
 @onready var buildingSpawn:TileMapLayer = $BuildingSpawn
 
 @onready var neutral:Node =$"../../BuildingHandler/Neutral"
-@onready var team0:Node2D = $Team0
-@onready var team1:Node2D = $Team1
 
 func _ready() -> void:
 	entitySpawn.hide()

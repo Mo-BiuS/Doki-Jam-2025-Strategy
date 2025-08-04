@@ -8,11 +8,14 @@ const SPEED = 400
 var tilePos:Vector2i
 var targetPos:Vector2
 
+signal movedToNewTile(tPos:Vector2i)
+
 func setTile(pos:Vector2i):
 	if(pos != Vector2i(-1,-1) && arenaHandler.arena.isIn(pos)):
 		tilePos = pos
 		position = Vector2(tilePos*32+Vector2i(16,16))*scale
 		targetPos = position
+		movedToNewTile.emit(tilePos)
 
 func _process(delta: float) -> void:
 	if targetPos == position:
@@ -29,3 +32,7 @@ func _process(delta: float) -> void:
 		position = position.move_toward(targetPos, SPEED * delta)
 		if position == targetPos:
 			tilePos = Vector2i(position / (32 * scale))
+			movedToNewTile.emit(tilePos)
+
+func isMoving()->bool:
+	return targetPos != position

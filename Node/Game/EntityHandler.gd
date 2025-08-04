@@ -28,8 +28,18 @@ func loadStartingEntity(team:int,list:Array):
 		
 		if entity != null:
 			entity.team = team
-			entity.position = Vector2i(i[1]*64+32,i[2]*64+32)
+			entity.setPosition(Vector2i(i[1],i[2]))
 			match team:
 				0:team0.add_child(entity)
 				1:team1.add_child(entity)
 				_:print("Loading starting entity, no team "+str(team))
+
+func getUnitFromTeamAt(team:int, pos:Vector2i)->Entity:
+	var list:Node2D
+	match team:
+		0:list = team0
+		1:list = team1
+	for i in list.get_children():
+		if i.tilePos == pos: return i
+	var rep:Entity = null
+	return rep

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://b6fw7eoocoljs" path="res://Node/Entity/Entity.gd" id="1_18agx"]
 
 [node name="Entity" type="Node2D"]
+scale = Vector2(2, 2)
 script = ExtResource("1_18agx")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -12)
-scale = Vector2(2, 2)
