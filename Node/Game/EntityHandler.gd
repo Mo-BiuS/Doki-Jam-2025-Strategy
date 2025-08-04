@@ -1,11 +1,13 @@
-extends Node2D
+class_name EntityHandler extends Node2D
 
-const DRAGOON_PACKED_EGG = preload("res://Node/Entity/DragoonEgg.tscn")
-const DRAGOON_PACKED_CHICK = preload("res://Node/Entity/DragoonChick.tscn")
-const DRAGOON_PACKED_LONG = preload("res://Node/Entity/DragoonLong.tscn")
-const DRAGOON_PACKED_BEEG = preload("res://Node/Entity/DragoonBeeg.tscn")
+const DRAGOON_PACKED_EGG:PackedScene = preload("res://Node/Entity/DragoonEgg.tscn")
+const DRAGOON_PACKED_CHICK:PackedScene = preload("res://Node/Entity/DragoonChick.tscn")
+const DRAGOON_PACKED_LONG:PackedScene = preload("res://Node/Entity/DragoonLong.tscn")
+const DRAGOON_PACKED_BEEG:PackedScene = preload("res://Node/Entity/DragoonBeeg.tscn")
 
 @onready var arena:Arena = $"../ArenaHandler/Arena"
+@onready var team0:Node2D = $Team0
+@onready var team1:Node2D = $Team1
 
 func _ready() -> void:
 	for team in range(2):
@@ -24,4 +26,7 @@ func loadStartingEntity(team:int,list:Array):
 		if entity != null:
 			entity.team = team
 			entity.position = Vector2i(i[1]*64+32,i[2]*64+32)
-			add_child(entity)
+			match team:
+				0:team0.add_child(entity)
+				1:team1.add_child(entity)
+				_:print("Loading starting entity, no team "+str(team))

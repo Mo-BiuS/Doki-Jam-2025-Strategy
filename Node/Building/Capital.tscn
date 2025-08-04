@@ -1,0 +1,12 @@
+[gd_scene load_steps=4 format=3 uid="uid://4x10x1vlgr2w"]
+
+[ext_resource type="PackedScene" uid="uid://cc8ucstomf1gx" path="res://Node/Building/Building.tscn" id="1_fssxq"]
+[ext_resource type="Script" uid="uid://d3vx5c3a2sqld" path="res://Node/Building/Capital.gd" id="2_ppy85"]
+[ext_resource type="SpriteFrames" uid="uid://cg20t7toutmq4" path="res://Ressources/Sprite/Building/Capital.tres" id="3_o1yd1"]
+
+[node name="Capital" instance=ExtResource("1_fssxq")]
+script = ExtResource("2_ppy85")
+
+[node name="Sprite" parent="." index="0"]
+sprite_frames = ExtResource("3_o1yd1")
+animation = &"N"

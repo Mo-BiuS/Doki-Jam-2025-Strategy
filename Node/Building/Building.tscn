@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc8ucstomf1gx"]
+
+[ext_resource type="Script" uid="uid://bo3s8hp44rstd" path="res://Node/Building/Building.gd" id="1_gvu0d"]
+
+[node name="Building" type="Node2D"]
+script = ExtResource("1_gvu0d")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
