@@ -6,4 +6,3 @@ func loadArena(packedArena:PackedScene):
 	if arena != null : remove_child(arena)
 	arena = packedArena.instantiate()
 	add_child(arena)
-	

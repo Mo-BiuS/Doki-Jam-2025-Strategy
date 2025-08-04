@@ -21,9 +21,8 @@ func refresh(arenaHandler:ArenaHandler,buildingHandler:BuildingHandler, pos:Vect
 		elif(building is Base):nameLabel.text = "Base"
 		elif(building is Capital):nameLabel.text = "Capital"
 	
-	if(hasRoad):movingCostLabel.text = "1"
-	elif(terrainData[1] == -1):movingCostLabel.text = "impassable"
-	else:movingCostLabel.text = str(terrainData[1])
+	if(terrainData[1] == -1):movingCostLabel.text = "impassable"
+	else:movingCostLabel.text = str(arenaHandler.arena.getDeplacementCostAt(pos))
 	
 	if(hasBuilding):defenseBonusLabel.text = "4"
 	elif(hasRoad):defenseBonusLabel.text = "0"

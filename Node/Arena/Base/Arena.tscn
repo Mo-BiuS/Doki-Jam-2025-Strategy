@@ -1,9 +1,10 @@
-[gd_scene load_steps=32 format=3 uid="uid://chud2bv8sugni"]
+[gd_scene load_steps=34 format=3 uid="uid://chud2bv8sugni"]
 
 [ext_resource type="Script" uid="uid://dh6x3vcllw00p" path="res://Node/Arena/Base/Arena.gd" id="1_iqjot"]
 [ext_resource type="Texture2D" uid="uid://c6rr1roti2gyx" path="res://Ressources/Sprite/Map/Tilemap-Tiles.png" id="1_rwgvc"]
 [ext_resource type="Texture2D" uid="uid://bdmow2ea8rnx5" path="res://Ressources/Sprite/Map/Tilemap-Road.png" id="2_iqjot"]
 [ext_resource type="Texture2D" uid="uid://b16ppnpcnt2om" path="res://Ressources/Sprite/Building/Tilemap-Building-Base.png" id="3_8762b"]
+[ext_resource type="Texture2D" uid="uid://c01kjhhjub531" path="res://Ressources/Sprite/Map/Lem/River.png" id="3_obea1"]
 [ext_resource type="Texture2D" uid="uid://cupwphvev4m1" path="res://Ressources/Sprite/Building/Tilemap-Building-Capital.png" id="4_obea1"]
 [ext_resource type="Texture2D" uid="uid://ct7vtk5faw8td" path="res://Ressources/Sprite/Building/Tilemap-Building-City.png" id="5_eesa5"]
 [ext_resource type="Texture2D" uid="uid://b0icwws0spkgx" path="res://Ressources/Sprite/Unit/Icon/Icon-A-EGG.png" id="6_juk54"]
@@ -17,13 +18,10 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txd33"]
 texture = ExtResource("1_rwgvc")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
-0:1/0 = 0
-0:1/0/terrain_set = 0
-0:1/0/terrain = 1
 0:2/0 = 0
 0:2/0/terrain_set = 0
 0:2/0/terrain = 2
@@ -37,12 +35,19 @@ texture_region_size = Vector2i(32, 32)
 0:5/0/terrain_set = 0
 0:5/0/terrain = 5
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eesa5"]
+texture = ExtResource("3_obea1")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+
 [sub_resource type="TileSet" id="TileSet_evbt7"]
-tile_size = Vector2i(32, 32)
+tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Grass"
 terrain_set_0/terrain_0/color = Color(0.268237, 0.430881, 0.278036, 1)
-terrain_set_0/terrain_1/name = "ShallwoWater"
+terrain_set_0/terrain_1/name = "River"
 terrain_set_0/terrain_1/color = Color(0.141029, 0.496516, 0.528935, 1)
 terrain_set_0/terrain_2/name = "DeepWater"
 terrain_set_0/terrain_2/color = Color(0.301215, 0.448007, 0.840848, 1)
@@ -53,10 +58,11 @@ terrain_set_0/terrain_4/color = Color(0.586115, 0.381415, 0.271991, 1)
 terrain_set_0/terrain_5/name = "Forest"
 terrain_set_0/terrain_5/color = Color(0.25, 0.5, 0.3125, 1)
 sources/0 = SubResource("TileSetAtlasSource_txd33")
+sources/1 = SubResource("TileSetAtlasSource_eesa5")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g1w7o"]
 texture = ExtResource("2_iqjot")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -139,7 +145,7 @@ texture_region_size = Vector2i(32, 32)
 3:3/0/terrain = 0
 
 [sub_resource type="TileSet" id="TileSet_i0qvy"]
-tile_size = Vector2i(32, 32)
+tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Road"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -147,7 +153,7 @@ sources/1 = SubResource("TileSetAtlasSource_g1w7o")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gc7lh"]
 texture = ExtResource("3_8762b")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 1
@@ -160,7 +166,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_44rtr"]
 texture = ExtResource("4_obea1")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/terrain_set = 1
@@ -171,7 +177,7 @@ texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdroo"]
 texture = ExtResource("5_eesa5")
-texture_region_size = Vector2i(32, 32)
+texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -183,7 +189,7 @@ texture_region_size = Vector2i(32, 32)
 2:0/0/terrain = 0
 
 [sub_resource type="TileSet" id="TileSet_1mpsg"]
-tile_size = Vector2i(32, 32)
+tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "City"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -305,17 +311,17 @@ script = ExtResource("1_iqjot")
 
 [node name="Tiles" type="TileMapLayer" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_evbt7")
 
 [node name="Road" type="TileMapLayer" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_i0qvy")
 
 [node name="BuildingSpawn" type="TileMapLayer" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
+scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_1mpsg")
 
 [node name="EntitySpawn" type="TileMapLayer" parent="."]

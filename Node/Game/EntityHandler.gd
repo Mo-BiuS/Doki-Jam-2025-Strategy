@@ -43,3 +43,13 @@ func getUnitFromTeamAt(team:int, pos:Vector2i)->Entity:
 		if i.tilePos == pos: return i
 	var rep:Entity = null
 	return rep
+
+func getUnitAt(pos:Vector2i)->Entity:
+	var allStar:Array
+	allStar.append_array(team0.get_children())
+	allStar.append_array(team1.get_children())
+	for i in allStar:
+		if i.tilePos == pos: return i
+	var rep:Entity = null
+	return rep
+	

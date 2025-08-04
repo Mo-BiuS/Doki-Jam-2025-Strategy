@@ -2,23 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://ct7vtk5faw8td" path="res://Ressources/Sprite/Building/Tilemap-Building-City.png" id="1_e0tfg"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wa2lu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb6k5"]
 atlas = ExtResource("1_e0tfg")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(128, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q2mck"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wuid"]
 atlas = ExtResource("1_e0tfg")
-region = Rect2(64, 0, 32, 32)
+region = Rect2(256, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y3w0h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xixk"]
 atlas = ExtResource("1_e0tfg")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 128, 128)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wa2lu")
+"texture": SubResource("AtlasTexture_cb6k5")
 }],
 "loop": true,
 "name": &"A",
@@ -26,7 +26,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q2mck")
+"texture": SubResource("AtlasTexture_3wuid")
 }],
 "loop": true,
 "name": &"B",
@@ -34,7 +34,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y3w0h")
+"texture": SubResource("AtlasTexture_2xixk")
 }],
 "loop": true,
 "name": &"N",

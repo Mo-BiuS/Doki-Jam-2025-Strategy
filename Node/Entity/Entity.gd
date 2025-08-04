@@ -8,7 +8,7 @@ var team:int = -1
 var life:int = 10
 var veterancy:int = 0
 
-var speed:int	= 0
+var mvm:int	= 0
 var vision:int	= 0
 var attack:int	= 0
 var defence:int	= 0
