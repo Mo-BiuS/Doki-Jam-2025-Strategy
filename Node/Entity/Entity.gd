@@ -22,3 +22,6 @@ func _ready() -> void:
 func setPosition(pos:Vector2i):
 	tilePos = pos
 	position = (Vector2(pos)*32+Vector2(16,16))*scale
+
+func startMoving()->void:
+	pass

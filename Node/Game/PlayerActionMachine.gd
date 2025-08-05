@@ -23,7 +23,12 @@ func processInput():
 			movementArea.selectedEntity = entity
 			movementArea.refresh()
 		elif(selectedEnity != null && movementArea.get_cell_tile_data(cursor.tilePos) != null):
-			print("DEPLACEMENT")
+			selectedEnity.startMoving()
+			selectedEnity = null
+			movementArrow.selectedEntity = null
+			movementArea.selectedEntity = null
+			movementArea.clear()
+			movementArrow.clear()
 		else:
 			selectedEnity = null
 			movementArrow.selectedEntity = null
