@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=17 format=3 uid="uid://bhdsiv24l5m1b"]
 
 [ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://d2sc4mbovli68" path="res://Node/UI/GameUI.tscn" id="7_yq4x2"]
 [ext_resource type="Texture2D" uid="uid://ig04wo0yma7" path="res://Ressources/Sprite/UI/MovementArea.png" id="8_mcxou"]
 [ext_resource type="Script" uid="uid://dt1s7m33c2fs6" path="res://Node/Game/MovementArea.gd" id="9_5s4hk"]
+[ext_resource type="Texture2D" uid="uid://bb7w44imokim2" path="res://Ressources/Sprite/UI/ArrowMovement.png" id="10_7aoj4"]
+[ext_resource type="Script" uid="uid://jc2lvo8lf0kt" path="res://Node/Game/MovementArrow.gd" id="11_054nj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5s4hk"]
 texture = ExtResource("8_mcxou")
@@ -270,6 +272,66 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.451144, 0.367278, 0.282726, 1)
 sources/0 = SubResource("TileSetAtlasSource_5s4hk")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y6d2w"]
+texture = ExtResource("10_7aoj4")
+texture_region_size = Vector2i(128, 128)
+3:0/0 = 0
+3:0/0/terrain_set = 0
+3:0/0/terrain = 0
+3:0/0/terrains_peering_bit/bottom_side = 0
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 0
+1:1/0/terrains_peering_bit/right_side = 0
+1:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 0
+2:1/0/terrains_peering_bit/bottom_side = 0
+2:1/0/terrains_peering_bit/left_side = 0
+3:1/0 = 0
+3:1/0/terrain_set = 0
+3:1/0/terrain = 0
+3:1/0/terrains_peering_bit/bottom_side = 0
+3:1/0/terrains_peering_bit/top_side = 0
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 0
+1:2/0/terrains_peering_bit/right_side = 0
+1:2/0/terrains_peering_bit/top_side = 0
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 0
+2:2/0/terrains_peering_bit/left_side = 0
+2:2/0/terrains_peering_bit/top_side = 0
+3:2/0 = 0
+3:2/0/terrain_set = 0
+3:2/0/terrain = 0
+3:2/0/terrains_peering_bit/top_side = 0
+0:3/0 = 0
+0:3/0/terrain_set = 0
+0:3/0/terrain = 0
+0:3/0/terrains_peering_bit/right_side = 0
+1:3/0 = 0
+1:3/0/terrain_set = 0
+1:3/0/terrain = 0
+1:3/0/terrains_peering_bit/right_side = 0
+1:3/0/terrains_peering_bit/left_side = 0
+2:3/0 = 0
+2:3/0/terrain_set = 0
+2:3/0/terrain = 0
+2:3/0/terrains_peering_bit/left_side = 0
+3:3/0 = 0
+3:3/0/terrain_set = 0
+3:3/0/terrain = 0
+
+[sub_resource type="TileSet" id="TileSet_81hta"]
+tile_size = Vector2i(128, 128)
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "Terrain 0"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_y6d2w")
+
 [node name="Game" type="Node2D" node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor")]
 script = ExtResource("1_6e2ot")
 arenaHandler = NodePath("ArenaHandler")
@@ -277,13 +339,14 @@ buildingHandler = NodePath("BuildingHandler")
 entityHandler = NodePath("EntityHandler")
 cursor = NodePath("InteractiveUI/SelectCursor")
 
-[node name="PlayerActionMachine" type="Node" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor", "movementArea")]
+[node name="PlayerActionMachine" type="Node" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor", "movementArea", "movementArrow")]
 script = ExtResource("2_il3tl")
 arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 cursor = NodePath("../InteractiveUI/SelectCursor")
 movementArea = NodePath("../InteractiveUI/MovementArea")
+movementArrow = NodePath("../InteractiveUI/MovementArrow")
 
 [node name="ArenaHandler" type="Node2D" parent="."]
 script = ExtResource("2_g1w7o")
@@ -328,9 +391,19 @@ script = ExtResource("9_5s4hk")
 arenaHandler = NodePath("../../ArenaHandler")
 entityHandler = NodePath("../../EntityHandler")
 
+[node name="MovementArrow" type="TileMapLayer" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "entityHandler", "cursor", "movementArea")]
+scale = Vector2(0.5, 0.5)
+tile_set = SubResource("TileSet_81hta")
+script = ExtResource("11_054nj")
+arenaHandler = NodePath("../../ArenaHandler")
+entityHandler = NodePath("../../EntityHandler")
+cursor = NodePath("../SelectCursor")
+movementArea = NodePath("../MovementArea")
+
 [node name="GameUI" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler") instance=ExtResource("7_yq4x2")]
 arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 
+[connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_moved_to_new_tile"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]

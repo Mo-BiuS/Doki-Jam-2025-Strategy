@@ -14,6 +14,8 @@ var attack:int	= 0
 var defence:int	= 0
 var cost:int		= 0
 
+var mvmMap:Array
+
 func _ready() -> void:
 	sprite.play(str(team)+"-MovingSouth")
 
