@@ -378,11 +378,12 @@ buildingHandler = NodePath("BuildingHandler")
 entityHandler = NodePath("EntityHandler")
 cursor = NodePath("InteractiveUI/SelectCursor")
 
-[node name="PlayerActionMachine" type="Node" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor", "movementArea", "movementArrow")]
+[node name="PlayerActionMachine" type="Node" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor", "movementArea", "movementArrow")]
 script = ExtResource("2_il3tl")
 arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
+gameUI = NodePath("../GameUI")
 cursor = NodePath("../InteractiveUI/SelectCursor")
 movementArea = NodePath("../InteractiveUI/MovementArea")
 movementArrow = NodePath("../InteractiveUI/MovementArrow")

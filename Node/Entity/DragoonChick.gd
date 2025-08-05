@@ -2,8 +2,8 @@ class_name DragoonChick extends Entity
 
 func _ready() -> void:
 	super._ready()
-	mvm	= 6
-	vision	= 4
-	attack	= 6
-	defence	= 2
-	cost		= 200
+	mvm		= CONST_UNIT.array[1][1]
+	vision	= CONST_UNIT.array[1][2]
+	attack	= CONST_UNIT.array[1][3]
+	defence	= CONST_UNIT.array[1][4]
+	cost		= CONST_UNIT.array[1][5]

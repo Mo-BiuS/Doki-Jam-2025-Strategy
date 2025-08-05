@@ -46,6 +46,15 @@ func getCapitalPos(player:int)->Vector2i:
 			return i.position/64
 	return Vector2i(-1,-1)
 
+func getBaseFromTeamAt(team:int, pos:Vector2i)->Base:
+	var list:Node2D
+	match team:
+		0:list = team0
+		1:list = team1
+	for i in list.get_children():
+		if i is Base && i.tilePos == pos: return i
+	return null
+
 func getBuildingAtPos(pos:Vector2i) -> Building:
 	for tab in [neutral, team0, team1]:
 		for b in tab.get_children():

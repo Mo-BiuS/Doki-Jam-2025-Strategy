@@ -47,7 +47,9 @@ func isMoving()->bool:
 
 func disable()->void:
 	enabled = false
-	camera.enabled = false
+	#camera.enabled = false
+	hide()
 func enable()->void:
 	enabled = true
-	camera.enabled = true
+	#camera.enabled = true
+	show()

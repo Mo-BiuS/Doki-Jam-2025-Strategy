@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccdu4too320ja"]
+
+[ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_l1vy7"]
+[ext_resource type="Script" uid="uid://dd1m8fsdt8o08" path="res://Node/UI/RessourcePanel.gd" id="2_13rbq"]
+
+[node name="RessourcePanel" type="PanelContainer" node_paths=PackedStringArray("goldLabel")]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("1_l1vy7")
+script = ExtResource("2_13rbq")
+goldLabel = NodePath("MarginContainer2/GoldLabel")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="GoldLabel" type="Label" parent="MarginContainer2"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Gold : 0"

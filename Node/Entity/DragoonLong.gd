@@ -2,8 +2,8 @@ class_name DragoonLong extends Entity
 
 func _ready() -> void:
 	super._ready()
-	mvm	= 8
-	vision	= 8
-	attack	= 6
-	defence	= 2
-	cost		= 300
+	mvm		= CONST_UNIT.array[2][1]
+	vision	= CONST_UNIT.array[2][2]
+	attack	= CONST_UNIT.array[2][3]
+	defence	= CONST_UNIT.array[2][4]
+	cost		= CONST_UNIT.array[2][5]
