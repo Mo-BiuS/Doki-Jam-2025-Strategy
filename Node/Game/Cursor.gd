@@ -8,6 +8,7 @@ const SPEED = 400
 var tilePos:Vector2i
 var targetPos:Vector2
 var enabled:bool = true
+var entityFollow:Entity = null
 
 signal movedToNewTile(tPos:Vector2i)
 
@@ -19,7 +20,12 @@ func setTile(pos:Vector2i):
 		movedToNewTile.emit(tilePos)
 
 func _process(delta: float) -> void:
-	if enabled:
+	if entityFollow != null:
+		position = entityFollow.position
+		if(!entityFollow.isMoving):
+			entityFollow = null
+			show()
+	elif enabled:
 		if targetPos == position:
 			var direction:Vector2i = Vector2i.ZERO
 			if Input.is_action_pressed("north"):	direction.y-=1

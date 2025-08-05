@@ -13,7 +13,6 @@ func refresh():
 	clear()
 	mvmMap.clear()
 	if(selectedEntity != null && movementArea.get_cell_tile_data(cursor.tilePos) != null && entityHandler.getUnitAt(cursor.tilePos) == null):
-		var traceDict:Dictionary = movementArea.areaDict
 		trace(cursor.tilePos)
 		selectedEntity.mvmMap = mvmMap
 		set_cells_terrain_connect(mvmMap,0,0)

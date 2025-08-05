@@ -23,7 +23,9 @@ func processInput():
 			movementArea.selectedEntity = entity
 			movementArea.refresh()
 		elif(selectedEnity != null && movementArea.get_cell_tile_data(cursor.tilePos) != null):
-			selectedEnity.startMoving()
+			selectedEnity.isMoving = true
+			cursor.entityFollow = selectedEnity
+			cursor.hide()
 			selectedEnity = null
 			movementArrow.selectedEntity = null
 			movementArea.selectedEntity = null
