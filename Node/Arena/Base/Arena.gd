@@ -40,10 +40,18 @@ func getDeplacementCostAt(pos:Vector2i)->int:
 	if roadData != null : return 1
 	elif buildingData != null : return 4
 	else:return terrainData[1]
-	
+
+func getDefenceAt(pos:Vector2i)->int:
+	var tileData:TileData = tiles.get_cell_tile_data(pos)
+	var roadData:TileData = roads.get_cell_tile_data(pos)
+	var buildingData:TileData = buildingSpawn.get_cell_tile_data(pos)
+	var terrainData = CONST_TERRAIN.ARRAY[tileData.terrain]
+	if roadData != null : return 0
+	elif buildingData != null : return 2
+	else:return terrainData[2]
+
 
 func isIn(pos:Vector2i)->bool:
 	return tiles.get_cell_tile_data(pos) != null
 func getCenter()->Vector2i:
 	return tiles.get_used_rect().get_center()
-	

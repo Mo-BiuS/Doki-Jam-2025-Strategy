@@ -1,11 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=16 format=3 uid="uid://bhdsiv24l5m1b"]
 
 [ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
 [ext_resource type="Script" uid="uid://c7esx0lbv3mvq" path="res://Node/Game/ArenaHandler.gd" id="2_g1w7o"]
 [ext_resource type="Script" uid="uid://y170qrt6uq0m" path="res://Node/Game/PlayerActionMachine.gd" id="2_il3tl"]
 [ext_resource type="Script" uid="uid://bdjkx32t0cint" path="res://Node/Game/EntityHandler.gd" id="3_8v1kq"]
-[ext_resource type="Texture2D" uid="uid://dn8r36gpsugms" path="res://Ressources/Sprite/UI/Cursor.png" id="4_e62rc"]
 [ext_resource type="Script" uid="uid://cbjdh6pkrtsw7" path="res://Node/Game/Cursor.gd" id="6_g1w7o"]
 [ext_resource type="PackedScene" uid="uid://d2sc4mbovli68" path="res://Node/UI/GameUI.tscn" id="7_yq4x2"]
 [ext_resource type="Texture2D" uid="uid://ig04wo0yma7" path="res://Ressources/Sprite/UI/MovementArea.png" id="8_mcxou"]
@@ -419,7 +418,6 @@ cursor = NodePath("../InteractiveUI/SelectCursor")
 z_index = 1
 texture_filter = 1
 scale = Vector2(2, 2)
-texture = ExtResource("4_e62rc")
 script = ExtResource("6_g1w7o")
 arenaHandler = NodePath("../../ArenaHandler")
 
@@ -448,6 +446,8 @@ arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 
+[connection signal="attackAt" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_attack_at"]
+[connection signal="followingEntityEndedMovement" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_following_entity_ended_movement"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_moved_to_new_tile"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]
 [connection signal="buyUnit" from="GameUI" to="EntityHandler" method="_on_game_ui_buy_unit"]
