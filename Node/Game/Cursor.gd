@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 	if entityFollow != null:
 		position = entityFollow.position
 		if(!entityFollow.isMoving):
+			enable()
 			entityFollow = null
-			show()
 	elif enabled:
 		if targetPos == position:
 			var direction:Vector2i = Vector2i.ZERO

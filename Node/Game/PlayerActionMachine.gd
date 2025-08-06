@@ -33,6 +33,7 @@ func processInput():
 			movementArea.selectedEntity = null
 			movementArea.clear()
 			movementArrow.clear()
+			cursor.disable()
 		elif(base != null):
 			reset()
 			selectedBase = base
