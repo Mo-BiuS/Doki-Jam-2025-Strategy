@@ -4,11 +4,13 @@ class_name GameUI extends CanvasLayer
 @export var buildingHandler:BuildingHandler
 @export var entityHandler:EntityHandler
 
-
 @onready var buildingInfoBox:BuildingInfoBox = $MarginContainer/VBoxContainer/BuildingInfoBox
 @onready var entityInfoBox:EntityInfoBox = $MarginContainer/VBoxContainer/EntityInfoBox
 @onready var terrainInfoBox:TerrainInfoBox = $MarginContainer/VBoxContainer/TerrainInfoBox
 @onready var buyMenu:BuyMenu = $BuyMenu
+@onready var ressourcePanel:RessourcePanel = $RessourcePanel
+
+signal buyUnit(n:int)
 
 func _ready() -> void:
 	buyMenu.setVisible(false)
@@ -22,3 +24,9 @@ func showBuildMenu():
 	buyMenu.setVisible(true)
 func hideBuildMenu():
 	buyMenu.setVisible(false)
+
+func refreshRessourcePanel():
+	ressourcePanel.refresh()
+
+func _on_buy_menu_buy_unit(n: int) -> void:
+	buyUnit.emit(n)

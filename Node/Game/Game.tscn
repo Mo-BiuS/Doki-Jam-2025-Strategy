@@ -401,10 +401,13 @@ arenaHandler = NodePath("../ArenaHandler")
 
 [node name="Team1" type="Node2D" parent="BuildingHandler"]
 
-[node name="EntityHandler" type="Node2D" parent="." node_paths=PackedStringArray("arenaHandler")]
+[node name="EntityHandler" type="Node2D" parent="." node_paths=PackedStringArray("playerActionMachine", "gameUI", "arenaHandler", "cursor")]
 z_index = 2
 script = ExtResource("3_8v1kq")
+playerActionMachine = NodePath("../PlayerActionMachine")
+gameUI = NodePath("../GameUI")
 arenaHandler = NodePath("../ArenaHandler")
+cursor = NodePath("../InteractiveUI/SelectCursor")
 
 [node name="Team0" type="Node2D" parent="EntityHandler"]
 
@@ -447,3 +450,4 @@ entityHandler = NodePath("../EntityHandler")
 
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_moved_to_new_tile"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]
+[connection signal="buyUnit" from="GameUI" to="EntityHandler" method="_on_game_ui_buy_unit"]

@@ -42,3 +42,5 @@ layout_mode = 2
 [node name="RessourcePanel" parent="." instance=ExtResource("7_je0ey")]
 
 [node name="BuyMenu" parent="." instance=ExtResource("8_un1m2")]
+
+[connection signal="buyUnit" from="BuyMenu" to="." method="_on_buy_menu_buy_unit"]

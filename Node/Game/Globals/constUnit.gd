@@ -7,3 +7,10 @@ var array:Array = [
 	["Dragoon Long",		8,	8,		6,		2,		300],
 	["Dragoon Beeg",		4,	2,		10,		4,		400]
 ]
+
+var packed = [
+	preload("res://Node/Entity/DragoonEgg.tscn"),
+	preload("res://Node/Entity/DragoonChick.tscn"),
+	preload("res://Node/Entity/DragoonLong.tscn"),
+	preload("res://Node/Entity/DragoonBeeg.tscn")
+]

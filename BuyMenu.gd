@@ -5,11 +5,18 @@ class_name BuyMenu extends PanelContainer
 @export var dragoonLongButton:Button
 @export var dragoonBeegButton:Button
 
+signal buyUnit(n:int)
+
 func _ready() -> void:
-	dragoonEggButton.text = str(CONST_UNIT.array[0][5]) + dragoonEggButton.text
-	dragoonNormalButton.text = str(CONST_UNIT.array[1][5]) + dragoonNormalButton.text
-	dragoonLongButton.text = str(CONST_UNIT.array[2][5]) + dragoonLongButton.text
-	dragoonBeegButton.text = str(CONST_UNIT.array[3][5]) + dragoonBeegButton.text
+	dragoonEggButton.text = str(CONST_UNIT.array[0][5]) + " : " + str(CONST_UNIT.array[0][0])
+	dragoonNormalButton.text = str(CONST_UNIT.array[1][5]) + " : " + str(CONST_UNIT.array[1][0])
+	dragoonLongButton.text = str(CONST_UNIT.array[2][5]) + " : " + str(CONST_UNIT.array[2][0])
+	dragoonBeegButton.text = str(CONST_UNIT.array[3][5]) + " : " + str(CONST_UNIT.array[3][0])
+	
+	dragoonEggButton.disabled = !(VarGame.gold >= CONST_UNIT.array[0][5])
+	dragoonNormalButton.disabled = !(VarGame.gold >= CONST_UNIT.array[1][5])
+	dragoonLongButton.disabled = !(VarGame.gold >= CONST_UNIT.array[2][5])
+	dragoonBeegButton.disabled = !(VarGame.gold >= CONST_UNIT.array[3][5])
 
 func setVisible(b:bool):
 	if(b):
@@ -17,3 +24,12 @@ func setVisible(b:bool):
 		show()
 	else:
 		hide()
+
+func _on_dragoon_egg_pressed() -> void:
+	buyUnit.emit(0)
+func _on_dragoon_normal_pressed() -> void:
+	buyUnit.emit(1)
+func _on_dragoon_long_pressed() -> void:
+	buyUnit.emit(2)
+func _on_dragoon_beeg_pressed() -> void:
+	buyUnit.emit(3)

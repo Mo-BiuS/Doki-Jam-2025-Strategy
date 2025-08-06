@@ -88,3 +88,8 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_osnpc")
 text = " - Dragoon Beeg"
 icon = ExtResource("6_pepcr")
 alignment = 0
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonEgg" to="." method="_on_dragoon_egg_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonNormal" to="." method="_on_dragoon_normal_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonLong" to="." method="_on_dragoon_long_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonBeeg" to="." method="_on_dragoon_beeg_pressed"]

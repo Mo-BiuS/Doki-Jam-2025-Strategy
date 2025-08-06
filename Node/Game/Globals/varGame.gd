@@ -1,3 +1,5 @@
 extends Node
 
-var gold = 1000
+var turn = 1;
+var teamTurn = 0;
+var gold = 800

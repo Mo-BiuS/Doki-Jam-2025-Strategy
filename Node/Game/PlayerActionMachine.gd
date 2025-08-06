@@ -1,4 +1,4 @@
-extends Node
+class_name PlayerActionMachine extends Node
 
 @export var arenaHandler:ArenaHandler
 @export var buildingHandler:BuildingHandler
@@ -10,16 +10,16 @@ extends Node
 @export var movementArea:MovementArea
 @export var movementArrow:MovementArrow
 
-var teamTurn = 0;
 var selectedEnity:Entity = null
 var selectedBase:Base = null
+
 func _process(_delta: float) -> void:
 	processInput()
 
 func processInput():
-	if(!cursor.isMoving() && Input.is_action_just_pressed("action")):
-		var entity:Entity = entityHandler.getUnitFromTeamAt(teamTurn,cursor.tilePos)
-		var base:Base = buildingHandler.getBaseFromTeamAt(teamTurn,cursor.tilePos)
+	if(selectedBase == null && !cursor.isMoving() && Input.is_action_just_pressed("action")):
+		var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
+		var base:Base = buildingHandler.getBaseFromTeamAt(VarGame.teamTurn,cursor.tilePos)
 		if(entity != null && selectedBase == null):
 			selectedEnity = entity
 			movementArrow.selectedEntity = entity
@@ -34,23 +34,18 @@ func processInput():
 			movementArea.clear()
 			movementArrow.clear()
 		elif(base != null):
+			reset()
 			selectedBase = base
-			selectedEnity = null
-			movementArrow.selectedEntity = null
-			movementArea.selectedEntity = null
-			movementArea.clear()
-			movementArrow.clear()
 			cursor.disable()
 			gameUI.showBuildMenu()
 		else:
-			selectedEnity = null
-			movementArrow.selectedEntity = null
-			movementArea.selectedEntity = null
-			movementArea.clear()
-			movementArrow.clear()
+			reset()
 			
 	
-	if(Input.is_action_just_pressed("return")):
+	elif(Input.is_action_just_pressed("return")):
+		reset()
+
+func reset():
 		selectedEnity = null
 		selectedBase = null
 		movementArrow.selectedEntity = null
@@ -59,7 +54,6 @@ func processInput():
 		movementArrow.clear()
 		cursor.enable()
 		gameUI.hideBuildMenu()
-
 
 func _on_select_cursor_moved_to_new_tile(tPos: Vector2i) -> void:
 	if(selectedEnity != null):movementArrow.refresh()
