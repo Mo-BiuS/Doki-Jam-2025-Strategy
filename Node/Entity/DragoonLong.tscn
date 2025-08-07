@@ -9,4 +9,4 @@ script = ExtResource("2_fxgqu")
 
 [node name="AnimatedSprite" parent="." index="0"]
 sprite_frames = ExtResource("3_ej2o1")
-animation = &"1-MovingWest"
+animation = &"0-MovingEast"

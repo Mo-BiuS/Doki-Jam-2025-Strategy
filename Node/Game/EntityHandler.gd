@@ -55,7 +55,7 @@ func _on_game_ui_buy_unit(n: int) -> void:
 	match VarGame.teamTurn:
 		0:team0.add_child(entity)
 		1:team1.add_child(entity)
-	
+	entity.desactivate()
 	VarGame.gold -= CONST_UNIT.array[n][5]
 	gameUI.refreshRessourcePanel()
 	gameUI.hideBuildMenu()

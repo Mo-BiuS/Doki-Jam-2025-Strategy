@@ -20,13 +20,17 @@ var cost:int		= 0
 
 var mvmMap:Array
 var isMoving:bool = false
+var hasMoved:bool = false
+var isActivated:bool = true
 
 func _ready() -> void:
 	sprite.play(str(team)+"-MovingSouth")
 
 func _process(delta: float) -> void:
 	if isMoving:
-		if(mvmMap.is_empty()):isMoving=false
+		if(mvmMap.is_empty()):
+			hasMoved=true
+			isMoving=false
 		else:
 			var pos = mvmMap[mvmMap.size()-1]
 			var targetPos:Vector2 = Vector2(pos)*64+Vector2(32,32)
@@ -43,6 +47,13 @@ func _process(delta: float) -> void:
 				tilePos = Vector2i(position / (32 * 2))
 				mvmMap.erase(pos)
 				if(mvmMap.is_empty()):isMoving=false
+
+func activate():
+	isActivated = true
+	sprite.modulate = Color(1,1,1)
+func desactivate():
+	isActivated = false
+	sprite.modulate = Color(.5,.5,.5)
 
 func setPosition(pos:Vector2i):
 	tilePos = pos
@@ -64,6 +75,7 @@ func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 			lifeCounterContainer.show()
 			lifeCounterLabel.text = str(life)
 		if(life <= 0):queue_free()
+	desactivate()
 
 func capture(building:Building):
 	building.capture-=5*life/10
@@ -79,4 +91,5 @@ func capture(building:Building):
 			1:building.sprite.play("A")
 			2:building.sprite.play("B")
 		building.changedTeam.emit(building)
+	desactivate()
 	

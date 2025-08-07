@@ -20,12 +20,12 @@ func processInput():
 	if(cursor.ennemyList.is_empty() && selectedBase == null && !cursor.isMoving() && Input.is_action_just_pressed("action")):
 		var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
 		var base:Base = buildingHandler.getBaseFromTeamAt(VarGame.teamTurn,cursor.tilePos)
-		if(selectedEnity == null && entity != null && selectedBase == null):
+		if(selectedEnity == null && entity != null && selectedBase == null && entity.isActivated):
 			selectedEnity = entity
 			movementArrow.selectedEntity = entity
 			movementArea.selectedEntity = entity
 			movementArea.refresh()
-		elif(selectedEnity != null && movementArea.get_cell_tile_data(cursor.tilePos) != null):
+		elif(selectedEnity != null && (movementArrow.get_cell_tile_data(cursor.tilePos) != null || selectedEnity.tilePos == cursor.tilePos)):
 			selectedEnity.isMoving = true
 			cursor.entityFollow = selectedEnity
 			movementArrow.selectedEntity = null
@@ -33,7 +33,7 @@ func processInput():
 			movementArea.clear()
 			movementArrow.clear()
 			cursor.disable()
-		elif(base != null):
+		elif(selectedEnity == null && base != null && entity == null):
 			reset()
 			selectedBase = base
 			cursor.disable()
@@ -78,7 +78,9 @@ func _on_select_cursor_following_entity_ended_movement() -> void:
 	else:
 		ennemyList.append(null)
 	
-	if(empty):reset()
+	if(empty):
+		selectedEnity.desactivate()
+		reset()
 	else:cursor.setEnnemyList(ennemyList)
 
 
