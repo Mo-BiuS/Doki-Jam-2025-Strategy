@@ -67,10 +67,10 @@ func getBuildingAtPos(pos:Vector2i) -> Building:
 	return null
 
 func buildingChangedTeam(building:Building):
-	neutral.remove_child(building)
-	team0.remove_child(building)
-	team1.remove_child(building)
+	if(neutral.get_children().has(building)): neutral.remove_child(building)
+	elif(team0.get_children().has(building)):team0.remove_child(building)
+	elif(team1.get_children().has(building)):team1.remove_child(building)
 	match building.team:
 		0:neutral.add_child(building)
 		1:team0.add_child(building)
-		2:team1.add_child(building)
+		2:team0.add_child(building)
