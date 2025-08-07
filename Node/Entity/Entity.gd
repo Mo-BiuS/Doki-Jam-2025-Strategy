@@ -90,4 +90,10 @@ func capture(building:Building):
 			2:building.sprite.play("B")
 		building.changedTeam.emit(building)
 	desactivate()
-	
+
+func heal():
+	if(life < 10):life = min(life+4,10)
+	if(life < 10):
+		lifeCounterContainer.show()
+		lifeCounterLabel.text = str(life)
+	else:lifeCounterContainer.hide()

@@ -28,14 +28,13 @@ func endTurn():
 			VarGame.gold[i]+=buildingHandler.getGoldFromPlayer(i)
 	
 	gameUI.refreshRessourcePanel()
-	
+	entityHandler.healUnitInAlliedBuilding()
 	
 	match VarGame.player[VarGame.teamTurn]:
 		"player":
 			playerActionMachine.reset()
 		"IA":
-			print("new IA turn")
-			#endTurn()
+			endTurn()
 
 func _on_game_ui_end_turn() -> void:
 	endTurn()

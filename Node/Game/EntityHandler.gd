@@ -3,7 +3,9 @@ class_name EntityHandler extends Node2D
 @export var playerActionMachine:PlayerActionMachine
 @export var gameUI:GameUI
 @export var arenaHandler:ArenaHandler
+@export var buildingHandler:BuildingHandler
 @export var cursor:SelectCursor
+
 
 @onready var team0:Node2D = $Team0
 @onready var team1:Node2D = $Team1
@@ -54,7 +56,16 @@ func getUnitAt(pos:Vector2i)->Entity:
 		if i.tilePos == pos: return i
 	var rep:Entity = null
 	return rep
+
+func healUnitInAlliedBuilding():
+	var list:Array
+	match VarGame.teamTurn:
+		0:list = team0.get_children()
+		1:list = team1.get_children()
 	
+	for i in list:
+		var b:Building = buildingHandler.getBuildingAtPos(i.tilePos)
+		if(b != null && b.team-1 == i.team):i.heal()
 
 func _on_game_ui_buy_unit(n: int) -> void:
 	var entity:Entity = CONST_UNIT.packed[n].instantiate()
