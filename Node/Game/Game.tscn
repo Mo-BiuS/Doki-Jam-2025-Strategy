@@ -370,11 +370,13 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_y6d2w")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "cursor")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor")]
 script = ExtResource("1_6e2ot")
+playerActionMachine = NodePath("PlayerActionMachine")
 arenaHandler = NodePath("ArenaHandler")
 buildingHandler = NodePath("BuildingHandler")
 entityHandler = NodePath("EntityHandler")
+gameUI = NodePath("GameUI")
 cursor = NodePath("InteractiveUI/SelectCursor")
 
 [node name="PlayerActionMachine" type="Node" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor", "movementArea", "movementArrow")]
@@ -451,3 +453,4 @@ entityHandler = NodePath("../EntityHandler")
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_moved_to_new_tile"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]
 [connection signal="buyUnit" from="GameUI" to="EntityHandler" method="_on_game_ui_buy_unit"]
+[connection signal="endTurn" from="GameUI" to="." method="_on_game_ui_end_turn"]

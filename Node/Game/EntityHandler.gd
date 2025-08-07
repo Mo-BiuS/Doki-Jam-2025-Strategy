@@ -38,6 +38,14 @@ func getUnitFromTeamAt(team:int, pos:Vector2i)->Entity:
 	var rep:Entity = null
 	return rep
 
+func reactivateAllUnit():
+	var allStar:Array
+	allStar.append_array(team0.get_children())
+	allStar.append_array(team1.get_children())
+	for i in allStar:
+		i.activate()
+	
+
 func getUnitAt(pos:Vector2i)->Entity:
 	var allStar:Array
 	allStar.append_array(team0.get_children())
@@ -56,7 +64,7 @@ func _on_game_ui_buy_unit(n: int) -> void:
 		0:team0.add_child(entity)
 		1:team1.add_child(entity)
 	entity.desactivate()
-	VarGame.gold -= CONST_UNIT.array[n][5]
+	VarGame.gold[VarGame.teamTurn] -= CONST_UNIT.array[n][5]
 	gameUI.refreshRessourcePanel()
 	gameUI.hideBuildMenu()
 	playerActionMachine.reset()

@@ -73,4 +73,15 @@ func buildingChangedTeam(building:Building):
 	match building.team:
 		0:neutral.add_child(building)
 		1:team0.add_child(building)
-		2:team0.add_child(building)
+		2:team1.add_child(building)
+
+func getGoldFromPlayer(i) -> int:
+	var rep = 0
+	var team:Array
+	match (i+1):
+		1:team = team0.get_children()
+		2:team = team1.get_children()
+	for j in team:
+		if j is Capital:rep+=400
+		if j is City:rep+=100
+	return rep

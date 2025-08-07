@@ -20,7 +20,6 @@ var cost:int		= 0
 
 var mvmMap:Array
 var isMoving:bool = false
-var hasMoved:bool = false
 var isActivated:bool = true
 
 func _ready() -> void:
@@ -29,7 +28,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if isMoving:
 		if(mvmMap.is_empty()):
-			hasMoved=true
 			isMoving=false
 		else:
 			var pos = mvmMap[mvmMap.size()-1]

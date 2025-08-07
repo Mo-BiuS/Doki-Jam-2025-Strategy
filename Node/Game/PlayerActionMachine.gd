@@ -10,6 +10,7 @@ class_name PlayerActionMachine extends Node
 @export var movementArea:MovementArea
 @export var movementArrow:MovementArrow
 
+var escapeMenuOpened:bool = false
 var selectedEnity:Entity = null
 var selectedBase:Base = null
 
@@ -17,35 +18,45 @@ func _process(_delta: float) -> void:
 	processInput()
 
 func processInput():
-	if(cursor.ennemyList.is_empty() && selectedBase == null && !cursor.isMoving() && Input.is_action_just_pressed("action")):
-		var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
-		var base:Base = buildingHandler.getBaseFromTeamAt(VarGame.teamTurn,cursor.tilePos)
-		if(selectedEnity == null && entity != null && selectedBase == null && entity.isActivated):
-			selectedEnity = entity
-			movementArrow.selectedEntity = entity
-			movementArea.selectedEntity = entity
-			movementArea.refresh()
-		elif(selectedEnity != null && (movementArrow.get_cell_tile_data(cursor.tilePos) != null || selectedEnity.tilePos == cursor.tilePos)):
-			selectedEnity.isMoving = true
-			cursor.entityFollow = selectedEnity
-			movementArrow.selectedEntity = null
-			movementArea.selectedEntity = null
-			movementArea.clear()
-			movementArrow.clear()
-			cursor.disable()
-		elif(selectedEnity == null && base != null && entity == null):
-			reset()
-			selectedBase = base
-			cursor.disable()
-			gameUI.showBuildMenu()
-		else:
-			reset()
-			
-	
-	elif(Input.is_action_just_pressed("return")):
-		reset()
+	if(!escapeMenuOpened):
+		if(cursor.ennemyList.is_empty() && selectedBase == null && !cursor.isMoving() && Input.is_action_just_pressed("action")):
+			var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
+			var base:Base = buildingHandler.getBaseFromTeamAt(VarGame.teamTurn,cursor.tilePos)
+			if(selectedEnity == null && entity != null && selectedBase == null && entity.isActivated):
+				selectedEnity = entity
+				movementArrow.selectedEntity = entity
+				movementArea.selectedEntity = entity
+				movementArea.refresh()
+			elif(selectedEnity != null && (movementArrow.get_cell_tile_data(cursor.tilePos) != null || selectedEnity.tilePos == cursor.tilePos)):
+				selectedEnity.isMoving = true
+				cursor.entityFollow = selectedEnity
+				movementArrow.selectedEntity = null
+				movementArea.selectedEntity = null
+				movementArea.clear()
+				movementArrow.clear()
+				cursor.disable()
+			elif(selectedEnity == null && base != null && entity == null):
+				reset()
+				selectedBase = base
+				cursor.disable()
+				gameUI.showBuildMenu()
+			else:
+				reset()
+				
+		
+		elif(Input.is_action_just_pressed("return")):
+			if(escapeMenuOpened):
+				escapeMenuOpened = false
+				cursor.enable()
+				gameUI.hideEscapeMenu()
+			elif(selectedEnity == null && selectedBase == null):
+				escapeMenuOpened = true
+				cursor.disable()
+				gameUI.showEscapeMenu()
+			else:reset()
 
 func reset():
+	escapeMenuOpened = false
 	selectedEnity = null
 	selectedBase = null
 	movementArrow.selectedEntity = null

@@ -9,11 +9,14 @@ class_name GameUI extends CanvasLayer
 @onready var terrainInfoBox:TerrainInfoBox = $MarginContainer/VBoxContainer/TerrainInfoBox
 @onready var buyMenu:BuyMenu = $BuyMenu
 @onready var ressourcePanel:RessourcePanel = $RessourcePanel
+@onready var escapeMenu:EscapeMenu = $EscapeMenu
 
 signal buyUnit(n:int)
+signal endTurn()
 
 func _ready() -> void:
 	buyMenu.setVisible(false)
+	escapeMenu.setVisible(false)
 
 func _on_cursor_moved_to_new_tile(tPos: Vector2i) -> void:
 	buildingInfoBox.refresh(buildingHandler,tPos)
@@ -30,3 +33,12 @@ func refreshRessourcePanel():
 
 func _on_buy_menu_buy_unit(n: int) -> void:
 	buyUnit.emit(n)
+
+func showEscapeMenu():
+	escapeMenu.setVisible(true)
+func hideEscapeMenu():
+	escapeMenu.setVisible(false)
+
+
+func _on_escape_menu_end_turn() -> void:
+	endTurn.emit()

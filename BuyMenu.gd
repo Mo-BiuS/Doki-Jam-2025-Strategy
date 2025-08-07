@@ -13,14 +13,14 @@ func _ready() -> void:
 	dragoonLongButton.text = str(CONST_UNIT.array[2][5]) + " : " + str(CONST_UNIT.array[2][0])
 	dragoonBeegButton.text = str(CONST_UNIT.array[3][5]) + " : " + str(CONST_UNIT.array[3][0])
 	
-	dragoonEggButton.disabled = !(VarGame.gold >= CONST_UNIT.array[0][5])
-	dragoonNormalButton.disabled = !(VarGame.gold >= CONST_UNIT.array[1][5])
-	dragoonLongButton.disabled = !(VarGame.gold >= CONST_UNIT.array[2][5])
-	dragoonBeegButton.disabled = !(VarGame.gold >= CONST_UNIT.array[3][5])
-
 func setVisible(b:bool):
 	if(b):
 		dragoonEggButton.grab_focus()
+		dragoonEggButton.disabled = !(VarGame.gold[VarGame.teamTurn] >= CONST_UNIT.array[0][5])
+		dragoonNormalButton.disabled = !(VarGame.gold[VarGame.teamTurn] >= CONST_UNIT.array[1][5])
+		dragoonLongButton.disabled = !(VarGame.gold[VarGame.teamTurn] >= CONST_UNIT.array[2][5])
+		dragoonBeegButton.disabled = !(VarGame.gold[VarGame.teamTurn] >= CONST_UNIT.array[3][5])
+
 		show()
 	else:
 		hide()

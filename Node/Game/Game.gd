@@ -1,8 +1,11 @@
 class_name Game extends Node2D
 
+@export var playerActionMachine:PlayerActionMachine
+
 @export var arenaHandler:ArenaHandler
 @export var buildingHandler:BuildingHandler
 @export var entityHandler:EntityHandler
+@export var gameUI:GameUI
 
 @export var cursor:SelectCursor
 
@@ -13,3 +16,26 @@ func _ready() -> void:
 	buildingHandler.reset()
 	cursor.setTile(buildingHandler.getCapitalPos(0))
 	cursor.enable()
+
+func endTurn():
+	gameUI.hideEscapeMenu()
+	entityHandler.reactivateAllUnit()
+	VarGame.teamTurn+=1
+	if(VarGame.teamTurn == VarGame.player.size()):
+		VarGame.teamTurn = 0
+		VarGame.turn+=1
+		for i in range(VarGame.player.size()):
+			VarGame.gold[i]+=buildingHandler.getGoldFromPlayer(i)
+	
+	gameUI.refreshRessourcePanel()
+	
+	
+	match VarGame.player[VarGame.teamTurn]:
+		"player":
+			playerActionMachine.reset()
+		"IA":
+			print("new IA turn")
+			#endTurn()
+
+func _on_game_ui_end_turn() -> void:
+	endTurn()
