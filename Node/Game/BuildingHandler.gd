@@ -56,7 +56,11 @@ func getBaseFromTeamAt(team:int, pos:Vector2i)->Base:
 	return null
 
 func getBuildingAtPos(pos:Vector2i) -> Building:
-	for tab in [neutral, team0, team1]:
-		for b in tab.get_children():
-			if b.tilePos == pos : return b
+	var allStar:Array
+	allStar.append_array(neutral.get_children())
+	allStar.append_array(team0.get_children())
+	allStar.append_array(team1.get_children())
+
+	for b in allStar:
+		if b.tilePos == pos : return b
 	return null

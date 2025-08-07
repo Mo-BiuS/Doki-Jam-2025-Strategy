@@ -62,12 +62,23 @@ func _on_select_cursor_moved_to_new_tile(tPos: Vector2i) -> void:
 
 
 func _on_select_cursor_following_entity_ended_movement() -> void:
+	var empty = true
 	var ennemyList:Array
-	for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
+	for i in [Vector2i(0,-1),Vector2i(1,0),Vector2i(0,1),Vector2i(-1,0)]:
 		var entity:Entity = entityHandler.getUnitAt(cursor.tilePos+i)
 		if(entity != null && entity.team != VarGame.teamTurn):
-			ennemyList.append([entity,i])
-	if(ennemyList.is_empty()):reset()
+			ennemyList.append(entity)
+			empty = false
+		else:
+			ennemyList.append(null)
+	var building:Building = buildingHandler.getBuildingAtPos(cursor.tilePos)
+	if(building != null && building.team != VarGame.teamTurn+1):
+		ennemyList.append(building)
+		empty = false
+	else:
+		ennemyList.append(null)
+	
+	if(empty):reset()
 	else:cursor.setEnnemyList(ennemyList)
 
 

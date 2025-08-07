@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccdbhg80hajld"
-path="res://.godot/imported/chemin.png-895c523335b6b6091a9c36e7cebd8346.ctex"
+uid="uid://cwwvlykllbjrc"
+path="res://.godot/imported/template_route.png-edcd3f36d58a0fb8885b1f23fba30769.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/Map/Lem/chemin.png"
-dest_files=["res://.godot/imported/chemin.png-895c523335b6b6091a9c36e7cebd8346.ctex"]
+source_file="res://Ressources/Sprite/Map/Lem/template_route.png"
+dest_files=["res://.godot/imported/template_route.png-edcd3f36d58a0fb8885b1f23fba30769.ctex"]
 
 [params]
 
