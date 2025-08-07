@@ -27,6 +27,7 @@ func loadStartingBuilding(team:int,list:Array):
 			_:print("Loading starting entity, error unit code")
 		
 		if entity != null:
+			entity.changedTeam.connect(buildingChangedTeam)
 			entity.team = team
 			entity.setPosition(Vector2i(i[1],i[2]))
 			match team:
@@ -64,3 +65,12 @@ func getBuildingAtPos(pos:Vector2i) -> Building:
 	for b in allStar:
 		if b.tilePos == pos : return b
 	return null
+
+func buildingChangedTeam(building:Building):
+	neutral.remove_child(building)
+	team0.remove_child(building)
+	team1.remove_child(building)
+	match building.team:
+		0:neutral.add_child(building)
+		1:team0.add_child(building)
+		2:team1.add_child(building)

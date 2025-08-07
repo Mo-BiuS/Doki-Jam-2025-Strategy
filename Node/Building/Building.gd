@@ -1,8 +1,16 @@
 class_name Building extends Node2D
 
 @onready var sprite:AnimatedSprite2D = $Sprite
+@onready var captureCounterContainer:PanelContainer = $CaptureCounterContainer
+@onready var captureCounterLabel:Label = $CaptureCounterContainer/CaptureCounterLabel
+
+signal changedTeam(s:Building)
+
 var team = -1
 var tilePos:Vector2i
+
+var capture:float = 10
+var teamCapturng:int = -1
 
 func _ready() -> void:
 	match team:

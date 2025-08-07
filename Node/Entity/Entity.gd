@@ -64,3 +64,19 @@ func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 			lifeCounterContainer.show()
 			lifeCounterLabel.text = str(life)
 		if(life <= 0):queue_free()
+
+func capture(building:Building):
+	building.capture-=5*life/10
+	if(building.capture < 10):
+		building.captureCounterContainer.show()
+		building.captureCounterLabel.text = str(int(building.capture))
+	if(building.capture <= 0):
+		building.capture = 10
+		building.team = team+1
+		building.captureCounterContainer.hide()
+		match building.team:
+			0:building.sprite.play("N")
+			1:building.sprite.play("A")
+			2:building.sprite.play("B")
+		building.changedTeam.emit(building)
+	

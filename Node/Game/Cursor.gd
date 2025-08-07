@@ -81,9 +81,12 @@ func _process(delta: float) -> void:
 						position = ennemyList[4].position
 						tilePos = ennemyList[4].tilePos
 					elif ennemyList[target_index] != null:
+						ennemyListPos = target_index
 						position = ennemyList[target_index].position
 						tilePos = ennemyList[target_index].tilePos
-			
+				if(ennemyListPos == 4):texture = captureTexture
+				else:texture = attackTexture
+	
 	elif entityFollow != null:
 		position = entityFollow.position
 		if(!entityFollow.isMoving):

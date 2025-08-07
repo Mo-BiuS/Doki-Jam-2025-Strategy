@@ -86,4 +86,9 @@ func _on_select_cursor_attack_at(tpos: Vector2i) -> void:
 	var entity:Entity = entityHandler.getUnitAt(tpos)
 	if(entity != null && entity.team != VarGame.teamTurn):
 		selectedEnity.damage(entity, arenaHandler.arena.getDefenceAt(tpos),arenaHandler.arena.getDefenceAt(selectedEnity.tilePos))
+	else:
+		var building:Building = buildingHandler.getBuildingAtPos(tpos)
+		if(building != null && building.team != VarGame.teamTurn+1):
+			selectedEnity.capture(building)
+		
 	reset()
