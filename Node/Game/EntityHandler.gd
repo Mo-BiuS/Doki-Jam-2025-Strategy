@@ -88,7 +88,7 @@ func getWeightedTeam()->Array:
 		elif(i is DragoonBeeg):rep[3]+=1
 	for i in range(rep.size()):
 		rep[i]/=CONST_UNIT.array[i][6]
-		rep[i]+=randf_range(0,4)
+		rep[i]+=randf_range(0, CONST_UNIT.array[i][6])
 	return rep
 
 func _on_game_ui_buy_unit(n: int) -> void:

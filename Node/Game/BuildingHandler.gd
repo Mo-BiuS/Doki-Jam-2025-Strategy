@@ -48,6 +48,17 @@ func getCapitalPos(player:int)->Vector2i:
 			return i.position/64
 	return Vector2i(-1,-1)
 
+func getCapitalFromTeam(player:int)->Capital:
+	var list:Node2D
+	match player:
+		0:list = team0
+		1:list = team1
+		_:print("get capital error player index")
+	for i in list.get_children():
+		if i is Capital:
+			return i
+	return null
+
 func getBaseFromTeamAt(team:int, pos:Vector2i)->Base:
 	var list:Node2D
 	match team:
@@ -102,13 +113,32 @@ func uncaptureFreeBuilding()->void:
 			b.captureCounterContainer.hide()
 
 
-func getAllBaseFromPlayingTeam()->Array[Base]:
+func getAllBaseFromPlayingTeamOrdered()->Array[Base]:
 	var rep:Array[Base]
 	var list
 	match VarGame.teamTurn:
 		0:list = team0.get_children()
 		1:list = team1.get_children()
+	var capital:Capital = getCapitalFromTeam(VarGame.teamTurn)
+	var unorderedResponse:Array
 	for i in list:
-		if i is Base:rep.append(i)
+		if i is Base:unorderedResponse.append([i,i.tilePos.distance_to(capital.tilePos)])
+	
+	sortBase(unorderedResponse)
+	
+	for i in unorderedResponse:
+		rep.append(i[0])
 	
 	return rep
+
+func sortBase(b:Array):
+	var i = 0;
+	print(b)
+	while(i < b.size()-1):
+		if(b[i][1] < b[i+1][1]):
+			var tmp = b[i]
+			b[i] = b[i+1]
+			b[i+1] = tmp
+			if(i > 0):i-=1
+		else:i+=1
+	print(b)

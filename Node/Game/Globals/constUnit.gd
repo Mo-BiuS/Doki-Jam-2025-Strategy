@@ -1,5 +1,10 @@
 extends Node
 
+const UNIT_EGG = 0
+const UNIT_CHICK = 1
+const UNIT_LONG = 2
+const UNIT_BEEG = 3
+
 var array:Array = [
 	#					MVM	VISION	ATTACK	DEFENCE	COST		WEIGHT
 	["Dragoon Egg",		6,	2,		6,		0,		200,		2],

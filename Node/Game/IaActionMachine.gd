@@ -6,7 +6,7 @@ class_name IaActionMachine extends Node
 @export var entityHandler:EntityHandler
 @export var cursor:SelectCursor
 
-const BREAK_TIME = 1.2
+const BREAK_TIME = .8
 var breakTimer:float = BREAK_TIME
 var isPlaying:bool = false
 
@@ -21,7 +21,7 @@ func end():
 #==================================================================
 func initTurn():
 	entityList = entityHandler.getAllFromPlayingTeam()
-	baseList = buildingHandler.getAllBaseFromPlayingTeam()
+	baseList = buildingHandler.getAllBaseFromPlayingTeamOrdered()
 
 func _process(delta: float) -> void:
 	if(isPlaying):
@@ -49,7 +49,7 @@ func base()->bool:
 		var base:Base = baseList[0]
 		cursor.setTile(base.tilePos)
 		var weightedTeam = entityHandler.getWeightedTeam()
-		if(VarGame.turn < 2):weightedTeam[3] = 100.0
+		if(VarGame.turn < 2):weightedTeam[CONST_UNIT.UNIT_BEEG] = 100.0
 		
 		var simpleLowest = 0
 		var simpleLowestValue = weightedTeam[0]

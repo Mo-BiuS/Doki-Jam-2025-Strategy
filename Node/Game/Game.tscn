@@ -446,6 +446,7 @@ arenaHandler = NodePath("../../ArenaHandler")
 [node name="Camera" type="Camera2D" parent="InteractiveUI/SelectCursor"]
 scale = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 
 [node name="MovementArea" type="TileMapLayer" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "entityHandler")]
 z_index = 3
