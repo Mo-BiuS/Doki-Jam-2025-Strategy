@@ -91,6 +91,17 @@ func getWeightedTeam()->Array:
 		rep[i]+=randf_range(0, CONST_UNIT.array[i][6])
 	return rep
 
+func isThereEnnemiesEntityAround(pos:Vector2i, size:int)->bool:
+	var allStar:Array
+	allStar.append_array(team0.get_children())
+	allStar.append_array(team1.get_children())
+	for i in allStar:
+		if i is Entity && i.team != VarGame.teamTurn:
+			if(pos.distance_to(i.tilePos) <= size):
+				return true
+	return false
+	
+
 func _on_game_ui_buy_unit(n: int) -> void:
 	var entity:Entity = CONST_UNIT.packed[n].instantiate()
 	entity.team = VarGame.teamTurn
