@@ -6,12 +6,15 @@
 script = ExtResource("1_18agx")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, -12)
 scale = Vector2(2, 2)
 
 [node name="LifeCounterContainer" type="PanelContainer" parent="."]
 visible = false
+z_index = 2
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

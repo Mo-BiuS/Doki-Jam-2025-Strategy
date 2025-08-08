@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=17 format=3 uid="uid://bhdsiv24l5m1b"]
 
 [ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
 [ext_resource type="Script" uid="uid://c7esx0lbv3mvq" path="res://Node/Game/ArenaHandler.gd" id="2_g1w7o"]
 [ext_resource type="Script" uid="uid://y170qrt6uq0m" path="res://Node/Game/PlayerActionMachine.gd" id="2_il3tl"]
+[ext_resource type="Script" uid="uid://bbrfxb1no6kye" path="res://Node/Game/IaActionMachine.gd" id="3_7aoj4"]
 [ext_resource type="Script" uid="uid://bdjkx32t0cint" path="res://Node/Game/EntityHandler.gd" id="3_8v1kq"]
 [ext_resource type="Script" uid="uid://cbjdh6pkrtsw7" path="res://Node/Game/Cursor.gd" id="6_g1w7o"]
 [ext_resource type="PackedScene" uid="uid://d2sc4mbovli68" path="res://Node/UI/GameUI.tscn" id="7_yq4x2"]
@@ -370,9 +371,11 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_y6d2w")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "iaActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor")]
+y_sort_enabled = true
 script = ExtResource("1_6e2ot")
 playerActionMachine = NodePath("PlayerActionMachine")
+iaActionMachine = NodePath("IaActionMachine")
 arenaHandler = NodePath("ArenaHandler")
 buildingHandler = NodePath("BuildingHandler")
 entityHandler = NodePath("EntityHandler")
@@ -389,21 +392,30 @@ cursor = NodePath("../InteractiveUI/SelectCursor")
 movementArea = NodePath("../InteractiveUI/MovementArea")
 movementArrow = NodePath("../InteractiveUI/MovementArrow")
 
+[node name="IaActionMachine" type="Node" parent="." node_paths=PackedStringArray("game")]
+script = ExtResource("3_7aoj4")
+game = NodePath("..")
+
 [node name="ArenaHandler" type="Node2D" parent="."]
+y_sort_enabled = true
 script = ExtResource("2_g1w7o")
 
 [node name="BuildingHandler" type="Node2D" parent="." node_paths=PackedStringArray("arenaHandler")]
+y_sort_enabled = true
 script = ExtResource("2_8v1kq")
 arenaHandler = NodePath("../ArenaHandler")
 
 [node name="Neutral" type="Node2D" parent="BuildingHandler"]
+y_sort_enabled = true
 
 [node name="Team0" type="Node2D" parent="BuildingHandler"]
+y_sort_enabled = true
 
 [node name="Team1" type="Node2D" parent="BuildingHandler"]
+y_sort_enabled = true
 
 [node name="EntityHandler" type="Node2D" parent="." node_paths=PackedStringArray("playerActionMachine", "gameUI", "arenaHandler", "buildingHandler", "cursor")]
-z_index = 2
+y_sort_enabled = true
 script = ExtResource("3_8v1kq")
 playerActionMachine = NodePath("../PlayerActionMachine")
 gameUI = NodePath("../GameUI")
@@ -412,13 +424,15 @@ buildingHandler = NodePath("../BuildingHandler")
 cursor = NodePath("../InteractiveUI/SelectCursor")
 
 [node name="Team0" type="Node2D" parent="EntityHandler"]
+y_sort_enabled = true
 
 [node name="Team1" type="Node2D" parent="EntityHandler"]
+y_sort_enabled = true
 
 [node name="InteractiveUI" type="Node2D" parent="."]
 
 [node name="SelectCursor" type="Sprite2D" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler")]
-z_index = 1
+z_index = 3
 texture_filter = 1
 scale = Vector2(2, 2)
 script = ExtResource("6_g1w7o")
@@ -429,6 +443,7 @@ scale = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="MovementArea" type="TileMapLayer" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "entityHandler")]
+z_index = 3
 scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_bjo0o")
 script = ExtResource("9_5s4hk")
@@ -436,6 +451,7 @@ arenaHandler = NodePath("../../ArenaHandler")
 entityHandler = NodePath("../../EntityHandler")
 
 [node name="MovementArrow" type="TileMapLayer" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "entityHandler", "cursor", "movementArea")]
+z_index = 3
 scale = Vector2(0.5, 0.5)
 tile_set = SubResource("TileSet_81hta")
 script = ExtResource("11_054nj")

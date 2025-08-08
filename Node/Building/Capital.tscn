@@ -7,6 +7,6 @@
 [node name="Capital" instance=ExtResource("1_fssxq")]
 script = ExtResource("2_ppy85")
 
-[node name="Sprite" parent="." index="0"]
+[node name="Sprite" parent="Marker" index="0"]
 sprite_frames = ExtResource("3_o1yd1")
-animation = &"N"
+animation = &"A"

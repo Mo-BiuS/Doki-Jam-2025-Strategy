@@ -1,6 +1,7 @@
 class_name Game extends Node2D
 
 @export var playerActionMachine:PlayerActionMachine
+@export var iaActionMachine:IaActionMachine
 
 @export var arenaHandler:ArenaHandler
 @export var buildingHandler:BuildingHandler
@@ -10,14 +11,18 @@ class_name Game extends Node2D
 @export var cursor:SelectCursor
 
 func _ready() -> void:
-	#arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
-	arenaHandler.loadArena(preload("res://Node/Arena/LevelTest.tscn"))
+	arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
+	#arenaHandler.loadArena(preload("res://Node/Arena/LevelTest.tscn"))
 	entityHandler.reset()
 	buildingHandler.reset()
 	cursor.setTile(buildingHandler.getCapitalPos(0))
 	cursor.enable()
 
 func endTurn():
+	match VarGame.player[VarGame.teamTurn]:
+		"player":pass
+		"IA":iaActionMachine.end()
+	
 	gameUI.hideEscapeMenu()
 	entityHandler.reactivateAllUnit()
 	VarGame.teamTurn+=1
@@ -34,7 +39,7 @@ func endTurn():
 		"player":
 			playerActionMachine.reset()
 		"IA":
-			endTurn()
+			iaActionMachine.start()
 
 func _on_game_ui_end_turn() -> void:
 	endTurn()

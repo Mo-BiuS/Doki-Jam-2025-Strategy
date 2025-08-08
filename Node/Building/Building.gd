@@ -1,6 +1,6 @@
 class_name Building extends Node2D
 
-@onready var sprite:AnimatedSprite2D = $Sprite
+@export var sprite:AnimatedSprite2D
 @onready var captureCounterContainer:PanelContainer = $CaptureCounterContainer
 @onready var captureCounterLabel:Label = $CaptureCounterContainer/CaptureCounterLabel
 
