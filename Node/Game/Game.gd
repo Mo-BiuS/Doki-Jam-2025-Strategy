@@ -11,8 +11,9 @@ class_name Game extends Node2D
 @export var cursor:SelectCursor
 
 func _ready() -> void:
-	#arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
-	arenaHandler.loadArena(preload("res://Node/Arena/LevelTest.tscn"))
+	arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
+	#arenaHandler.loadArena(preload("res://Node/Arena/LevelTest.tscn"))
+	#arenaHandler.loadArena(preload("res://Node/Arena/IaBuyTest.tscn"))
 	entityHandler.reset()
 	buildingHandler.reset()
 	cursor.setTile(buildingHandler.getCapitalPos(0))

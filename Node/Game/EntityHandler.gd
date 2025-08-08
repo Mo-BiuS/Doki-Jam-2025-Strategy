@@ -78,6 +78,19 @@ func getAllFromPlayingTeam()->Array[Entity]:
 	
 	return rep
 
+func getWeightedTeam()->Array:
+	var team:Array[Entity] = getAllFromPlayingTeam()
+	var rep:Array = [0.,0.,0.,0.]
+	for i in team:
+		if(i is DragoonEgg):rep[0]+=1
+		elif(i is DragoonChick):rep[1]+=1
+		elif(i is DragoonLong):rep[2]+=1
+		elif(i is DragoonBeeg):rep[3]+=1
+	for i in range(rep.size()):
+		rep[i]/=CONST_UNIT.array[i][6]
+		rep[i]+=randf_range(0,4)
+	return rep
+
 func _on_game_ui_buy_unit(n: int) -> void:
 	var entity:Entity = CONST_UNIT.packed[n].instantiate()
 	entity.team = VarGame.teamTurn
