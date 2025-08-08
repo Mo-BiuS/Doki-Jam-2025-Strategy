@@ -27,6 +27,7 @@ func endTurn():
 	entityHandler.reactivateAllUnit()
 	VarGame.teamTurn+=1
 	if(VarGame.teamTurn == VarGame.player.size()):
+		buildingHandler.uncaptureFreeBuilding()
 		VarGame.teamTurn = 0
 		VarGame.turn+=1
 		for i in range(VarGame.player.size()):
@@ -34,7 +35,6 @@ func endTurn():
 	
 	gameUI.refreshRessourcePanel()
 	entityHandler.healUnitInAlliedBuilding()
-	buildingHandler.uncaptureFreeBuilding()
 	
 	match VarGame.player[VarGame.teamTurn]:
 		"player":
