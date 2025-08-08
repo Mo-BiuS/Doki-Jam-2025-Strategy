@@ -5,6 +5,7 @@ const BUILDING_PACKED_BASE:PackedScene = preload("res://Node/Building/Base.tscn"
 const BUILDING_PACKED_CAPITAL:PackedScene = preload("res://Node/Building/Capital.tscn")
 
 @export var arenaHandler:ArenaHandler
+@export var entityHandler:EntityHandler
 
 @onready var neutral:Node2D = $Neutral
 @onready var team0:Node2D = $Team0
@@ -85,3 +86,17 @@ func getGoldFromPlayer(i) -> int:
 		if j is Capital:rep+=400
 		if j is City:rep+=100
 	return rep
+
+func uncaptureFreeBuilding()->void:
+	
+	var allStar:Array
+	allStar.append_array(neutral.get_children())
+	allStar.append_array(team0.get_children())
+	allStar.append_array(team1.get_children())
+
+	for b in allStar:
+		var entity:Entity = entityHandler.getUnitAt(b.tilePos)
+		if(b.capture != 10 && (entity == null || entity.team == b.team-1)):
+			b.capture = 10
+			b.teamCapturng = -1
+			b.captureCounterContainer.hide()

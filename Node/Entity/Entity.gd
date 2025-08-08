@@ -76,6 +76,9 @@ func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 	desactivate()
 
 func capture(building:Building):
+	if(building.teamCapturng != team):
+		building.teamCapturng = team
+		building.capture = 10
 	building.capture-=5*life/10
 	if(building.capture < 10):
 		building.captureCounterContainer.show()
