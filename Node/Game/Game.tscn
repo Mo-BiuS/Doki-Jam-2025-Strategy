@@ -392,9 +392,13 @@ cursor = NodePath("../InteractiveUI/SelectCursor")
 movementArea = NodePath("../InteractiveUI/MovementArea")
 movementArrow = NodePath("../InteractiveUI/MovementArrow")
 
-[node name="IaActionMachine" type="Node" parent="." node_paths=PackedStringArray("game")]
+[node name="IaActionMachine" type="Node" parent="." node_paths=PackedStringArray("game", "arenaHandler", "buildingHandler", "entityHandler", "cursor")]
 script = ExtResource("3_7aoj4")
 game = NodePath("..")
+arenaHandler = NodePath("../ArenaHandler")
+buildingHandler = NodePath("../BuildingHandler")
+entityHandler = NodePath("../EntityHandler")
+cursor = NodePath("../InteractiveUI/SelectCursor")
 
 [node name="ArenaHandler" type="Node2D" parent="."]
 y_sort_enabled = true

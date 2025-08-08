@@ -67,6 +67,17 @@ func healUnitInAlliedBuilding():
 		var b:Building = buildingHandler.getBuildingAtPos(i.tilePos)
 		if(b != null && b.team-1 == i.team):i.heal()
 
+func getAllFromPlayingTeam()->Array[Entity]:
+	var rep:Array[Entity]
+	var list
+	match VarGame.teamTurn:
+		0:list = team0.get_children()
+		1:list = team1.get_children()
+	for i in list:
+		if i is Entity:rep.append(i)
+	
+	return rep
+
 func _on_game_ui_buy_unit(n: int) -> void:
 	var entity:Entity = CONST_UNIT.packed[n].instantiate()
 	entity.team = VarGame.teamTurn

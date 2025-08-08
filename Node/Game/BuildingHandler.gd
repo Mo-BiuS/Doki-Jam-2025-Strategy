@@ -100,3 +100,15 @@ func uncaptureFreeBuilding()->void:
 			b.capture = 10
 			b.teamCapturng = -1
 			b.captureCounterContainer.hide()
+
+
+func getAllBaseFromPlayingTeam()->Array[Base]:
+	var rep:Array[Base]
+	var list
+	match VarGame.teamTurn:
+		0:list = team0.get_children()
+		1:list = team1.get_children()
+	for i in list:
+		if i is Base:rep.append(i)
+	
+	return rep

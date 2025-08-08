@@ -38,8 +38,11 @@ func endTurn():
 	
 	match VarGame.player[VarGame.teamTurn]:
 		"player":
+			cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
 			playerActionMachine.reset()
 		"IA":
+			cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
+			iaActionMachine.initTurn()
 			iaActionMachine.start()
 
 func _on_game_ui_end_turn() -> void:
