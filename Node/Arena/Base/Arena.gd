@@ -37,6 +37,7 @@ func getDeplacementCostAt(pos:Vector2i)->int:
 	var roadData:TileData = roads.get_cell_tile_data(pos)
 	var buildingData:TileData = buildingSpawn.get_cell_tile_data(pos)
 	var terrainData = CONST_TERRAIN.ARRAY[tileData.terrain]
+	
 	if roadData != null : return 1
 	elif buildingData != null : return 4
 	else:return terrainData[1]

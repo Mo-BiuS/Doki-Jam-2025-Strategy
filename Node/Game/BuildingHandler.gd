@@ -118,7 +118,7 @@ func getAllFromEnnemyTeam()->Array[Building]:
 	allStar.append_array(team0.get_children())
 	allStar.append_array(team1.get_children())
 	for i in allStar:
-		if i is Building && i.team != VarGame.teamTurn:rep.append(rep)
+		if i is Building && i.team-1 != VarGame.teamTurn:rep.append(i)
 	return rep
 
 func getAllBaseFromPlayingTeamOrdered()->Array[Base]:

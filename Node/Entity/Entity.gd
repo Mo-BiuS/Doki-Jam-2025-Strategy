@@ -23,6 +23,8 @@ var mvmMap:Array
 var isMoving:bool = false
 var isActivated:bool = true
 
+var captureObjectif:Building = null
+
 func _ready() -> void:
 	sprite.play(str(team)+"-MovingSouth")
 
@@ -45,7 +47,11 @@ func _process(delta: float) -> void:
 			if position == targetPos:
 				tilePos = Vector2i(position / (32 * 2))
 				mvmMap.erase(pos)
-				if(mvmMap.is_empty()):isMoving=false
+				if(mvmMap.is_empty()):
+					isMoving=false
+					if(captureObjectif != null && captureObjectif.tilePos == tilePos):
+						capture(captureObjectif)
+						captureObjectif = null
 
 func activate():
 	isActivated = true
@@ -101,3 +107,27 @@ func heal():
 		lifeCounterContainer.show()
 		lifeCounterLabel.text = str(life)
 	else:lifeCounterContainer.hide()
+
+func goCapture(b:Building)->void:
+	trace(b.tilePos)
+	var nMap:Array
+	for i in mvmMap:
+		if(areaDict.get(i) <= mvm):nMap.append(i)
+	mvmMap = nMap
+	print("===========================================")
+	captureObjectif = b
+	isMoving = true
+func trace(pos:Vector2i):
+	mvmMap.append(pos)
+	if(pos != tilePos):
+		var validDirection:Array
+		for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
+			if(areaDict.has(pos+i)):validDirection.append(i)
+		var minAround = 1000000000
+		for i in validDirection:
+			minAround = min(minAround,areaDict[pos+i])
+		for i in validDirection:
+			if(areaDict[pos+i] == minAround):
+				trace(pos+i)
+				break
+	

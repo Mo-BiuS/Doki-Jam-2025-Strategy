@@ -97,7 +97,7 @@ func getAllFromPlayingTeam()->Array[Entity]:
 		0:list = team0.get_children()
 		1:list = team1.get_children()
 	for i in list:
-		if i is Entity:rep.append(rep)
+		if i is Entity:rep.append(i)
 	return rep
 func getAllFromEnnemyTeam()->Array[Entity]:
 	var rep:Array[Entity]
@@ -105,7 +105,7 @@ func getAllFromEnnemyTeam()->Array[Entity]:
 	allStar.append_array(team0.get_children())
 	allStar.append_array(team1.get_children())
 	for i in allStar:
-		if i is Entity && i.team != VarGame.teamTurn:rep.append(rep)
+		if i is Entity && i.team != VarGame.teamTurn:rep.append(i)
 	return rep
 func getAllFromPlayingTeamOrdered()->Array[Entity]:
 	var rep:Array[Entity]

@@ -21,7 +21,7 @@ func calculateAreaMap(e: Entity):
 			if arena.isIn(pos+p) && entityHandler.getUnitAt(pos+p) == null:
 				var dc = arena.getDeplacementCostAt(pos+p)
 				if dc > 0:
-					var new_cost = cCost + dc
-					if !e.areaDict.has(pos+p) or new_cost < e.areaDict[pos+p]:
-						e.areaDict[pos+p] = new_cost
+					var nc = cCost + dc
+					if !e.areaDict.has(pos+p) or nc < e.areaDict[pos+p]:
+						e.areaDict[pos+p] = nc
 						posList.push_back(pos+p)
