@@ -1,5 +1,9 @@
 class_name IaActionMachine extends Node
 
+const ACTION_ATTACK = 1
+const ACTION_CAPTURE = 2
+const ACTION_RUN_AWAY = 3
+
 @export var game:Game
 @export var arenaHandler:ArenaHandler
 @export var buildingHandler:BuildingHandler
@@ -9,6 +13,7 @@ class_name IaActionMachine extends Node
 const BREAK_TIME = .8
 var breakTimer:float = BREAK_TIME
 var isPlaying:bool = false
+var waiting:bool = false
 
 var entityList:Array[Entity]
 var baseList:Array[Base]
@@ -20,28 +25,36 @@ func end():
 	isPlaying = false
 #==================================================================
 func initTurn():
-	entityList = entityHandler.getAllFromPlayingTeam()
+	entityList = entityHandler.getAllFromPlayingTeamOrdered()
 	baseList = buildingHandler.getAllBaseFromPlayingTeamOrdered()
+	
 
 func _process(delta: float) -> void:
 	if(isPlaying):
 		if(breakTimer > 0):breakTimer-=delta
-		else:
+		elif(!waiting):
 			breakTimer = BREAK_TIME
-			if(unit()):pass
-			elif(base()):pass
-			else:game.endTurn()
+			if(!unit() && !base()):game.endTurn()
 #==================================================================
 func unit()->bool:
 	if(!entityList.is_empty()):
 		var entity:Entity = entityList[0]
-		cursor.setTile(entity.tilePos)
-		
-		entity.desactivate()
-		entityList.erase(entity)
+		arenaHandler.calculateAreaMap(entity)
+		var priorityList = calculatePriorityList(entity)
+		if(!priorityList.is_empty()):
+			print(priorityList[0],priorityList[0].tilePos)
+		else:
+			cursor.setTile(entity.tilePos)
+			cursor.entityFollow = entity
+			entity.desactivate()
+			entityList.erase(entity)
 			
 		return true
-	else:return false
+	else:
+		cursor.entityFollow = null
+		return false
+
+
 func base()->bool:
 	while (!baseList.is_empty() && entityHandler.getUnitAt(baseList[0].tilePos) != null):baseList.erase(baseList[0])
 	if(baseList.is_empty() || VarGame.gold[VarGame.teamTurn] < CONST_UNIT.lowestCost()):return false
@@ -66,3 +79,18 @@ func base()->bool:
 		
 		baseList.clear()
 		return true
+
+func calculatePriorityList(e:Entity)->Array:
+	var rep:Array = []
+	var ennemyBuildingList:Array[Building] = buildingHandler.getAllFromEnnemyTeam()
+	var ennemyEntityList:Array[Entity] = entityHandler.getAllFromEnnemyTeam()
+	
+	for i in ennemyEntityList:
+		pass
+	for i in ennemyBuildingList:
+		if(e.areaDict.has(i.tilePos)):
+			var modif = 0;
+			rep.append([i,e.areaDict[i.tilePos]-VarGame])
+	
+	
+	return rep

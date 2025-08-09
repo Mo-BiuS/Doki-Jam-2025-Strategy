@@ -18,6 +18,7 @@ var attack:int	= 0
 var defence:int	= 0
 var cost:int		= 0
 
+var areaDict:Dictionary
 var mvmMap:Array
 var isMoving:bool = false
 var isActivated:bool = true

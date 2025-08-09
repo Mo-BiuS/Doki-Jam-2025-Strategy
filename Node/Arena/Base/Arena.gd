@@ -50,7 +50,6 @@ func getDefenceAt(pos:Vector2i)->int:
 	elif buildingData != null : return 2
 	else:return terrainData[2]
 
-
 func isIn(pos:Vector2i)->bool:
 	return tiles.get_cell_tile_data(pos) != null
 func getCenter()->Vector2i:

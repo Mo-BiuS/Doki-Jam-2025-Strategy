@@ -11,9 +11,9 @@ class_name Game extends Node2D
 @export var cursor:SelectCursor
 
 func _ready() -> void:
-	#arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
+	arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
 	#arenaHandler.loadArena(preload("res://Node/Arena/LevelTest.tscn"))
-	arenaHandler.loadArena(preload("res://Node/Arena/IaBuyTest.tscn"))
+	#arenaHandler.loadArena(preload("res://Node/Arena/IaBuyTest.tscn"))
 	entityHandler.reset()
 	buildingHandler.reset()
 	cursor.setTile(buildingHandler.getCapitalPos(0))
@@ -28,7 +28,6 @@ func endTurn():
 	entityHandler.reactivateAllUnit()
 	VarGame.teamTurn+=1
 	if(VarGame.teamTurn == VarGame.player.size()):
-		buildingHandler.uncaptureFreeBuilding()
 		VarGame.teamTurn = 0
 		VarGame.turn+=1
 		for i in range(VarGame.player.size()):
@@ -36,13 +35,16 @@ func endTurn():
 	
 	gameUI.refreshRessourcePanel()
 	entityHandler.healUnitInAlliedBuilding()
+	buildingHandler.uncaptureFreeBuilding()
 	
 	match VarGame.player[VarGame.teamTurn]:
 		"player":
+			cursor.controledByIa = false
 			cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
 			playerActionMachine.reset()
 		"IA":
-			cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
+			cursor.controledByIa = true
+			#cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
 			iaActionMachine.initTurn()
 			iaActionMachine.start()
 

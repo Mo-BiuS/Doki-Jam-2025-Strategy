@@ -111,7 +111,15 @@ func uncaptureFreeBuilding()->void:
 			b.capture = 10
 			b.teamCapturng = -1
 			b.captureCounterContainer.hide()
-
+func getAllFromEnnemyTeam()->Array[Building]:
+	var rep:Array[Building]
+	var allStar:Array
+	allStar.append_array(neutral.get_children())
+	allStar.append_array(team0.get_children())
+	allStar.append_array(team1.get_children())
+	for i in allStar:
+		if i is Building && i.team != VarGame.teamTurn:rep.append(rep)
+	return rep
 
 func getAllBaseFromPlayingTeamOrdered()->Array[Base]:
 	var rep:Array[Base]
@@ -132,9 +140,10 @@ func getAllBaseFromPlayingTeamOrdered()->Array[Base]:
 	
 	return rep
 
+#PUTAIN DE TRI A BULLE DE MERDE
+#J'ai pas le temps, j'ai fait simple et sans IA
 func sortBase(b:Array, asc:bool):
 	var i = 0;
-	print(b)
 	while(i < b.size()-1):
 		if((asc && b[i][1] < b[i+1][1]) || (!asc && b[i][1] > b[i+1][1])):
 			var tmp = b[i]
@@ -142,4 +151,3 @@ func sortBase(b:Array, asc:bool):
 			b[i+1] = tmp
 			if(i > 0):i-=1
 		else:i+=1
-	print(b)

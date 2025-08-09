@@ -5,6 +5,7 @@ var attackTexture:Texture2D = load("res://Ressources/Sprite/UI/EnnemyAttackArea.
 var captureTexture:Texture2D = load("res://Ressources/Sprite/UI/CaptureArea.png")
 
 @export var arenaHandler:ArenaHandler
+@export var iaActionMachine:IaActionMachine
 
 @onready var camera:Camera2D = $Camera
 
@@ -15,6 +16,7 @@ var tilePos:Vector2i
 var targetPos:Vector2
 var enabled:bool = true
 var entityFollow:Entity = null
+var controledByIa:bool = false
 var ennemyList:Array
 var ennemyListPos:int = -1
 
@@ -90,7 +92,8 @@ func _process(delta: float) -> void:
 	elif entityFollow != null:
 		position = entityFollow.position
 		if(!entityFollow.isMoving):
-			followingEntityEndedMovement.emit()
+			if(!controledByIa):followingEntityEndedMovement.emit()
+			else:iaActionMachine.waiting = false
 	elif enabled:
 		if targetPos == position:
 			var direction:Vector2i = Vector2i.ZERO
