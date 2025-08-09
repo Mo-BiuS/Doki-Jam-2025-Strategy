@@ -42,8 +42,9 @@ func unit()->bool:
 		arenaHandler.calculateAreaMap(entity)
 		var priorityTarget = calculatePriority(entity)
 		if(priorityTarget != null):
-			if(priorityTarget is Entity):print("TODO")
-			elif(priorityTarget is Building):entity.goCapture(priorityTarget)
+			if(priorityTarget[0] is Entity):
+				entity.goAttack(priorityTarget[0],priorityTarget[1])
+			elif(priorityTarget[0] is Building):entity.goCapture(priorityTarget[0])
 			
 			cursor.setTile(entity.tilePos)
 			cursor.entityFollow = entity
@@ -90,9 +91,22 @@ func calculatePriority(e:Entity):
 	var ennemyEntityList:Array[Entity] = entityHandler.getAllFromEnnemyTeam()
 	
 	for i in ennemyEntityList:
-		pass
+		var objectivePos = null
+		var objectiveValue = 16384
+		for dir in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
+			if(e.areaDict.has(i.tilePos+dir) && e.areaDict.get(i.tilePos+dir) < objectiveValue):
+				objectiveValue = e.areaDict.get(i.tilePos+dir)
+				objectivePos = i.tilePos+dir
+			if(objectivePos != null):
+				var modif = 0;
+				var range:Array = VarIa.attackReluctanceArray[e.typeId][i.typeId]
+				modif+=randi_range(range[0],range[1])
+				
+				if(e.areaDict[objectivePos]-modif < repScore):
+					rep = [i,objectivePos]
+					repScore = e.areaDict[objectivePos]-modif
 	for i in ennemyBuildingList:
-		if(i.tilePos == e.tilePos && i.capture != 10):return i
+		if(i.tilePos == e.tilePos && i.capture != 10):return [i,null]
 		elif(e.areaDict.has(i.tilePos)):
 			var modif = 0;
 			var range:Array
@@ -105,13 +119,15 @@ func calculatePriority(e:Entity):
 			elif(i is City):range=VarIa.priorityBuildingTypeCity
 			modif+=randi_range(range[0],range[1])
 			
+			modif+=(10-e.life)*2
+			
 			if(e is DragoonEgg):range=VarIa.captureReluctanceEgg
 			elif(e is DragoonChick):range=VarIa.captureReluctanceChick
 			elif(e is DragoonLong):range=VarIa.captureReluctanceLong
 			elif(e is DragoonBeeg):range=VarIa.captureReluctanceBeeg
 			
 			if(e.areaDict[i.tilePos]-modif < repScore):
-				rep = i
+				rep = [i,null]
 				repScore = e.areaDict[i.tilePos]-modif
 	
 	return rep

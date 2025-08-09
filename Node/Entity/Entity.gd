@@ -11,6 +11,7 @@ var tilePos:Vector2i
 var team:int = -1
 var life:int = 10
 var veterancy:int = 0
+var typeId:int = -1
 
 var mvm:int	= 0
 var vision:int	= 0
@@ -24,6 +25,10 @@ var isMoving:bool = false
 var isActivated:bool = true
 
 var captureObjectif:Building = null
+var killObjectif:Entity = null
+
+#FUUUUUUUUUUUUUUUUUUUCK
+var arena:Arena
 
 func _ready() -> void:
 	sprite.play(str(team)+"-MovingSouth")
@@ -49,9 +54,16 @@ func _process(delta: float) -> void:
 				mvmMap.erase(pos)
 				if(mvmMap.is_empty()):
 					isMoving=false
-					if(captureObjectif != null && captureObjectif.tilePos == tilePos):
-						capture(captureObjectif)
-						captureObjectif = null
+					if(captureObjectif != null):
+						if(captureObjectif.tilePos == tilePos):
+							capture(captureObjectif)
+							captureObjectif = null
+						else:desactivate()
+					if(killObjectif != null):
+						if(isAroundKillObjectif()):
+							damage(killObjectif,arena.getDefenceAt(killObjectif.tilePos),arena.getDefenceAt(tilePos))
+							killObjectif = null
+						else:desactivate()
 
 func activate():
 	isActivated = true
@@ -114,9 +126,17 @@ func goCapture(b:Building)->void:
 	for i in mvmMap:
 		if(areaDict.get(i) <= mvm):nMap.append(i)
 	mvmMap = nMap
-	print("===========================================")
 	captureObjectif = b
 	isMoving = true
+func goAttack(e:Entity, pos:Vector2i):
+	trace(pos)
+	var nMap:Array
+	for i in mvmMap:
+		if(areaDict.get(i) <= mvm):nMap.append(i)
+	mvmMap = nMap
+	killObjectif = e
+	isMoving = true
+	
 func trace(pos:Vector2i):
 	mvmMap.append(pos)
 	if(pos != tilePos):
@@ -131,3 +151,8 @@ func trace(pos:Vector2i):
 				trace(pos+i)
 				break
 	
+
+func isAroundKillObjectif()->bool:
+	for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
+		if tilePos+i == killObjectif.tilePos: return true
+	return false

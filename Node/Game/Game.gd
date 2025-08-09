@@ -50,3 +50,9 @@ func endTurn():
 
 func _on_game_ui_end_turn() -> void:
 	endTurn()
+
+
+func _on_building_handler_player_lost(int: Variant) -> void:
+	playerActionMachine.isPlaying = false
+	iaActionMachine.isPlaying = false
+	cursor.disable()

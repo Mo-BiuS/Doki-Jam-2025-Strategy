@@ -473,6 +473,7 @@ arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 
+[connection signal="playerLost" from="BuildingHandler" to="." method="_on_building_handler_player_lost"]
 [connection signal="attackAt" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_attack_at"]
 [connection signal="followingEntityEndedMovement" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_following_entity_ended_movement"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_moved_to_new_tile"]

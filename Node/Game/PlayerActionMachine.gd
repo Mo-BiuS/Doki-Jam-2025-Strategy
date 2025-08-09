@@ -13,9 +13,11 @@ class_name PlayerActionMachine extends Node
 var escapeMenuOpened:bool = false
 var selectedEnity:Entity = null
 var selectedBase:Base = null
+var isPlaying:bool = true
+
 
 func _process(_delta: float) -> void:
-	processInput()
+	if(isPlaying):processInput()
 
 func processInput():
 	if(!escapeMenuOpened):

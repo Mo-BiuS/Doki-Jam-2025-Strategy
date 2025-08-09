@@ -11,6 +11,8 @@ const BUILDING_PACKED_CAPITAL:PackedScene = preload("res://Node/Building/Capital
 @onready var team0:Node2D = $Team0
 @onready var team1:Node2D = $Team1
 
+signal playerLost(int)
+
 func reset() -> void:
 	for i in neutral.get_children():i.queue_free()
 	for i in team0.get_children():i.queue_free()
@@ -86,6 +88,8 @@ func buildingChangedTeam(building:Building):
 		0:neutral.add_child(building)
 		1:team0.add_child(building)
 		2:team1.add_child(building)
+	if(building is Capital):
+		playerLost.emit(building.team-1)
 
 func getGoldFromPlayer(i) -> int:
 	var rep = 0

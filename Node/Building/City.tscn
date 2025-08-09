@@ -9,4 +9,4 @@ script = ExtResource("2_jkwqb")
 
 [node name="Sprite" parent="Marker" index="0"]
 sprite_frames = ExtResource("3_oosso")
-animation = &"A"
+animation = &"N"

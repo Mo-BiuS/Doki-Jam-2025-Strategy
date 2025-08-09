@@ -24,6 +24,7 @@ func loadStartingEntity(team:int,list:Array):
 		
 		if entity != null:
 			entity.team = team
+			entity.arena = arenaHandler.arena
 			entity.setPosition(Vector2i(i[1],i[2]))
 			match team:
 				0:team0.add_child(entity)
@@ -142,6 +143,7 @@ func sortEntity(b:Array, asc:bool):
 func _on_game_ui_buy_unit(n: int) -> void:
 	var entity:Entity = CONST_UNIT.packed[n].instantiate()
 	entity.team = VarGame.teamTurn
+	entity.arena = arenaHandler.arena
 	entity.setPosition(cursor.tilePos)
 	match VarGame.teamTurn:
 		0:team0.add_child(entity)
