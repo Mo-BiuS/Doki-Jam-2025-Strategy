@@ -26,7 +26,7 @@ var isActivated:bool = true
 
 var captureObjectif:Building = null
 var killObjectif:Entity = null
-
+var hasMoved:bool = false
 #FUUUUUUUUUUUUUUUUUUUCK
 var arena:Arena
 
@@ -38,6 +38,7 @@ func _process(delta: float) -> void:
 		if(mvmMap.is_empty()):
 			isMoving=false
 		else:
+			hasMoved = true
 			var pos = mvmMap[mvmMap.size()-1]
 			var targetPos:Vector2 = Vector2(pos)*64+Vector2(32,32)
 			var newPosition:Vector2 = position.move_toward(targetPos, SPEED * delta)
@@ -66,6 +67,7 @@ func _process(delta: float) -> void:
 						else:desactivate()
 
 func activate():
+	hasMoved = false
 	isActivated = true
 	sprite.modulate = Color(1,1,1)
 func desactivate():

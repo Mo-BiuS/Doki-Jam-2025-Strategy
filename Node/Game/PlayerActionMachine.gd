@@ -45,17 +45,21 @@ func processInput():
 			else:
 				reset()
 				
-		
 		elif(Input.is_action_just_pressed("return")):
-			if(escapeMenuOpened):
-				escapeMenuOpened = false
-				cursor.enable()
-				gameUI.hideEscapeMenu()
-			elif(selectedEnity == null && selectedBase == null):
+			if(selectedEnity == null && selectedBase == null):
 				escapeMenuOpened = true
 				cursor.disable()
 				gameUI.showEscapeMenu()
-			else:reset()
+			elif(selectedEnity != null && selectedEnity.hasMoved):
+				selectedEnity.desactivate()
+				reset()
+			else:
+				reset()
+	elif (Input.is_action_just_pressed("return")):
+		if(escapeMenuOpened):
+			escapeMenuOpened = false
+			cursor.enable()
+			gameUI.hideEscapeMenu()
 
 func reset():
 	escapeMenuOpened = false
