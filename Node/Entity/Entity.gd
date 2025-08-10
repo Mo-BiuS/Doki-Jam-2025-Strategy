@@ -4,6 +4,8 @@ class_name Entity extends Node2D
 @onready var lifeCounterContainer:PanelContainer = $LifeCounterContainer
 @onready var lifeCounterLabel:Label = $LifeCounterContainer/LifeCounterLabel
 
+@onready var munchSoundEffect:AudioStreamPlayer = $MunchSoundEffect
+
 const SPEED = 400
 
 var tilePos:Vector2i
@@ -79,12 +81,15 @@ func setPosition(pos:Vector2i):
 	position = (Vector2(pos)*32+Vector2(16,16))*2
 
 func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
+	var stLife=ennemy.life
 	ennemy.life -= max (1,attack*life/10-ennemy.defence-ennemyDefenseBonus)
 	if(ennemy.life < 10):
 		ennemy.lifeCounterContainer.show()
 		ennemy.lifeCounterLabel.text = str(ennemy.life)
 	
-	if(ennemy.life <= 0):ennemy.queue_free()
+	if(ennemy.life <= 0):
+		if(stLife == 10):munchSoundEffect.play(.1)
+		ennemy.queue_free()
 	else:
 		life -= max (1,ennemy.attack*ennemy.life/10-defence-defenseBonus)
 		if(life < 10):

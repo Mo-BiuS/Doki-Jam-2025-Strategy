@@ -10,6 +10,8 @@ class_name Game extends Node2D
 
 @export var cursor:SelectCursor
 
+@export var backgroundMusic:AudioStreamPlayer
+
 var loadArena:PackedScene = null
 
 func _ready() -> void:
@@ -51,6 +53,10 @@ func endTurn():
 			#cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
 			iaActionMachine.initTurn()
 			iaActionMachine.start()
+	
+	backgroundMusic.stream = VarGame.bgmMusic[VarGame.teamTurn][1]
+	backgroundMusic.volume_db = VarGame.bgmMusic[VarGame.teamTurn][0]
+	backgroundMusic.play()
 
 func _on_game_ui_end_turn() -> void:
 	endTurn()
@@ -60,3 +66,7 @@ func _on_building_handler_player_lost(int: Variant) -> void:
 	playerActionMachine.isPlaying = false
 	iaActionMachine.isPlaying = false
 	cursor.disable()
+
+
+func _on_background_music_finished() -> void:
+	backgroundMusic.play()

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://8ciny6urd4wm"
+path="res://.godot/imported/OFF THE ROAD - Zarii.mp3-bca8873c53c53c31b98bf47507114365.mp3str"
+
+[deps]
+
+source_file="res://Ressources/Music/OFF THE ROAD - Zarii.mp3"
+dest_files=["res://.godot/imported/OFF THE ROAD - Zarii.mp3-bca8873c53c53c31b98bf47507114365.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
