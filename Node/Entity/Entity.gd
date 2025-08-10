@@ -41,13 +41,13 @@ func _process(delta: float) -> void:
 			if(captureObjectif != null):
 				if(captureObjectif.tilePos == tilePos):
 					capture(captureObjectif)
-					captureObjectif = null
 				else:desactivate()
+				captureObjectif = null
 			if(killObjectif != null):
 				if(isAroundKillObjectif()):
 					damage(killObjectif,arena.getDefenceAt(killObjectif.tilePos),arena.getDefenceAt(tilePos))
-					killObjectif = null
 				else:desactivate()
+				killObjectif = null
 		else:
 			hasMoved = true
 			var pos = mvmMap[mvmMap.size()-1]

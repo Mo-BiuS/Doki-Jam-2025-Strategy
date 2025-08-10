@@ -94,7 +94,7 @@ func calculatePriority(e:Entity):
 		var objectivePos = null
 		var objectiveValue = 16384
 		for dir in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
-			if(entityHandler.getUnitAt(i.tilePos+dir) == null && e.areaDict.has(i.tilePos+dir) && e.areaDict.get(i.tilePos+dir) < objectiveValue):
+			if((entityHandler.getUnitAt(i.tilePos+dir) == null || entityHandler.getUnitAt(i.tilePos+dir) == e) && e.areaDict.has(i.tilePos+dir) && e.areaDict.get(i.tilePos+dir) < objectiveValue):
 				objectiveValue = e.areaDict.get(i.tilePos+dir)
 				objectivePos = i.tilePos+dir
 			if(objectivePos != null):
