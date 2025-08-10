@@ -1,6 +1,9 @@
 class_name Main extends Node2D
 
-var gamePacked:PackedScene = preload("res://Node/Game/Game.tscn")
+var gamePacked:PackedScene
+
+func _ready() -> void:
+	gamePacked = preload("res://Node/Game/Game.tscn")
 
 func _on_small_map_pressed() -> void:
 	for i in get_children(): i.queue_free()

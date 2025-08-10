@@ -29,6 +29,7 @@ var killObjectif:Entity = null
 var hasMoved:bool = false
 #FUUUUUUUUUUUUUUUUUUUCK
 var arena:Arena
+var entityHandler:EntityHandler
 
 func _ready() -> void:
 	sprite.play(str(team)+"-MovingSouth")
@@ -37,6 +38,16 @@ func _process(delta: float) -> void:
 	if isMoving:
 		if(mvmMap.is_empty()):
 			isMoving=false
+			if(captureObjectif != null):
+				if(captureObjectif.tilePos == tilePos):
+					capture(captureObjectif)
+					captureObjectif = null
+				else:desactivate()
+			if(killObjectif != null):
+				if(isAroundKillObjectif()):
+					damage(killObjectif,arena.getDefenceAt(killObjectif.tilePos),arena.getDefenceAt(tilePos))
+					killObjectif = null
+				else:desactivate()
 		else:
 			hasMoved = true
 			var pos = mvmMap[mvmMap.size()-1]
@@ -53,18 +64,6 @@ func _process(delta: float) -> void:
 			if position == targetPos:
 				tilePos = Vector2i(position / (32 * 2))
 				mvmMap.erase(pos)
-				if(mvmMap.is_empty()):
-					isMoving=false
-					if(captureObjectif != null):
-						if(captureObjectif.tilePos == tilePos):
-							capture(captureObjectif)
-							captureObjectif = null
-						else:desactivate()
-					if(killObjectif != null):
-						if(isAroundKillObjectif()):
-							damage(killObjectif,arena.getDefenceAt(killObjectif.tilePos),arena.getDefenceAt(tilePos))
-							killObjectif = null
-						else:desactivate()
 
 func activate():
 	hasMoved = false
@@ -121,11 +120,15 @@ func heal():
 	else:lifeCounterContainer.hide()
 
 func goCapture(b:Building)->void:
+	mvmMap.clear()
 	trace(b.tilePos)
+	traceClean()
 	captureObjectif = b
 	isMoving = true
 func goAttack(e:Entity, pos:Vector2i):
+	mvmMap.clear()
 	trace(pos)
+	traceClean()
 	killObjectif = e
 	isMoving = true
 	
@@ -142,6 +145,11 @@ func trace(pos:Vector2i):
 			if(areaDict[pos+i] == minAround):
 				trace(pos+i)
 				break
+func traceClean():
+	var clean = false
+	while(!clean && !mvmMap.is_empty()):
+		if(entityHandler.getUnitAt(mvmMap[0]) == null):clean = true
+		else:mvmMap.remove_at(0)
 	
 
 func isAroundKillObjectif()->bool:

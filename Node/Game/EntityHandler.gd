@@ -1,5 +1,12 @@
 class_name EntityHandler extends Node2D
 
+var packed = [
+	load("res://Node/Entity/DragoonEgg.tscn"),
+	load("res://Node/Entity/DragoonChick.tscn"),
+	load("res://Node/Entity/DragoonLong.tscn"),
+	load("res://Node/Entity/DragoonBeeg.tscn")
+]
+
 @export var playerActionMachine:PlayerActionMachine
 @export var gameUI:GameUI
 @export var arenaHandler:ArenaHandler
@@ -20,11 +27,12 @@ func reset() -> void:
 
 func loadStartingEntity(team:int,list:Array):
 	for i in list:
-		var entity:Entity = CONST_UNIT.packed[i[0]].instantiate()
+		var entity:Entity = packed[i[0]].instantiate()
 		
 		if entity != null:
 			entity.team = team
 			entity.arena = arenaHandler.arena
+			entity.entityHandler = self
 			entity.setPosition(Vector2i(i[1],i[2]))
 			match team:
 				0:team0.add_child(entity)
@@ -141,9 +149,11 @@ func sortEntity(b:Array, asc:bool):
 	
 
 func _on_game_ui_buy_unit(n: int) -> void:
-	var entity:Entity = CONST_UNIT.packed[n].instantiate()
+	var entity:Entity = packed[n].instantiate()
 	entity.team = VarGame.teamTurn
 	entity.arena = arenaHandler.arena
+	entity.entityHandler = self
+	
 	entity.setPosition(cursor.tilePos)
 	match VarGame.teamTurn:
 		0:team0.add_child(entity)

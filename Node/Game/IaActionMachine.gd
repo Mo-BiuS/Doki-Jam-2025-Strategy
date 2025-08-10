@@ -94,40 +94,47 @@ func calculatePriority(e:Entity):
 		var objectivePos = null
 		var objectiveValue = 16384
 		for dir in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
-			if(e.areaDict.has(i.tilePos+dir) && e.areaDict.get(i.tilePos+dir) < objectiveValue):
+			if(entityHandler.getUnitAt(i.tilePos+dir) == null && e.areaDict.has(i.tilePos+dir) && e.areaDict.get(i.tilePos+dir) < objectiveValue):
 				objectiveValue = e.areaDict.get(i.tilePos+dir)
 				objectivePos = i.tilePos+dir
 			if(objectivePos != null):
-				var modif = 0;
-				var range:Array = VarIa.attackReluctanceArray[e.typeId][i.typeId]
-				modif+=randi_range(range[0],range[1])
-				
-				if(e.areaDict[objectivePos]-modif < repScore):
-					rep = [i,objectivePos]
-					repScore = e.areaDict[objectivePos]-modif
+				e.mvmMap.clear()
+				e.trace(objectivePos)
+				e.traceClean()
+				if(!e.mvmMap.is_empty() || i.tilePos+dir == e.tilePos):
+					var modif = 0;
+					var range:Array = VarIa.attackReluctanceArray[e.typeId][i.typeId]
+					modif+=randi_range(range[0],range[1])
+					
+					if(e.areaDict[objectivePos]-modif < repScore):
+						rep = [i,objectivePos]
+						repScore = e.areaDict[objectivePos]-modif
 	for i in ennemyBuildingList:
 		if(i.tilePos == e.tilePos && i.capture != 10):return [i,null]
-		elif(e.areaDict.has(i.tilePos)):
-			var modif = 0;
-			var range:Array
-			if(i.team == 0):range=VarIa.priorityNeutralBuilding
-			else:range=VarIa.priorityEnnemyBuilding
-			modif+=randi_range(range[0],range[1])
-			
-			if(i is Capital):range=VarIa.priorityBuildingTypeCapital
-			elif(i is Base):range=VarIa.priorityBuildingTypeBase
-			elif(i is City):range=VarIa.priorityBuildingTypeCity
-			modif+=randi_range(range[0],range[1])
-			
-			modif+=(10-e.life)*2
-			
-			if(e is DragoonEgg):range=VarIa.captureReluctanceEgg
-			elif(e is DragoonChick):range=VarIa.captureReluctanceChick
-			elif(e is DragoonLong):range=VarIa.captureReluctanceLong
-			elif(e is DragoonBeeg):range=VarIa.captureReluctanceBeeg
-			
-			if(e.areaDict[i.tilePos]-modif < repScore):
-				rep = [i,null]
-				repScore = e.areaDict[i.tilePos]-modif
-	
+		elif(entityHandler.getUnitAt(i.tilePos) == null && e.areaDict.has(i.tilePos)):
+			e.mvmMap.clear()
+			e.trace(i.tilePos)
+			e.traceClean()
+			if(!e.mvmMap.is_empty()):
+				var modif = 0;
+				var range:Array
+				if(i.team == 0):range=VarIa.priorityNeutralBuilding
+				else:range=VarIa.priorityEnnemyBuilding
+				modif+=randi_range(range[0],range[1])
+				
+				if(i is Capital):range=VarIa.priorityBuildingTypeCapital
+				elif(i is Base):range=VarIa.priorityBuildingTypeBase
+				elif(i is City):range=VarIa.priorityBuildingTypeCity
+				modif+=randi_range(range[0],range[1])
+				
+				modif+=(10-e.life)*2
+				
+				if(e is DragoonEgg):range=VarIa.captureReluctanceEgg
+				elif(e is DragoonChick):range=VarIa.captureReluctanceChick
+				elif(e is DragoonLong):range=VarIa.captureReluctanceLong
+				elif(e is DragoonBeeg):range=VarIa.captureReluctanceBeeg
+				
+				if(e.areaDict[i.tilePos]-modif < repScore):
+					rep = [i,null]
+					repScore = e.areaDict[i.tilePos]-modif
 	return rep
