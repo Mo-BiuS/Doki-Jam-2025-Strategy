@@ -71,15 +71,13 @@ func activate():
 	isActivated = true
 	sprite.modulate = Color(1,1,1)
 func desactivate():
+	tilePos = Vector2i(position)/64
 	isActivated = false
 	sprite.modulate = Color(.5,.5,.5)
 
 func setPosition(pos:Vector2i):
 	tilePos = pos
 	position = (Vector2(pos)*32+Vector2(16,16))*2
-
-func startMoving()->void:
-	pass
 
 func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 	ennemy.life -= max (1,attack*life/10-ennemy.defence-ennemyDefenseBonus)
@@ -124,28 +122,20 @@ func heal():
 
 func goCapture(b:Building)->void:
 	trace(b.tilePos)
-	var nMap:Array
-	for i in mvmMap:
-		if(areaDict.get(i) <= mvm):nMap.append(i)
-	mvmMap = nMap
 	captureObjectif = b
 	isMoving = true
 func goAttack(e:Entity, pos:Vector2i):
 	trace(pos)
-	var nMap:Array
-	for i in mvmMap:
-		if(areaDict.get(i) <= mvm):nMap.append(i)
-	mvmMap = nMap
 	killObjectif = e
 	isMoving = true
 	
 func trace(pos:Vector2i):
-	mvmMap.append(pos)
+	if(areaDict.get(pos) <= mvm):mvmMap.append(pos)
 	if(pos != tilePos):
 		var validDirection:Array
 		for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
 			if(areaDict.has(pos+i)):validDirection.append(i)
-		var minAround = 1000000000
+		var minAround = 16384
 		for i in validDirection:
 			minAround = min(minAround,areaDict[pos+i])
 		for i in validDirection:

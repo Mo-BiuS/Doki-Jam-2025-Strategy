@@ -28,5 +28,10 @@ text = "Small map"
 layout_mode = 2
 text = "Big map"
 
+[node name="MontainTest" type="Button" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Montain Test"
+
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/SmallMap" to="." method="_on_small_map_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxContainer/BigMap" to="." method="_on_big_map_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/MontainTest" to="." method="_on_montain_test_pressed"]

@@ -22,8 +22,8 @@ func trace(pos:Vector2i):
 	if(pos != selectedEntity.tilePos):
 		var validDirection:Array
 		for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
-			if(arenaHandler.arena.isIn(pos+i) && movementArea.areaDict.has(pos+i)):validDirection.append(i)
-		var minAround = 1000000000
+			if(movementArea.areaDict.has(pos+i)):validDirection.append(i)
+		var minAround = 16384
 		for i in validDirection:
 			minAround = min(minAround,movementArea.areaDict[pos+i])
 		for i in validDirection:
