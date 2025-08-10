@@ -133,7 +133,7 @@ func goAttack(e:Entity, pos:Vector2i):
 	isMoving = true
 	
 func trace(pos:Vector2i):
-	if(areaDict.get(pos) <= mvm):mvmMap.append(pos)
+	mvmMap.append(pos)
 	if(pos != tilePos):
 		var validDirection:Array
 		for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
@@ -147,6 +147,16 @@ func trace(pos:Vector2i):
 				break
 func traceClean():
 	var clean = false
+	mvmMap.reverse()
+	var nMap:Array[Vector2i]
+	var m = mvm
+	for i in mvmMap:
+		nMap.append(i)
+		m -= areaDict[i]
+		if(m < 0):break
+	
+	nMap.reverse()
+	mvmMap = nMap
 	while(!clean && !mvmMap.is_empty()):
 		if(entityHandler.getUnitAt(mvmMap[0]) == null):clean = true
 		else:mvmMap.remove_at(0)
