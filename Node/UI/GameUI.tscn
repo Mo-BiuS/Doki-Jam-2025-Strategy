@@ -30,14 +30,17 @@ layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="BuildingInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_je0ey")]
+visible = false
 layout_mode = 2
 script = ExtResource("3_un1m2")
 
 [node name="EntityInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_22fib")]
+visible = false
 layout_mode = 2
 script = ExtResource("5_0hixd")
 
 [node name="TerrainInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_d673b")]
+visible = false
 layout_mode = 2
 
 [node name="RessourcePanel" parent="." instance=ExtResource("7_je0ey")]
