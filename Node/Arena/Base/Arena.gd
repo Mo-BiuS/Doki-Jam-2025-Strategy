@@ -6,10 +6,12 @@ class_name Arena extends Node2D
 @onready var buildingSpawn:TileMapLayer = $BuildingSpawn
 
 @onready var neutral:Node =$"../../BuildingHandler/Neutral"
+var hideSpawn = true
 
 func _ready() -> void:
-	entitySpawn.hide()
-	buildingSpawn.hide()
+	if(hideSpawn):
+		entitySpawn.hide()
+		buildingSpawn.hide()
 
 #Array [ Array [ type, posX, posY ] ]
 func getEntityMap(player:int):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://chud2bv8sugni"]
+[gd_scene load_steps=46 format=3 uid="uid://chud2bv8sugni"]
 
 [ext_resource type="Script" uid="uid://dh6x3vcllw00p" path="res://Node/Arena/Base/Arena.gd" id="1_iqjot"]
 [ext_resource type="Texture2D" uid="uid://c6rr1roti2gyx" path="res://Ressources/Sprite/Map/Tilemap-Tiles.png" id="1_rwgvc"]
@@ -11,8 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://cwwvlykllbjrc" path="res://Ressources/Sprite/Map/Lem/template_route.png" id="6_eesa5"]
 [ext_resource type="Texture2D" uid="uid://b0icwws0spkgx" path="res://Ressources/Sprite/Unit/Icon/Icon-A-EGG.png" id="6_juk54"]
 [ext_resource type="Texture2D" uid="uid://bt0tcfxu4by1c" path="res://Ressources/Sprite/Map/Lem/tree_1.png" id="6_mmar4"]
+[ext_resource type="Texture2D" uid="uid://d03myqt4vqla2" path="res://Ressources/Sprite/Map/Lem/montagne_2.png" id="6_w8yca"]
 [ext_resource type="Texture2D" uid="uid://d0xy3nkdum5np" path="res://Ressources/Sprite/Unit/Icon/Icon-A-LONG.png" id="7_mmar4"]
+[ext_resource type="Texture2D" uid="uid://bdh2ycxiwot4c" path="res://Ressources/Sprite/Map/Lem/ocean.png" id="8_uucu8"]
 [ext_resource type="Texture2D" uid="uid://bfr6inai1m0ya" path="res://Ressources/Sprite/Unit/Icon/Icon-B-BEEG.png" id="8_w8yca"]
+[ext_resource type="Texture2D" uid="uid://bwlda4cip4wen" path="res://Ressources/Sprite/Map/Lem/transition_eau_bas.png" id="9_4s7bu"]
 [ext_resource type="Texture2D" uid="uid://6nmmxvwabgxm" path="res://Ressources/Sprite/Unit/Icon/Icon-B-CHICK.png" id="9_uucu8"]
 [ext_resource type="Texture2D" uid="uid://cyqaanwiotthu" path="res://Ressources/Sprite/Unit/Icon/Icon-B-EGG.png" id="10_4s7bu"]
 [ext_resource type="Texture2D" uid="uid://n4jx0rnqbeij" path="res://Ressources/Sprite/Unit/Icon/Icon-B-LONG.png" id="11_4qfkn"]
@@ -26,12 +29,10 @@ texture_region_size = Vector2i(128, 128)
 0:0/0/terrain_set = 0
 0:2/0 = 0
 0:2/0/terrain_set = 0
-0:2/0/terrain = 2
 0:3/0 = 0
 0:3/0/terrain_set = 0
 0:4/0 = 0
 0:4/0/terrain_set = 0
-0:4/0/terrain = 4
 0:5/0 = 0
 0:5/0/terrain_set = 0
 
@@ -78,6 +79,16 @@ texture_region_size = Vector2i(128, 128)
 0:0/6/terrains_peering_bit/bottom_side = 3
 0:0/6/terrains_peering_bit/top_side = 3
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4s7bu"]
+texture = ExtResource("6_w8yca")
+texture_region_size = Vector2i(128, 192)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 32)
+0:0/0/z_index = 1
+0:0/0/y_sort_origin = -32
+0:0/0/terrain_set = 0
+0:0/0/terrain = 4
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uucu8"]
 texture = ExtResource("6_mmar4")
 texture_region_size = Vector2i(128, 192)
@@ -87,6 +98,42 @@ texture_region_size = Vector2i(128, 192)
 0:0/0/y_sort_origin = -32
 0:0/0/terrain_set = 0
 0:0/0/terrain = 5
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4qfkn"]
+texture = ExtResource("8_uucu8")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+0:0/0/terrains_peering_bit/right_side = 2
+0:0/0/terrains_peering_bit/bottom_side = 2
+0:0/0/terrains_peering_bit/left_side = 2
+0:0/0/terrains_peering_bit/top_side = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpoxo"]
+texture = ExtResource("9_4s7bu")
+texture_region_size = Vector2i(128, 128)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+0:0/0/terrains_peering_bit/bottom_side = 2
+0:0/1 = 1
+0:0/1/flip_v = true
+0:0/1/terrain_set = 0
+0:0/1/terrain = 1
+0:0/1/terrains_peering_bit/top_side = 2
+0:0/2 = 2
+0:0/2/transpose = true
+0:0/2/terrain_set = 0
+0:0/2/terrain = 1
+0:0/2/terrains_peering_bit/right_side = 2
+0:0/3 = 3
+0:0/3/flip_h = true
+0:0/3/transpose = true
+0:0/3/terrain_set = 0
+0:0/3/terrain = 1
+0:0/3/terrains_peering_bit/left_side = 2
 
 [sub_resource type="TileSet" id="TileSet_evbt7"]
 tile_size = Vector2i(128, 128)
@@ -108,6 +155,9 @@ sources/1 = SubResource("TileSetAtlasSource_eesa5")
 sources/2 = SubResource("TileSetAtlasSource_mmar4")
 sources/3 = SubResource("TileSetAtlasSource_w8yca")
 sources/5 = SubResource("TileSetAtlasSource_uucu8")
+sources/4 = SubResource("TileSetAtlasSource_4s7bu")
+sources/6 = SubResource("TileSetAtlasSource_4qfkn")
+sources/7 = SubResource("TileSetAtlasSource_bpoxo")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_juk54"]
 texture = ExtResource("6_eesa5")

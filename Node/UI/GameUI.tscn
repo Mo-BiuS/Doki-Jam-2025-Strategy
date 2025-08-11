@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bksvf870l3tcd" path="res://Node/UI/EntityInfoBox.tscn" id="4_22fib"]
 [ext_resource type="Script" uid="uid://dobbjq1ech8ip" path="res://Node/UI/EntityInfoBox.gd" id="5_0hixd"]
 [ext_resource type="PackedScene" uid="uid://dq4m0cbjapxge" path="res://Node/UI/TerrainInfoBox.tscn" id="6_d673b"]
-[ext_resource type="PackedScene" uid="uid://ccdu4too320ja" path="res://RessourcePanel.tscn" id="7_je0ey"]
-[ext_resource type="PackedScene" uid="uid://bpmb4d2uowa2q" path="res://BuyMenu.tscn" id="8_un1m2"]
-[ext_resource type="PackedScene" uid="uid://dxfa67okjqeh0" path="res://EscapeMenu.tscn" id="9_22fib"]
+[ext_resource type="PackedScene" uid="uid://ccdu4too320ja" path="res://Node/UI/RessourcePanel.tscn" id="7_je0ey"]
+[ext_resource type="PackedScene" uid="uid://bpmb4d2uowa2q" path="res://Node/UI/BuyMenu.tscn" id="8_un1m2"]
+[ext_resource type="PackedScene" uid="uid://dxfa67okjqeh0" path="res://Node/UI/EscapeMenu.tscn" id="9_22fib"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_aapge")

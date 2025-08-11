@@ -12,18 +12,19 @@ class_name Game extends Node2D
 
 @export var backgroundMusic:AudioStreamPlayer
 
-var loadArena:PackedScene = null
+var loadArena:PackedScene = preload("res://Node/Arena/SimpleArena.tscn")
 
 func _ready() -> void:
-	if(loadArena != null):arenaHandler.loadArena(loadArena)
-	else:
-		arenaHandler.loadArena(preload("res://Node/Arena/StandardTestArena.tscn"))
-		#arenaHandler.loadArena(preload("res://Node/Arena/LevelTest.tscn"))
-		#arenaHandler.loadArena(preload("res://Node/Arena/IaBuyTest.tscn"))
+	arenaHandler.loadArena(loadArena)
 	entityHandler.reset()
 	buildingHandler.reset()
 	cursor.setTile(buildingHandler.getCapitalPos(0))
 	cursor.enable()
+	
+	if(VarGame.teamTurn >= 0):
+		backgroundMusic.stream = VarGame.bgmMusic[VarGame.teamTurn][1]
+		backgroundMusic.volume_db = VarGame.bgmMusic[VarGame.teamTurn][0]
+		backgroundMusic.play()
 
 func endTurn():
 	match VarGame.player[VarGame.teamTurn]:

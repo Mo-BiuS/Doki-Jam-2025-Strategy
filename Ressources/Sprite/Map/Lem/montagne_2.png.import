@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsutjpr214oyi"
-path="res://.godot/imported/batiment_neutre.png-e2761397d37cc56d3cb6f37dd7ea52ec.ctex"
+uid="uid://d03myqt4vqla2"
+path="res://.godot/imported/montagne_2.png-b3adc92d323b166fa0dc0fe0a8e7047f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/Map/Lem/batiment_neutre.png"
-dest_files=["res://.godot/imported/batiment_neutre.png-e2761397d37cc56d3cb6f37dd7ea52ec.ctex"]
+source_file="res://Ressources/Sprite/Map/Lem/montagne_2.png"
+dest_files=["res://.godot/imported/montagne_2.png-b3adc92d323b166fa0dc0fe0a8e7047f.ctex"]
 
 [params]
 

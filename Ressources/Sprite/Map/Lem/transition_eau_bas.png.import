@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4fttlxaa34jv"
-path="res://.godot/imported/tomato_farm.png-17e3bf64bdd1afd42563f416177b1bcf.ctex"
+uid="uid://bwlda4cip4wen"
+path="res://.godot/imported/transition_eau_bas.png-d8be8d052a443e030b245391500b5249.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/Map/Lem/tomato_farm.png"
-dest_files=["res://.godot/imported/tomato_farm.png-17e3bf64bdd1afd42563f416177b1bcf.ctex"]
+source_file="res://Ressources/Sprite/Map/Lem/transition_eau_bas.png"
+dest_files=["res://.godot/imported/transition_eau_bas.png-d8be8d052a443e030b245391500b5249.ctex"]
 
 [params]
 

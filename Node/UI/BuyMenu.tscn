@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpmb4d2uowa2q"]
+
+[ext_resource type="Script" uid="uid://ctihce7t7scsr" path="res://Node/UI/BuyMenu.gd" id="1_gg04n"]
+[ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_q1r73"]
+[ext_resource type="Texture2D" uid="uid://b0icwws0spkgx" path="res://Ressources/Sprite/Unit/Icon/Icon-A-EGG.png" id="3_osnpc"]
+[ext_resource type="Texture2D" uid="uid://kggywtsksotk" path="res://Ressources/Sprite/Unit/Icon/Icon-A-CHICK.png" id="4_rkbaj"]
+[ext_resource type="Texture2D" uid="uid://d0xy3nkdum5np" path="res://Ressources/Sprite/Unit/Icon/Icon-A-LONG.png" id="5_i8i4e"]
+[ext_resource type="Texture2D" uid="uid://jpam6laju7ck" path="res://Ressources/Sprite/Unit/Icon/Icon-A-BEEG.png" id="6_pepcr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osnpc"]
+
+[node name="BuyMenu" type="PanelContainer" node_paths=PackedStringArray("dragoonEggButton", "dragoonNormalButton", "dragoonLongButton", "dragoonBeegButton")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_q1r73")
+script = ExtResource("1_gg04n")
+dragoonEggButton = NodePath("MarginContainer2/VBoxContainer/DragoonEgg")
+dragoonNormalButton = NodePath("MarginContainer2/VBoxContainer/DragoonNormal")
+dragoonLongButton = NodePath("MarginContainer2/VBoxContainer/DragoonLong")
+dragoonBeegButton = NodePath("MarginContainer2/VBoxContainer/DragoonBeeg")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_q1r73")
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Recruit Unit"
+horizontal_alignment = 1
+
+[node name="DragoonEgg" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../DragoonNormal")
+focus_previous = NodePath("../DragoonBeeg")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_osnpc")
+text = " - Dragoon Egg"
+icon = ExtResource("3_osnpc")
+alignment = 0
+
+[node name="DragoonNormal" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../DragoonLong")
+focus_previous = NodePath("../DragoonEgg")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_osnpc")
+text = " - Dragoon Normal"
+icon = ExtResource("4_rkbaj")
+alignment = 0
+
+[node name="DragoonLong" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../DragoonBeeg")
+focus_previous = NodePath("../DragoonNormal")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_osnpc")
+text = " - Dragoon Long"
+icon = ExtResource("5_i8i4e")
+alignment = 0
+
+[node name="DragoonBeeg" type="Button" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+focus_next = NodePath("../DragoonEgg")
+focus_previous = NodePath("../DragoonLong")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_osnpc")
+text = " - Dragoon Beeg"
+icon = ExtResource("6_pepcr")
+alignment = 0
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonEgg" to="." method="_on_dragoon_egg_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonNormal" to="." method="_on_dragoon_normal_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonLong" to="." method="_on_dragoon_long_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonBeeg" to="." method="_on_dragoon_beeg_pressed"]

@@ -1,22 +1,28 @@
 class_name Main extends Node2D
 
-var gamePacked:PackedScene
+
+var mainMenuPacked:PackedScene = preload("res://Node/UI/MainMenu.tscn")
+var skirmishMenuPacked:PackedScene = preload("res://Node/UI/SkirmishMenu.tscn")
+var gamePacked:PackedScene = preload("res://Node/Game/Game.tscn")
 
 func _ready() -> void:
-	gamePacked = preload("res://Node/Game/Game.tscn")
+	loadMainMenu()
 
-func _on_small_map_pressed() -> void:
-	for i in get_children(): i.queue_free()
+func loadMainMenu()->void:
+	for i in get_children():i.queue_free()
+	var mainMenu:MainMenu = mainMenuPacked.instantiate()
+	mainMenu.goCampagn
+	mainMenu.goTutorial
+	mainMenu.goSkirmish.connect(loadSkirmishMenu)
+	add_child(mainMenu)
+func loadSkirmishMenu()->void:
+	for i in get_children():i.queue_free()
+	var skirmishMenu:SkirmishMenu = skirmishMenuPacked.instantiate()
+	skirmishMenu.toMainMenu.connect(loadMainMenu)
+	skirmishMenu.toGame.connect(loadGame)
+	add_child(skirmishMenu)
+func loadGame(arena:PackedScene)->void:
+	for i in get_children():i.queue_free()
 	var game:Game = gamePacked.instantiate()
-	game.loadArena = preload("res://Node/Arena/LevelTest.tscn")
-	add_child(game)
-func _on_big_map_pressed() -> void:
-	for i in get_children(): i.queue_free()
-	var game:Game = gamePacked.instantiate()
-	game.loadArena = preload("res://Node/Arena/StandardTestArena.tscn")
-	add_child(game)
-func _on_montain_test_pressed() -> void:
-	for i in get_children(): i.queue_free()
-	var game:Game = gamePacked.instantiate()
-	game.loadArena = preload("res://Node/Arena/MontainTest.tscn")
+	game.loadArena = arena
 	add_child(game)

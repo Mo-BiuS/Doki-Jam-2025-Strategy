@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CONST_TERRAIN="*res://Node/Game/Globals/constTerrain.gd"
 CONST_UNIT="*res://Node/Game/Globals/constUnit.gd"
+CONST_ARENA="*res://Node/Game/Globals/constArena.gd"
 VarGame="*res://Node/Game/Globals/varGame.gd"
 VarIa="*res://Node/Game/Globals/varIa.gd"
 
