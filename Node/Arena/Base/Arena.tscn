@@ -11,10 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://bt0tcfxu4by1c" path="res://Ressources/Sprite/Map/Lem/tree_1.png" id="6_mmar4"]
 [ext_resource type="Texture2D" uid="uid://d03myqt4vqla2" path="res://Ressources/Sprite/Map/Lem/montagne_2.png" id="6_w8yca"]
 [ext_resource type="Texture2D" uid="uid://d0xy3nkdum5np" path="res://Ressources/Sprite/Unit/Icon/Icon-A-LONG.png" id="7_mmar4"]
+[ext_resource type="Texture2D" uid="uid://b3xhf2ulvvvd1" path="res://Ressources/Sprite/Map/Lem/transitions_eau.png" id="8_4s7bu"]
 [ext_resource type="Texture2D" uid="uid://bdh2ycxiwot4c" path="res://Ressources/Sprite/Map/Lem/ocean.png" id="8_uucu8"]
 [ext_resource type="Texture2D" uid="uid://bfr6inai1m0ya" path="res://Ressources/Sprite/Unit/Icon/Icon-B-BEEG.png" id="8_w8yca"]
 [ext_resource type="Texture2D" uid="uid://bgx624hra6eiq" path="res://Ressources/Sprite/Map/Lem/tiles_river.png" id="9_4qfkn"]
-[ext_resource type="Texture2D" uid="uid://bwlda4cip4wen" path="res://Ressources/Sprite/Map/Lem/transition_eau_bas.png" id="9_4s7bu"]
 [ext_resource type="Texture2D" uid="uid://6nmmxvwabgxm" path="res://Ressources/Sprite/Unit/Icon/Icon-B-CHICK.png" id="9_uucu8"]
 [ext_resource type="Texture2D" uid="uid://cyqaanwiotthu" path="res://Ressources/Sprite/Unit/Icon/Icon-B-EGG.png" id="10_4s7bu"]
 [ext_resource type="Texture2D" uid="uid://n4jx0rnqbeij" path="res://Ressources/Sprite/Unit/Icon/Icon-B-LONG.png" id="11_4qfkn"]
@@ -87,31 +87,6 @@ texture_region_size = Vector2i(128, 128)
 0:0/0/terrains_peering_bit/bottom_side = 2
 0:0/0/terrains_peering_bit/left_side = 2
 0:0/0/terrains_peering_bit/top_side = 2
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpoxo"]
-texture = ExtResource("9_4s7bu")
-texture_region_size = Vector2i(128, 128)
-0:0/next_alternative_id = 4
-0:0/0 = 0
-0:0/0/terrain_set = 0
-0:0/0/terrain = 1
-0:0/0/terrains_peering_bit/bottom_side = 2
-0:0/1 = 1
-0:0/1/flip_v = true
-0:0/1/terrain_set = 0
-0:0/1/terrain = 1
-0:0/1/terrains_peering_bit/top_side = 2
-0:0/2 = 2
-0:0/2/transpose = true
-0:0/2/terrain_set = 0
-0:0/2/terrain = 1
-0:0/2/terrains_peering_bit/right_side = 2
-0:0/3 = 3
-0:0/3/flip_h = true
-0:0/3/transpose = true
-0:0/3/terrain_set = 0
-0:0/3/terrain = 1
-0:0/3/terrains_peering_bit/left_side = 2
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ps5vn"]
 texture = ExtResource("9_4qfkn")
@@ -391,6 +366,30 @@ texture_region_size = Vector2i(128, 128)
 4:5/0/terrains_peering_bit/bottom_left_corner = 1
 4:5/0/terrains_peering_bit/left_side = 1
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bpoxo"]
+texture = ExtResource("8_4s7bu")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+0:0/0/terrains_peering_bit/right_side = 1
+0:0/0/terrains_peering_bit/left_side = 2
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 1
+1:0/0/terrains_peering_bit/right_side = 2
+1:0/0/terrains_peering_bit/left_side = 1
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 1
+0:1/0/terrains_peering_bit/bottom_side = 1
+0:1/0/terrains_peering_bit/top_side = 2
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 1
+1:1/0/terrains_peering_bit/bottom_side = 2
+1:1/0/terrains_peering_bit/top_side = 1
+
 [sub_resource type="TileSet" id="TileSet_evbt7"]
 tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 0
@@ -411,8 +410,8 @@ sources/3 = SubResource("TileSetAtlasSource_w8yca")
 sources/5 = SubResource("TileSetAtlasSource_uucu8")
 sources/4 = SubResource("TileSetAtlasSource_4s7bu")
 sources/6 = SubResource("TileSetAtlasSource_4qfkn")
-sources/7 = SubResource("TileSetAtlasSource_bpoxo")
 sources/8 = SubResource("TileSetAtlasSource_ps5vn")
+sources/9 = SubResource("TileSetAtlasSource_bpoxo")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_juk54"]
 texture = ExtResource("6_eesa5")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwlda4cip4wen"
-path="res://.godot/imported/transition_eau_bas.png-d8be8d052a443e030b245391500b5249.ctex"
+uid="uid://b3xhf2ulvvvd1"
+path="res://.godot/imported/transitions_eau.png-61aa771dd8af2c8735302744e5497fad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/Map/Lem/transition_eau_bas.png"
-dest_files=["res://.godot/imported/transition_eau_bas.png-d8be8d052a443e030b245391500b5249.ctex"]
+source_file="res://Ressources/Sprite/Map/Lem/transitions_eau.png"
+dest_files=["res://.godot/imported/transitions_eau.png-61aa771dd8af2c8735302744e5497fad.ctex"]
 
 [params]
 
