@@ -9,7 +9,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osnpc"]
 
-[node name="BuyMenu" type="PanelContainer" node_paths=PackedStringArray("dragoonEggButton", "dragoonNormalButton", "dragoonLongButton", "dragoonBeegButton")]
+[node name="BuyMenu" type="PanelContainer" node_paths=PackedStringArray("dragoonEggButton", "dragoonNormalButton", "dragoonLongButton", "dragoonBeegButton", "mvmStat", "attackStat", "defenceStat")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -23,10 +23,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_q1r73")
 script = ExtResource("1_gg04n")
-dragoonEggButton = NodePath("MarginContainer2/VBoxContainer/DragoonEgg")
-dragoonNormalButton = NodePath("MarginContainer2/VBoxContainer/DragoonNormal")
-dragoonLongButton = NodePath("MarginContainer2/VBoxContainer/DragoonLong")
-dragoonBeegButton = NodePath("MarginContainer2/VBoxContainer/DragoonBeeg")
+dragoonEggButton = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonEgg")
+dragoonNormalButton = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonNormal")
+dragoonLongButton = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonLong")
+dragoonBeegButton = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonBeeg")
+mvmStat = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/mvmStat")
+attackStat = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/attackStat")
+defenceStat = NodePath("MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer/defenceStat")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -49,7 +52,15 @@ theme_override_font_sizes/font_size = 32
 text = "Recruit Unit"
 horizontal_alignment = 1
 
-[node name="DragoonEgg" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="DragoonEgg" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_next = NodePath("../DragoonNormal")
 focus_previous = NodePath("../DragoonBeeg")
@@ -59,7 +70,7 @@ text = " - Dragoon Egg"
 icon = ExtResource("3_osnpc")
 alignment = 0
 
-[node name="DragoonNormal" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="DragoonNormal" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_next = NodePath("../DragoonLong")
 focus_previous = NodePath("../DragoonEgg")
@@ -69,7 +80,7 @@ text = " - Dragoon Normal"
 icon = ExtResource("4_rkbaj")
 alignment = 0
 
-[node name="DragoonLong" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="DragoonLong" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_next = NodePath("../DragoonBeeg")
 focus_previous = NodePath("../DragoonNormal")
@@ -79,7 +90,7 @@ text = " - Dragoon Long"
 icon = ExtResource("5_i8i4e")
 alignment = 0
 
-[node name="DragoonBeeg" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="DragoonBeeg" type="Button" parent="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 focus_next = NodePath("../DragoonEgg")
 focus_previous = NodePath("../DragoonLong")
@@ -89,7 +100,41 @@ text = " - Dragoon Beeg"
 icon = ExtResource("6_pepcr")
 alignment = 0
 
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonEgg" to="." method="_on_dragoon_egg_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonNormal" to="." method="_on_dragoon_normal_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonLong" to="." method="_on_dragoon_long_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/DragoonBeeg" to="." method="_on_dragoon_beeg_pressed"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="mvmStat" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="attackStat" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="defenceStat" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[connection signal="focus_entered" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonEgg" to="." method="_on_dragoon_egg_focus_entered"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonEgg" to="." method="_on_dragoon_egg_pressed"]
+[connection signal="focus_entered" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonNormal" to="." method="_on_dragoon_normal_focus_entered"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonNormal" to="." method="_on_dragoon_normal_pressed"]
+[connection signal="focus_entered" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonLong" to="." method="_on_dragoon_long_focus_entered"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonLong" to="." method="_on_dragoon_long_pressed"]
+[connection signal="focus_entered" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonBeeg" to="." method="_on_dragoon_beeg_focus_entered"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/VBoxContainer/DragoonBeeg" to="." method="_on_dragoon_beeg_pressed"]

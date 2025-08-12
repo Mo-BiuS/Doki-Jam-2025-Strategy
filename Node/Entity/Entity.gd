@@ -85,16 +85,16 @@ func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 	ennemy.life -= max (1,attack*life/10-ennemy.defence-ennemyDefenseBonus)
 	if(ennemy.life < 10):
 		ennemy.lifeCounterContainer.show()
-		ennemy.lifeCounterLabel.text = str(ennemy.life)
+		ennemy.lifeCounterLabel.text = str(ennemy.life)+"HP"
 	
 	if(ennemy.life <= 0):
-		if(stLife == 10):munchSoundEffect.play(.1)
+		if(stLife >= 8):munchSoundEffect.play(.1)
 		ennemy.queue_free()
 	else:
 		life -= max (1,ennemy.attack*ennemy.life/10-defence-defenseBonus)
 		if(life < 10):
 			lifeCounterContainer.show()
-			lifeCounterLabel.text = str(life)
+			lifeCounterLabel.text = str(life)+"HP"
 		if(life <= 0):queue_free()
 	desactivate()
 
@@ -105,7 +105,7 @@ func capture(building:Building):
 	building.capture-=5*life/10
 	if(building.capture < 10):
 		building.captureCounterContainer.show()
-		building.captureCounterLabel.text = str(int(building.capture))
+		building.captureCounterLabel.text = str(int(building.capture)) + "HP"
 	if(building.capture <= 0):
 		building.capture = 10
 		building.team = team+1

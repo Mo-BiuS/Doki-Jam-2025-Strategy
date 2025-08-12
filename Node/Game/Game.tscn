@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=19 format=3 uid="uid://bhdsiv24l5m1b"]
 
 [ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
@@ -12,6 +12,8 @@
 [ext_resource type="Script" uid="uid://dt1s7m33c2fs6" path="res://Node/Game/MovementArea.gd" id="9_5s4hk"]
 [ext_resource type="Texture2D" uid="uid://bb7w44imokim2" path="res://Ressources/Sprite/UI/ArrowMovement.png" id="10_7aoj4"]
 [ext_resource type="Script" uid="uid://jc2lvo8lf0kt" path="res://Node/Game/MovementArrow.gd" id="11_054nj"]
+[ext_resource type="AudioStream" uid="uid://8ciny6urd4wm" path="res://Ressources/Music/OFF THE ROAD - Zarii.mp3" id="13_y6d2w"]
+[ext_resource type="AudioStream" uid="uid://ctq0hka7tnqi4" path="res://Ressources/Music/Ancient Trials - Mark Hutson.mp3" id="14_81hta"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5s4hk"]
 texture = ExtResource("8_mcxou")
@@ -371,7 +373,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_y6d2w")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "iaActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor", "backgroundMusic")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "iaActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor", "dokiMusic", "triksterMusic")]
 y_sort_enabled = true
 script = ExtResource("1_6e2ot")
 playerActionMachine = NodePath("PlayerActionMachine")
@@ -381,7 +383,8 @@ buildingHandler = NodePath("BuildingHandler")
 entityHandler = NodePath("EntityHandler")
 gameUI = NodePath("GameUI")
 cursor = NodePath("InteractiveUI/SelectCursor")
-backgroundMusic = NodePath("BackgroundMusic")
+dokiMusic = NodePath("dokiMusic")
+triksterMusic = NodePath("triksterMusic")
 
 [node name="PlayerActionMachine" type="Node" parent="." node_paths=PackedStringArray("arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor", "movementArea", "movementArrow")]
 script = ExtResource("2_il3tl")
@@ -474,8 +477,13 @@ arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 
-[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-volume_db = 0.1
+[node name="dokiMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_y6d2w")
+volume_db = -16.0
+autoplay = true
+
+[node name="triksterMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_81hta")
 autoplay = true
 
 [connection signal="playerLost" from="BuildingHandler" to="." method="_on_building_handler_player_lost"]
@@ -487,4 +495,5 @@ autoplay = true
 [connection signal="endTurn" from="GameUI" to="." method="_on_game_ui_end_turn"]
 [connection signal="surrender" from="GameUI" to="." method="_on_game_ui_surrender"]
 [connection signal="toMainMenu" from="GameUI" to="." method="_on_game_ui_to_main_menu"]
-[connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]
+[connection signal="finished" from="dokiMusic" to="." method="_on_doki_music_finished"]
+[connection signal="finished" from="triksterMusic" to="." method="_on_trikster_music_finished"]

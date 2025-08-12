@@ -21,7 +21,7 @@ func display():
 		0:winnerLabel.text = "Winner : Dokibird!"
 		1:winnerLabel.text = "Winner : The Trikster!"
 	dokiMoney.text = "Dokibird : "+str(VarGame.gold[0])
-	dokiMoney.text = "Trikster : "+str(VarGame.gold[1])
+	triksterMoney.text = "Trikster : "+str(VarGame.gold[1])
 	DokibirdProducedEgg.text 	= str(VarGame.unitProduced[0][0])
 	DokibirdProducedChick.text 	= str(VarGame.unitProduced[0][1])
 	DokibirdProducedLong.text 	= str(VarGame.unitProduced[0][2])

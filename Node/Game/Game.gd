@@ -10,7 +10,8 @@ class_name Game extends Node2D
 
 @export var cursor:SelectCursor
 
-@export var backgroundMusic:AudioStreamPlayer
+@export var dokiMusic:AudioStreamPlayer
+@export var triksterMusic:AudioStreamPlayer
 
 signal toMainMenu
 
@@ -24,9 +25,13 @@ func _ready() -> void:
 	cursor.enable()
 	
 	if(VarGame.teamTurn >= 0):
-		backgroundMusic.stream = VarGame.bgmMusic[VarGame.teamTurn][1]
-		backgroundMusic.volume_db = VarGame.bgmMusic[VarGame.teamTurn][0]
-		backgroundMusic.play()
+		match VarGame.teamTurn:
+			0:
+				dokiMusic.play(0)
+				triksterMusic.stop()
+			1:
+				dokiMusic.stop()
+				triksterMusic.play(0)
 
 func endTurn():
 	match VarGame.player[VarGame.teamTurn]:
@@ -57,9 +62,14 @@ func endTurn():
 			iaActionMachine.initTurn()
 			iaActionMachine.start()
 	
-	backgroundMusic.stream = VarGame.bgmMusic[VarGame.teamTurn][1]
-	backgroundMusic.volume_db = VarGame.bgmMusic[VarGame.teamTurn][0]
-	backgroundMusic.play()
+	if(VarGame.teamTurn >= 0):
+		match VarGame.teamTurn:
+			0:
+				dokiMusic.play(0)
+				triksterMusic.stop()
+			1:
+				dokiMusic.stop()
+				triksterMusic.play(0)
 
 
 func _on_game_ui_end_turn() -> void:
@@ -70,8 +80,6 @@ func _on_building_handler_player_lost(int: Variant) -> void:
 	iaActionMachine.isPlaying = false
 	cursor.disable()
 	gameUI.displayEndGameScreen()
-func _on_background_music_finished() -> void:
-	backgroundMusic.play()
 func _on_game_ui_surrender() -> void:
 	VarGame.winner = (VarGame.teamTurn+1)%2
 	playerActionMachine.isPlaying = false
@@ -82,3 +90,9 @@ func _on_game_ui_surrender() -> void:
 
 func _on_game_ui_to_main_menu() -> void:
 	toMainMenu.emit()
+
+
+func _on_doki_music_finished() -> void:
+	dokiMusic.play(0)
+func _on_trikster_music_finished() -> void:
+	triksterMusic.play(0)
