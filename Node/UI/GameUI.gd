@@ -10,11 +10,15 @@ class_name GameUI extends CanvasLayer
 @onready var buyMenu:BuyMenu = $BuyMenu
 @onready var ressourcePanel:RessourcePanel = $RessourcePanel
 @onready var escapeMenu:EscapeMenu = $EscapeMenu
+@onready var endGameScreen:EndGameScreen = $EndGameScreen
 
 signal buyUnit(n:int)
 signal endTurn()
+signal surrender()
+signal toMainMenu
 
 func _ready() -> void:
+	endGameScreen.hide()
 	buyMenu.setVisible(false)
 	escapeMenu.setVisible(false)
 
@@ -39,6 +43,17 @@ func showEscapeMenu():
 func hideEscapeMenu():
 	escapeMenu.setVisible(false)
 
+func displayEndGameScreen():
+	for i in get_children():i.hide()
+	endGameScreen.display()
 
 func _on_escape_menu_end_turn() -> void:
 	endTurn.emit()
+
+
+func _on_escape_menu_surrender() -> void:
+	surrender.emit()
+
+
+func _on_end_game_screen_to_main_menu() -> void:
+	toMainMenu.emit()

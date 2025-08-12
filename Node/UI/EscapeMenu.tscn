@@ -3,7 +3,7 @@
 [ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_ddgu6"]
 [ext_resource type="Script" uid="uid://k2cqeas8ir7c" path="res://Node/UI/EscapeMenu.gd" id="2_dot8l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dot8l"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcpgg"]
 
 [node name="EscapeMenu" type="PanelContainer"]
 anchors_preset = 8
@@ -20,32 +20,87 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_ddgu6")
 script = ExtResource("2_dot8l")
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="Main" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 16
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer2/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="Main/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("1_ddgu6")
 
-[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/PanelContainer"]
+[node name="Label" type="Label" parent="Main/VBoxContainer/PanelContainer"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Menu"
 horizontal_alignment = 1
 
-[node name="EndTurnButton" type="Button" parent="MarginContainer2/VBoxContainer"]
+[node name="EndTurnButton" type="Button" parent="Main/VBoxContainer"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../SurrenderButton")
+focus_neighbor_bottom = NodePath("../SurrenderButton")
 theme_override_font_sizes/font_size = 24
-theme_override_styles/focus = SubResource("StyleBoxFlat_dot8l")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
 text = "End turn"
 
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[node name="SurrenderButton" type="Button" parent="Main/VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../EndTurnButton")
+focus_neighbor_bottom = NodePath("../EndTurnButton")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
+text = "Surrender"
+
+[node name="Confirm" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Confirm"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="Confirm/VBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Are you sure you want to surrender?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Confirm/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="noSurrender" type="Button" parent="Confirm/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../yesSurrender")
+focus_neighbor_right = NodePath("../yesSurrender")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
+text = "Never!"
+
+[node name="yesSurrender" type="Button" parent="Confirm/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+focus_neighbor_left = NodePath("../noSurrender")
+focus_neighbor_right = NodePath("../noSurrender")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
+text = "Yes"
+
+[connection signal="pressed" from="Main/VBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="Main/VBoxContainer/SurrenderButton" to="." method="_on_surrender_button_pressed"]
+[connection signal="pressed" from="Confirm/VBoxContainer/HBoxContainer/noSurrender" to="." method="_on_no_surrender_pressed"]
+[connection signal="pressed" from="Confirm/VBoxContainer/HBoxContainer/yesSurrender" to="." method="_on_yes_surrender_pressed"]

@@ -485,4 +485,6 @@ autoplay = true
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]
 [connection signal="buyUnit" from="GameUI" to="EntityHandler" method="_on_game_ui_buy_unit"]
 [connection signal="endTurn" from="GameUI" to="." method="_on_game_ui_end_turn"]
+[connection signal="surrender" from="GameUI" to="." method="_on_game_ui_surrender"]
+[connection signal="toMainMenu" from="GameUI" to="." method="_on_game_ui_to_main_menu"]
 [connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]

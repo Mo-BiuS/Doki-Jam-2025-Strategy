@@ -12,6 +12,8 @@ class_name Game extends Node2D
 
 @export var backgroundMusic:AudioStreamPlayer
 
+signal toMainMenu
+
 var loadArena:PackedScene = preload("res://Node/Arena/SimpleArena.tscn")
 
 func _ready() -> void:
@@ -47,7 +49,7 @@ func endTurn():
 	match VarGame.player[VarGame.teamTurn]:
 		"player":
 			cursor.controledByIa = false
-			cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
+			#cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
 			playerActionMachine.reset()
 		"IA":
 			cursor.controledByIa = true
@@ -59,15 +61,24 @@ func endTurn():
 	backgroundMusic.volume_db = VarGame.bgmMusic[VarGame.teamTurn][0]
 	backgroundMusic.play()
 
+
 func _on_game_ui_end_turn() -> void:
 	endTurn()
-
-
 func _on_building_handler_player_lost(int: Variant) -> void:
+	VarGame.winner = VarGame.teamTurn
 	playerActionMachine.isPlaying = false
 	iaActionMachine.isPlaying = false
 	cursor.disable()
-
-
+	gameUI.displayEndGameScreen()
 func _on_background_music_finished() -> void:
 	backgroundMusic.play()
+func _on_game_ui_surrender() -> void:
+	VarGame.winner = (VarGame.teamTurn+1)%2
+	playerActionMachine.isPlaying = false
+	iaActionMachine.isPlaying = false
+	cursor.disable()
+	gameUI.displayEndGameScreen()
+
+
+func _on_game_ui_to_main_menu() -> void:
+	toMainMenu.emit()

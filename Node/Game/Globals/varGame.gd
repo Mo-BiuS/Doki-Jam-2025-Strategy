@@ -5,7 +5,7 @@ var gold = [800,800];
 
 var player = ["player","IA"]
 var teamTurn = 0;
-
+var winner = -1
 #var player = ["IA","IA"]
 #var teamTurn = -1;
 

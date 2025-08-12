@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2sc4mbovli68"]
+[gd_scene load_steps=11 format=3 uid="uid://d2sc4mbovli68"]
 
 [ext_resource type="Script" uid="uid://ccmgvcir3pve6" path="res://Node/UI/GameUI.gd" id="1_aapge"]
 [ext_resource type="PackedScene" uid="uid://def6suo0utm66" path="res://Node/UI/BuildingInfoBox.tscn" id="2_je0ey"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://ccdu4too320ja" path="res://Node/UI/RessourcePanel.tscn" id="7_je0ey"]
 [ext_resource type="PackedScene" uid="uid://bpmb4d2uowa2q" path="res://Node/UI/BuyMenu.tscn" id="8_un1m2"]
 [ext_resource type="PackedScene" uid="uid://dxfa67okjqeh0" path="res://Node/UI/EscapeMenu.tscn" id="9_22fib"]
+[ext_resource type="PackedScene" uid="uid://c0uu53qy83vl1" path="res://Node/UI/EndGameScreen.tscn" id="10_0hixd"]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource("1_aapge")
@@ -49,5 +50,9 @@ layout_mode = 2
 
 [node name="EscapeMenu" parent="." instance=ExtResource("9_22fib")]
 
+[node name="EndGameScreen" parent="." instance=ExtResource("10_0hixd")]
+
 [connection signal="buyUnit" from="BuyMenu" to="." method="_on_buy_menu_buy_unit"]
 [connection signal="endTurn" from="EscapeMenu" to="." method="_on_escape_menu_end_turn"]
+[connection signal="surrender" from="EscapeMenu" to="." method="_on_escape_menu_surrender"]
+[connection signal="toMainMenu" from="EndGameScreen" to="." method="_on_end_game_screen_to_main_menu"]

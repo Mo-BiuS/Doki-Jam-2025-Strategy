@@ -25,4 +25,10 @@ func loadGame(arena:PackedScene)->void:
 	for i in get_children():i.queue_free()
 	var game:Game = gamePacked.instantiate()
 	game.loadArena = arena
+	game.toMainMenu.connect(loadMainMenu)
 	add_child(game)
+	VarGame.turn = 1;
+	VarGame.gold = [800,800];
+	VarGame.player = ["player","IA"]
+	VarGame.teamTurn = 0;
+	VarGame. winner = -1
