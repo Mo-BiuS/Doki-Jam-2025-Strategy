@@ -153,7 +153,7 @@ func _on_game_ui_buy_unit(n: int) -> void:
 	entity.team = VarGame.teamTurn
 	entity.arena = arenaHandler.arena
 	entity.entityHandler = self
-	
+	VarGame.unitProduced[VarGame.teamTurn][n]+=1
 	entity.setPosition(cursor.tilePos)
 	match VarGame.teamTurn:
 		0:team0.add_child(entity)

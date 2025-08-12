@@ -1,9 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0uu53qy83vl1"]
+[gd_scene load_steps=11 format=3 uid="uid://c0uu53qy83vl1"]
 
 [ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_44rmo"]
 [ext_resource type="Script" uid="uid://doqxtiyka2dib" path="res://Node/UI/EndGameScreen.gd" id="1_pnr77"]
+[ext_resource type="Texture2D" uid="uid://b0icwws0spkgx" path="res://Ressources/Sprite/Unit/Icon/Icon-A-EGG.png" id="3_puj3d"]
+[ext_resource type="Texture2D" uid="uid://kggywtsksotk" path="res://Ressources/Sprite/Unit/Icon/Icon-A-CHICK.png" id="4_41ii1"]
+[ext_resource type="Texture2D" uid="uid://d0xy3nkdum5np" path="res://Ressources/Sprite/Unit/Icon/Icon-A-LONG.png" id="5_te8mo"]
+[ext_resource type="Texture2D" uid="uid://jpam6laju7ck" path="res://Ressources/Sprite/Unit/Icon/Icon-A-BEEG.png" id="6_pg5vg"]
+[ext_resource type="Texture2D" uid="uid://cyqaanwiotthu" path="res://Ressources/Sprite/Unit/Icon/Icon-B-EGG.png" id="7_cs2mw"]
+[ext_resource type="Texture2D" uid="uid://6nmmxvwabgxm" path="res://Ressources/Sprite/Unit/Icon/Icon-B-CHICK.png" id="8_pb7fw"]
+[ext_resource type="Texture2D" uid="uid://n4jx0rnqbeij" path="res://Ressources/Sprite/Unit/Icon/Icon-B-LONG.png" id="9_37ka2"]
+[ext_resource type="Texture2D" uid="uid://bfr6inai1m0ya" path="res://Ressources/Sprite/Unit/Icon/Icon-B-BEEG.png" id="10_xwnwu"]
 
-[node name="EndGameScreen" type="PanelContainer" node_paths=PackedStringArray("winnerLabel")]
+[node name="EndGameScreen" type="PanelContainer" node_paths=PackedStringArray("winnerLabel", "dokiMoney", "triksterMoney", "DokibirdProducedEgg", "DokibirdProducedChick", "DokibirdProducedLong", "DokibirdProducedBeeg", "TricksterProducedEgg", "TricksterProducedChick", "TricksterProducedLong", "TricksterProducedBeeg")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -18,6 +26,16 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_44rmo")
 script = ExtResource("1_pnr77")
 winnerLabel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinnerLabel")
+dokiMoney = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/DokiMoney")
+triksterMoney = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/TriksterMoney")
+DokibirdProducedEgg = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/HBoxContainer/DokiProducedEgg")
+DokibirdProducedChick = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/HBoxContainer/DokiProducedChick")
+DokibirdProducedLong = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/HBoxContainer/DokiProducedLong")
+DokibirdProducedBeeg = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer4/MarginContainer/HBoxContainer/DokiProducedBeeg")
+TricksterProducedEgg = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer/MarginContainer/HBoxContainer/TricksterProducedEgg")
+TricksterProducedChick = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer2/MarginContainer/HBoxContainer/TricksterProducedChick")
+TricksterProducedLong = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer3/MarginContainer/HBoxContainer/TricksterProducedLong")
+TricksterProducedBeeg = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer4/MarginContainer/HBoxContainer/TricksterProducedBeeg")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -54,6 +72,337 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Winner : NULL"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Gold Left"
+horizontal_alignment = 1
+
+[node name="DokiMoney" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Dokibird : NULL"
+
+[node name="TriksterMoney" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Trikster : NULL"
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Unit Produced"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Dokibird :"
+
+[node name="GridContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("3_puj3d")
+
+[node name="DokiProducedEgg" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("4_41ii1")
+
+[node name="DokiProducedChick" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("5_te8mo")
+
+[node name="DokiProducedLong" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer4/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer4/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer4/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("6_pg5vg")
+
+[node name="DokiProducedBeeg" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer4/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Trikster :"
+
+[node name="GridContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("7_cs2mw")
+
+[node name="TricksterProducedEgg" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer2/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("8_pb7fw")
+
+[node name="TricksterProducedChick" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer2/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer3/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer3/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer3/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("9_37ka2")
+
+[node name="TricksterProducedLong" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer3/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer4"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer4/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer4/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer4/MarginContainer/HBoxContainer/PanelContainer"]
+texture_filter = 1
+position = Vector2(46, 46)
+scale = Vector2(2, 2)
+texture = ExtResource("10_xwnwu")
+
+[node name="TricksterProducedBeeg" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer2/PanelContainer4/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "100"
 horizontal_alignment = 1
 
 [node name="ToMainMenu" type="Button" parent="MarginContainer/VBoxContainer"]
