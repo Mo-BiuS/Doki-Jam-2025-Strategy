@@ -3,12 +3,13 @@
 [ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_l1vy7"]
 [ext_resource type="Script" uid="uid://dd1m8fsdt8o08" path="res://Node/UI/RessourcePanel.gd" id="2_13rbq"]
 
-[node name="RessourcePanel" type="PanelContainer" node_paths=PackedStringArray("goldLabel", "turnLabel")]
+[node name="RessourcePanel" type="PanelContainer" node_paths=PackedStringArray("dokiGoldLabel", "trickGoldLabel", "turnLabel")]
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_styles/panel = ExtResource("1_l1vy7")
 script = ExtResource("2_13rbq")
-goldLabel = NodePath("MarginContainer2/HBoxContainer/GoldLabel")
+dokiGoldLabel = NodePath("MarginContainer2/HBoxContainer/DokiGoldLabel")
+trickGoldLabel = NodePath("MarginContainer2/HBoxContainer/TrickGoldLabel")
 turnLabel = NodePath("MarginContainer2/HBoxContainer/TurnLabel")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
@@ -18,7 +19,7 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 16
 
@@ -27,9 +28,16 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Turn : 1"
+horizontal_alignment = 1
 
-[node name="GoldLabel" type="Label" parent="MarginContainer2/HBoxContainer"]
+[node name="DokiGoldLabel" type="Label" parent="MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Gold : 0"
+theme_override_font_sizes/font_size = 24
+text = "Dokibird gold  : 0"
+
+[node name="TrickGoldLabel" type="Label" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Trickster gold : 0"

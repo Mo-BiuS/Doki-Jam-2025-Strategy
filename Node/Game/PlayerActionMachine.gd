@@ -110,5 +110,7 @@ func _on_select_cursor_attack_at(tpos: Vector2i) -> void:
 		var building:Building = buildingHandler.getBuildingAtPos(tpos)
 		if(building != null && building.team != VarGame.teamTurn+1):
 			selectedEnity.capture(building)
+			VarGame.goldNext[VarGame.teamTurn] = buildingHandler.getGoldFromPlayer(VarGame.teamTurn)
+			gameUI.refreshRessourcePanel()
 		
 	reset()

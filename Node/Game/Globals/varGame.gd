@@ -2,6 +2,8 @@ extends Node
 
 var turn = 1;
 var gold = [800,800];
+var goldNext = [0,0]
+var totalGoldUsed = [0,0]
 
 var player = ["player","IA"]
 var teamTurn = 0;
@@ -15,9 +17,11 @@ var unitProduced = [
 ]
 
 func reset():
-	VarGame.turn = 1;
-	VarGame.gold = [800,800];
-	VarGame.player = ["player","IA"]
-	VarGame.teamTurn = 0;
-	VarGame.winner = -1
-	VarGame.unitProduced = [[0,0,0,0],[0,0,0,0]]
+	turn = 1;
+	gold = [800,800];
+	goldNext = [0,0]
+	totalGoldUsed = [0,0]
+	player = ["player","IA"]
+	teamTurn = 0;
+	winner = -1
+	unitProduced = [[0,0,0,0],[0,0,0,0]]

@@ -43,6 +43,7 @@ func _process(delta: float) -> void:
 			if(captureObjectif != null):
 				if(captureObjectif.tilePos == tilePos):
 					capture(captureObjectif)
+					entityHandler.refreshCapture()
 				else:desactivate()
 				captureObjectif = null
 			if(killObjectif != null):

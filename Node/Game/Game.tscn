@@ -409,11 +409,12 @@ y_sort_enabled = true
 script = ExtResource("2_g1w7o")
 entityHandler = NodePath("../EntityHandler")
 
-[node name="BuildingHandler" type="Node2D" parent="." node_paths=PackedStringArray("arenaHandler", "entityHandler")]
+[node name="BuildingHandler" type="Node2D" parent="." node_paths=PackedStringArray("arenaHandler", "entityHandler", "gameUI")]
 y_sort_enabled = true
 script = ExtResource("2_8v1kq")
 arenaHandler = NodePath("../ArenaHandler")
 entityHandler = NodePath("../EntityHandler")
+gameUI = NodePath("../GameUI")
 
 [node name="Neutral" type="Node2D" parent="BuildingHandler"]
 y_sort_enabled = true

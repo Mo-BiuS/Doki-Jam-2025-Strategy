@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0uu53qy83vl1"]
+[gd_scene load_steps=12 format=3 uid="uid://c0uu53qy83vl1"]
 
 [ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_44rmo"]
 [ext_resource type="Script" uid="uid://doqxtiyka2dib" path="res://Node/UI/EndGameScreen.gd" id="1_pnr77"]
@@ -11,7 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://n4jx0rnqbeij" path="res://Ressources/Sprite/Unit/Icon/Icon-B-LONG.png" id="9_37ka2"]
 [ext_resource type="Texture2D" uid="uid://bfr6inai1m0ya" path="res://Ressources/Sprite/Unit/Icon/Icon-B-BEEG.png" id="10_xwnwu"]
 
-[node name="EndGameScreen" type="PanelContainer" node_paths=PackedStringArray("winnerLabel", "dokiMoney", "triksterMoney", "DokibirdProducedEgg", "DokibirdProducedChick", "DokibirdProducedLong", "DokibirdProducedBeeg", "TricksterProducedEgg", "TricksterProducedChick", "TricksterProducedLong", "TricksterProducedBeeg")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg5vg"]
+border_width_right = 8
+
+[node name="EndGameScreen" type="PanelContainer" node_paths=PackedStringArray("winnerLabel", "dokiGoldUsed", "dokiGoldLeft", "trikGoldUsed", "trikGoldLeft", "DokibirdProducedEgg", "DokibirdProducedChick", "DokibirdProducedLong", "DokibirdProducedBeeg", "TricksterProducedEgg", "TricksterProducedChick", "TricksterProducedLong", "TricksterProducedBeeg")]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -26,8 +29,10 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_44rmo")
 script = ExtResource("1_pnr77")
 winnerLabel = NodePath("MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/WinnerLabel")
-dokiMoney = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/DokiMoney")
-triksterMoney = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer/TriksterMoney")
+dokiGoldUsed = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/DokiGoldUsed")
+dokiGoldLeft = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/DokiGoldLeft")
+trikGoldUsed = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/TrickGoldUsed")
+trikGoldLeft = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2/TrickGoldLeft")
 DokibirdProducedEgg = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer/MarginContainer/HBoxContainer/DokiProducedEgg")
 DokibirdProducedChick = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer2/MarginContainer/HBoxContainer/DokiProducedChick")
 DokibirdProducedLong = NodePath("MarginContainer/VBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/GridContainer/PanelContainer3/MarginContainer/HBoxContainer/DokiProducedLong")
@@ -84,25 +89,64 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="WinnerLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Gold statistics"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Gold Left"
+text = "Dokibird"
 horizontal_alignment = 1
 
-[node name="DokiMoney" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="DokiGoldLeft" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Dokibird : NULL"
+text = "Left : NULL"
 
-[node name="TriksterMoney" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/HBoxContainer"]
+[node name="DokiGoldUsed" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Trikster : NULL"
+text = "Used : NULL"
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_pg5vg")
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Trickster"
+horizontal_alignment = 1
+
+[node name="TrickGoldLeft" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Left : NULL"
+
+[node name="TrickGoldUsed" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Used : NULL"
 
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

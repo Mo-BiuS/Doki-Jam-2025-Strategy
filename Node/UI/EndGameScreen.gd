@@ -2,8 +2,10 @@ class_name EndGameScreen extends PanelContainer
 
 @export var winnerLabel:Label
 
-@export var dokiMoney:Label
-@export var triksterMoney:Label
+@export var dokiGoldUsed:Label
+@export var dokiGoldLeft:Label
+@export var trikGoldUsed:Label
+@export var trikGoldLeft:Label
 
 @export var DokibirdProducedEgg:Label
 @export var DokibirdProducedChick:Label
@@ -20,8 +22,15 @@ func display():
 	match VarGame.winner:
 		0:winnerLabel.text = "Winner : Dokibird!"
 		1:winnerLabel.text = "Winner : The Trikster!"
-	dokiMoney.text = "Dokibird : "+str(VarGame.gold[0])
-	triksterMoney.text = "Trikster : "+str(VarGame.gold[1])
+	
+	dokiGoldLeft.text = "Left :"+str(VarGame.gold[0])
+	dokiGoldUsed.text = "Used :"+str(VarGame.totalGoldUsed[0])
+	trikGoldLeft.text = "Left :"+str(VarGame.gold[1])
+	trikGoldUsed.text = "Used :"+str(VarGame.totalGoldUsed[1])
+	
+	#dokiMoney.text = "Dokibird : "+str(VarGame.gold[0])
+	#triksterMoney.text = "Trikster : "+str(VarGame.gold[1])
+	
 	DokibirdProducedEgg.text 	= str(VarGame.unitProduced[0][0])
 	DokibirdProducedChick.text 	= str(VarGame.unitProduced[0][1])
 	DokibirdProducedLong.text 	= str(VarGame.unitProduced[0][2])

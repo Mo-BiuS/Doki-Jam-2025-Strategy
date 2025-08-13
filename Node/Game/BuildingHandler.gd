@@ -6,12 +6,14 @@ const BUILDING_PACKED_CAPITAL:PackedScene = preload("res://Node/Building/Capital
 
 @export var arenaHandler:ArenaHandler
 @export var entityHandler:EntityHandler
+@export var gameUI:GameUI
 
 @onready var neutral:Node2D = $Neutral
 @onready var team0:Node2D = $Team0
 @onready var team1:Node2D = $Team1
 
 signal playerLost(int)
+
 
 func reset() -> void:
 	for i in neutral.get_children():i.queue_free()
@@ -38,6 +40,9 @@ func loadStartingBuilding(team:int,list:Array):
 				1:team0.add_child(entity)
 				2:team1.add_child(entity)
 				_:print("Loading starting entity, no team "+str(team))
+	
+	VarGame.goldNext = [getGoldFromPlayer(0),getGoldFromPlayer(1)]
+	gameUI.refreshRessourcePanel()
 
 func getCapitalPos(player:int)->Vector2i:
 	var list:Node2D

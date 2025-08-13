@@ -160,8 +160,13 @@ func _on_game_ui_buy_unit(n: int) -> void:
 		1:team1.add_child(entity)
 	entity.desactivate()
 	VarGame.gold[VarGame.teamTurn] -= CONST_UNIT.array[n][5]
+	VarGame.totalGoldUsed[VarGame.teamTurn] += CONST_UNIT.array[n][5]
 	gameUI.refreshRessourcePanel()
 	gameUI.hideBuildMenu()
 	gameUI._on_cursor_moved_to_new_tile(cursor.tilePos)
 	playerActionMachine.reset()
-	
+
+#BLOOOOOOOOOOOOOOOOOAT ><
+func refreshCapture():
+	VarGame.goldNext[VarGame.teamTurn] = buildingHandler.getGoldFromPlayer(VarGame.teamTurn)
+	gameUI.refreshRessourcePanel()
