@@ -18,6 +18,8 @@ signal toMainMenu
 var loadArena:PackedScene = preload("res://Node/Arena/SimpleArena.tscn")
 
 func _ready() -> void:
+	VarGame.reset()
+	gameUI.refreshRessourcePanel()
 	arenaHandler.loadArena(loadArena)
 	entityHandler.reset()
 	buildingHandler.reset()

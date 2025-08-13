@@ -92,7 +92,9 @@ func _process(delta: float) -> void:
 	elif entityFollow != null:
 		position = entityFollow.position
 		if(!entityFollow.isMoving):
-			if(!controledByIa):followingEntityEndedMovement.emit()
+			if(!controledByIa):
+				movedToNewTile.emit(tilePos)
+				followingEntityEndedMovement.emit()
 			else:iaActionMachine.waiting = false
 	elif enabled:
 		if targetPos == position:

@@ -37,7 +37,7 @@ func processInput():
 				movementArea.clear()
 				movementArrow.clear()
 				cursor.disable()
-			elif(selectedEnity == null && base != null && entity == null):
+			elif(entityHandler.getUnitAt(cursor.tilePos) == null && base != null && entity == null):
 				reset()
 				selectedBase = base
 				cursor.disable()
@@ -73,6 +73,7 @@ func reset():
 	cursor.entityFollow = null
 	cursor.enable()
 	gameUI.hideBuildMenu()
+	gameUI._on_cursor_moved_to_new_tile(cursor.tilePos)
 
 func _on_select_cursor_moved_to_new_tile(tPos: Vector2i) -> void:
 	if(selectedEnity != null):movementArrow.refresh()

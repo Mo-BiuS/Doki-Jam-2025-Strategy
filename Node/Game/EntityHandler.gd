@@ -162,5 +162,6 @@ func _on_game_ui_buy_unit(n: int) -> void:
 	VarGame.gold[VarGame.teamTurn] -= CONST_UNIT.array[n][5]
 	gameUI.refreshRessourcePanel()
 	gameUI.hideBuildMenu()
+	gameUI._on_cursor_moved_to_new_tile(cursor.tilePos)
 	playerActionMachine.reset()
 	

@@ -27,9 +27,3 @@ func loadGame(arena:PackedScene)->void:
 	game.loadArena = arena
 	game.toMainMenu.connect(loadMainMenu)
 	add_child(game)
-	VarGame.turn = 1;
-	VarGame.gold = [800,800];
-	VarGame.player = ["player","IA"]
-	VarGame.teamTurn = 0;
-	VarGame.winner = -1
-	VarGame.unitProduced = [[0,0,0,0],[0,0,0,0]]

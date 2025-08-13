@@ -1,3 +1,104 @@
-[gd_scene format=3 uid="uid://bksvf870l3tcd"]
+[gd_scene load_steps=3 format=3 uid="uid://bksvf870l3tcd"]
 
-[node name="EntityInfoBox" type="PanelContainer"]
+[ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_kqu36"]
+[ext_resource type="Script" uid="uid://dobbjq1ech8ip" path="res://Node/UI/EntityInfoBox.gd" id="2_neo2c"]
+
+[node name="EntityInfoBox" type="PanelContainer" node_paths=PackedStringArray("typeLabel", "hpLabel", "mvmLabel", "attackLabel", "captureLabel", "defenceLabel")]
+theme_override_styles/panel = ExtResource("1_kqu36")
+script = ExtResource("2_neo2c")
+typeLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/typeLabel")
+hpLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/hpLabel")
+mvmLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/mvmLabel")
+attackLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/AttackLabel")
+captureLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/CaptureLabel")
+defenceLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/DefenceLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_kqu36")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Entity"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Type : "
+horizontal_alignment = 2
+
+[node name="typeLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "HP : "
+horizontal_alignment = 2
+
+[node name="hpLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Deplacement : "
+horizontal_alignment = 2
+
+[node name="mvmLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Attack : "
+horizontal_alignment = 2
+
+[node name="AttackLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Capture : "
+horizontal_alignment = 2
+
+[node name="CaptureLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+
+[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Defence : "
+horizontal_alignment = 2
+
+[node name="DefenceLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"

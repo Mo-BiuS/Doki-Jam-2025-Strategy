@@ -1,3 +1,76 @@
-[gd_scene format=3 uid="uid://def6suo0utm66"]
+[gd_scene load_steps=3 format=3 uid="uid://def6suo0utm66"]
 
-[node name="BuildingInfoBox" type="PanelContainer"]
+[ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_q2sku"]
+[ext_resource type="Script" uid="uid://hflqxpycjxfu" path="res://Node/UI/BuildingInfoBox.gd" id="2_dokwp"]
+
+[node name="BuildingInfoBox" type="PanelContainer" node_paths=PackedStringArray("typeLabel", "teamLabel", "captureLabel", "infoLabel")]
+theme_override_styles/panel = ExtResource("1_q2sku")
+script = ExtResource("2_dokwp")
+typeLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/TypeLabel")
+teamLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/TeamLabel")
+captureLabel = NodePath("MarginContainer/VBoxContainer/GridContainer/CaptureLabel")
+infoLabel = NodePath("MarginContainer/VBoxContainer/InfoLabel")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_q2sku")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Building"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Type : "
+horizontal_alignment = 2
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "null"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Team : "
+horizontal_alignment = 2
+
+[node name="TeamLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "-1"
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Capture : "
+horizontal_alignment = 2
+
+[node name="CaptureLabel" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "-1"
+
+[node name="InfoLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "-1"
+autowrap_mode = 2

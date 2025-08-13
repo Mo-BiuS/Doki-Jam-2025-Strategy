@@ -82,7 +82,7 @@ func setPosition(pos:Vector2i):
 
 func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 	var stLife=ennemy.life
-	ennemy.life -= max (1,attack*life/10-ennemy.defence-ennemyDefenseBonus)
+	ennemy.life -= max (1,getAttack()-ennemy.defence-ennemyDefenseBonus)
 	if(ennemy.life < 10):
 		ennemy.lifeCounterContainer.show()
 		ennemy.lifeCounterLabel.text = str(ennemy.life)+"HP"
@@ -91,18 +91,17 @@ func damage(ennemy:Entity, ennemyDefenseBonus:int, defenseBonus)->void:
 		if(stLife >= 8):munchSoundEffect.play(.1)
 		ennemy.queue_free()
 	else:
-		life -= max (1,ennemy.attack*ennemy.life/10-defence-defenseBonus)
+		life -= max (1,ennemy.getAttack()-defence-defenseBonus)
 		if(life < 10):
 			lifeCounterContainer.show()
 			lifeCounterLabel.text = str(life)+"HP"
 		if(life <= 0):queue_free()
 	desactivate()
-
 func capture(building:Building):
 	if(building.teamCapturng != team):
 		building.teamCapturng = team
 		building.capture = 10
-	building.capture-=5*life/10
+	building.capture-=getCapture()
 	if(building.capture < 10):
 		building.captureCounterContainer.show()
 		building.captureCounterLabel.text = str(int(building.capture)) + "HP"
@@ -165,9 +164,13 @@ func traceClean():
 	while(!clean && !mvmMap.is_empty()):
 		if(entityHandler.getUnitAt(mvmMap[0]) == null):clean = true
 		else:mvmMap.remove_at(0)
-	
 
 func isAroundKillObjectif()->bool:
 	for i in [Vector2i(-1,0),Vector2i(1,0),Vector2i(0,-1),Vector2i(0,1)]:
 		if tilePos+i == killObjectif.tilePos: return true
 	return false
+
+func getAttack()->float:
+	return attack*life/10
+func getCapture()->float:
+	return 5*life/10

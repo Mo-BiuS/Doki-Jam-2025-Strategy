@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2sc4mbovli68"]
+[gd_scene load_steps=9 format=3 uid="uid://d2sc4mbovli68"]
 
 [ext_resource type="Script" uid="uid://ccmgvcir3pve6" path="res://Node/UI/GameUI.gd" id="1_aapge"]
 [ext_resource type="PackedScene" uid="uid://def6suo0utm66" path="res://Node/UI/BuildingInfoBox.tscn" id="2_je0ey"]
-[ext_resource type="Script" uid="uid://hflqxpycjxfu" path="res://Node/UI/BuildingInfoBox.gd" id="3_un1m2"]
 [ext_resource type="PackedScene" uid="uid://bksvf870l3tcd" path="res://Node/UI/EntityInfoBox.tscn" id="4_22fib"]
-[ext_resource type="Script" uid="uid://dobbjq1ech8ip" path="res://Node/UI/EntityInfoBox.gd" id="5_0hixd"]
 [ext_resource type="PackedScene" uid="uid://dq4m0cbjapxge" path="res://Node/UI/TerrainInfoBox.tscn" id="6_d673b"]
 [ext_resource type="PackedScene" uid="uid://ccdu4too320ja" path="res://Node/UI/RessourcePanel.tscn" id="7_je0ey"]
 [ext_resource type="PackedScene" uid="uid://bpmb4d2uowa2q" path="res://Node/UI/BuyMenu.tscn" id="8_un1m2"]
@@ -30,18 +28,13 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="BuildingInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_je0ey")]
-visible = false
-layout_mode = 2
-script = ExtResource("3_un1m2")
-
 [node name="EntityInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("4_22fib")]
-visible = false
 layout_mode = 2
-script = ExtResource("5_0hixd")
+
+[node name="BuildingInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_je0ey")]
+layout_mode = 2
 
 [node name="TerrainInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_d673b")]
-visible = false
 layout_mode = 2
 
 [node name="RessourcePanel" parent="." instance=ExtResource("7_je0ey")]

@@ -10,7 +10,7 @@ var array:Array = [
 	["Dragoon Egg",		6,	2,		6,		0,		200,		2],
 	["Dragoon Chick",	6,	4,		6,		2,		600,		4],
 	["Dragoon Long",		10,	8,		6,		2,		800,		1],
-	["Dragoon Beeg",		4,	2,		11,		4,		1200,	1]
+	["Dragoon Chonk",		4,	2,		11,		4,		1200,	1]
 ]
 
 var packed = [

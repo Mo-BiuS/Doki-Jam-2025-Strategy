@@ -41,7 +41,7 @@ func getDeplacementCostAt(pos:Vector2i)->int:
 	var terrainData = CONST_TERRAIN.ARRAY[tileData.terrain]
 	
 	if roadData != null : return 1
-	elif buildingData != null : return 4
+	elif buildingData != null : return 2
 	else:return terrainData[1]
 
 func getDefenceAt(pos:Vector2i)->int:

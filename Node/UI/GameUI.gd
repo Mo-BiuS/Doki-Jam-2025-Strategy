@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _on_cursor_moved_to_new_tile(tPos: Vector2i) -> void:
 	buildingInfoBox.refresh(buildingHandler,tPos)
-	entityInfoBox.refresh(entityHandler,tPos)
+	entityInfoBox.refresh(entityHandler, arenaHandler,tPos)
 	terrainInfoBox.refresh(arenaHandler,buildingHandler,tPos)
 
 func showBuildMenu():

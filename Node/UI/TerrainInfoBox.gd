@@ -6,6 +6,7 @@ class_name TerrainInfoBox extends PanelContainer
 @export var visibilityMalusLabel:Label
 
 func refresh(arenaHandler:ArenaHandler,buildingHandler:BuildingHandler, pos:Vector2i)->void:
+	show()
 	var tileData:TileData = arenaHandler.arena.tiles.get_cell_tile_data(pos)
 	var roadData:TileData = arenaHandler.arena.roads.get_cell_tile_data(pos)
 	var building:Building = buildingHandler.getBuildingAtPos(pos)
@@ -24,10 +25,8 @@ func refresh(arenaHandler:ArenaHandler,buildingHandler:BuildingHandler, pos:Vect
 	if(terrainData[1] == -1):movingCostLabel.text = "impassable"
 	else:movingCostLabel.text = str(arenaHandler.arena.getDeplacementCostAt(pos))
 	
-	if(hasBuilding):defenseBonusLabel.text = "4"
-	elif(hasRoad):defenseBonusLabel.text = "0"
-	elif(terrainData[1] == -1):defenseBonusLabel.text = "None"
-	else:defenseBonusLabel.text = str(terrainData[2])
+	defenseBonusLabel.text = str(arenaHandler.arena.getDefenceAt(pos))
+	
 	
 	if(hasBuilding):visibilityMalusLabel.text = "4"
 	elif(hasRoad):visibilityMalusLabel.text = "1"
