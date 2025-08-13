@@ -8,7 +8,7 @@ class_name GameUI extends CanvasLayer
 @onready var entityInfoBox:EntityInfoBox = $MarginContainer/VBoxContainer/EntityInfoBox
 @onready var terrainInfoBox:TerrainInfoBox = $MarginContainer/VBoxContainer/TerrainInfoBox
 @onready var buyMenu:BuyMenu = $BuyMenu
-@onready var ressourcePanel:RessourcePanel = $RessourcePanel
+@onready var ressourcePanel:RessourcePanel = $MarginContainer2/RessourcePanel
 @onready var escapeMenu:EscapeMenu = $EscapeMenu
 @onready var endGameScreen:EndGameScreen = $EndGameScreen
 
@@ -18,6 +18,7 @@ signal surrender()
 signal toMainMenu
 
 func _ready() -> void:
+	ressourcePanel.custom_minimum_size.x = terrainInfoBox.size.x
 	endGameScreen.hide()
 	buyMenu.setVisible(false)
 	escapeMenu.setVisible(false)

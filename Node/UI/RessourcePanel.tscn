@@ -21,12 +21,11 @@ theme_override_constants/margin_bottom = 12
 
 [node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
-theme_override_constants/separation = 16
 
 [node name="TurnLabel" type="Label" parent="MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 24
 text = "Turn : 1"
 horizontal_alignment = 1
 

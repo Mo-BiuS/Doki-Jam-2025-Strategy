@@ -37,13 +37,22 @@ layout_mode = 2
 [node name="TerrainInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_d673b")]
 layout_mode = 2
 
-[node name="RessourcePanel" parent="." instance=ExtResource("7_je0ey")]
-
 [node name="BuyMenu" parent="." instance=ExtResource("8_un1m2")]
 
 [node name="EscapeMenu" parent="." instance=ExtResource("9_22fib")]
 
 [node name="EndGameScreen" parent="." instance=ExtResource("10_0hixd")]
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RessourcePanel" parent="MarginContainer2" instance=ExtResource("7_je0ey")]
+layout_mode = 2
 
 [connection signal="buyUnit" from="BuyMenu" to="." method="_on_buy_menu_buy_unit"]
 [connection signal="endTurn" from="EscapeMenu" to="." method="_on_escape_menu_end_turn"]
