@@ -16,6 +16,7 @@ signal buyUnit(n:int)
 signal endTurn()
 signal surrender()
 signal toMainMenu
+signal toNextMission
 
 func _ready() -> void:
 	ressourcePanel.custom_minimum_size.x = terrainInfoBox.size.x
@@ -58,3 +59,7 @@ func _on_escape_menu_surrender() -> void:
 
 func _on_end_game_screen_to_main_menu() -> void:
 	toMainMenu.emit()
+
+
+func _on_end_game_screen_to_next_mission() -> void:
+	toNextMission.emit()

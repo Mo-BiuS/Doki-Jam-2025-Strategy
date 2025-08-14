@@ -1,7 +1,7 @@
 class_name SkirmishMenu extends CanvasLayer
 
 signal toMainMenu
-signal toGame(arena:PackedScene)
+signal toGame(arena:PackedScene, campaignNumber:int)
 
 @export var arenaNameLabel:Label
 @export var view:Viewport
@@ -29,7 +29,7 @@ func adjustScale()->void:
 	arena.position = Vector2((512-x*s)/2.0, (512-y*s)/2.0)
 
 func _on_start_button_pressed() -> void:
-	toGame.emit(CONST_ARENA.SKIRMISH_LIST[id][1])
+	toGame.emit(CONST_ARENA.SKIRMISH_LIST[id][1], -1)
 func _on_return_button_pressed() -> void:
 	toMainMenu.emit()
 

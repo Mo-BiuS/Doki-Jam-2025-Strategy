@@ -4,6 +4,16 @@
 [ext_resource type="Script" uid="uid://k2cqeas8ir7c" path="res://Node/UI/EscapeMenu.gd" id="2_dot8l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcpgg"]
+bg_color = Color(1, 0.894118, 0.678431, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="EscapeMenu" type="PanelContainer"]
 anchors_preset = 8
@@ -47,6 +57,7 @@ horizontal_alignment = 1
 layout_mode = 2
 focus_neighbor_top = NodePath("../SurrenderButton")
 focus_neighbor_bottom = NodePath("../SurrenderButton")
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
 text = "End turn"
@@ -55,6 +66,7 @@ text = "End turn"
 layout_mode = 2
 focus_neighbor_top = NodePath("../EndTurnButton")
 focus_neighbor_bottom = NodePath("../EndTurnButton")
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
 text = "Surrender"
@@ -87,6 +99,9 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../yesSurrender")
 focus_neighbor_right = NodePath("../yesSurrender")
+focus_next = NodePath("../yesSurrender")
+focus_previous = NodePath("../yesSurrender")
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
 text = "Never!"
@@ -96,6 +111,9 @@ custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 focus_neighbor_left = NodePath("../noSurrender")
 focus_neighbor_right = NodePath("../noSurrender")
+focus_next = NodePath("../noSurrender")
+focus_previous = NodePath("../noSurrender")
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/focus = SubResource("StyleBoxFlat_wcpgg")
 text = "Yes"

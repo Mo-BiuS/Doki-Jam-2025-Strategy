@@ -7,6 +7,7 @@ class_name Game extends Node2D
 @export var buildingHandler:BuildingHandler
 @export var entityHandler:EntityHandler
 @export var gameUI:GameUI
+@export var gameDialogUI:GameDialogUI
 
 @export var cursor:SelectCursor
 
@@ -14,6 +15,7 @@ class_name Game extends Node2D
 @export var triksterMusic:AudioStreamPlayer
 
 signal toMainMenu
+signal toNextMission
 
 var loadArena:PackedScene = preload("res://Node/Arena/SimpleArena.tscn")
 
@@ -23,6 +25,18 @@ func _ready() -> void:
 	entityHandler.reset()
 	buildingHandler.reset()
 	cursor.setTile(buildingHandler.getCapitalPos(0))
+	CONST_CAMPAIGN.dialogPointer = 0
+	if(CONST_CAMPAIGN.isInCampaign && CONST_CAMPAIGN.hasIntroLeft()):
+		cursor.disable()
+		gameUI.hide()
+		gameDialogUI.show()
+		gameDialogUI.startIntro()
+	else:
+		start()
+
+func start():
+	gameDialogUI.hide()
+	gameUI.show()
 	cursor.enable()
 	
 	if(VarGame.teamTurn >= 0):
@@ -80,14 +94,23 @@ func _on_building_handler_player_lost(int: Variant) -> void:
 	playerActionMachine.isPlaying = false
 	iaActionMachine.isPlaying = false
 	cursor.disable()
-	gameUI.displayEndGameScreen()
+	
+	if(VarGame.winner == 0 && CONST_CAMPAIGN.isInCampaign && CONST_CAMPAIGN.hasOutroLeft()):
+		gameUI.hide()
+		gameDialogUI.show()
+		gameDialogUI.startOutro()
+	else:displayEndGameScreen()
 func _on_game_ui_surrender() -> void:
 	VarGame.winner = (VarGame.teamTurn+1)%2
 	playerActionMachine.isPlaying = false
 	iaActionMachine.isPlaying = false
 	cursor.disable()
-	gameUI.displayEndGameScreen()
+	displayEndGameScreen()
 
+func displayEndGameScreen():
+	gameUI.show()
+	gameDialogUI.hide()
+	gameUI.displayEndGameScreen()
 
 func _on_game_ui_to_main_menu() -> void:
 	toMainMenu.emit()
@@ -97,3 +120,7 @@ func _on_doki_music_finished() -> void:
 	dokiMusic.play(0)
 func _on_trikster_music_finished() -> void:
 	triksterMusic.play(0)
+
+
+func _on_game_ui_to_next_mission() -> void:
+	toNextMission.emit()

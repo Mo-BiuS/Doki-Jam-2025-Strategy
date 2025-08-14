@@ -7,6 +7,9 @@ var captureTexture:Texture2D = load("res://Ressources/Sprite/UI/CaptureArea.png"
 @export var arenaHandler:ArenaHandler
 @export var iaActionMachine:IaActionMachine
 
+@export var captureContainer:PanelContainer
+@export var attackContainer:PanelContainer
+
 @onready var camera:Camera2D = $Camera
 
 signal followingEntityEndedMovement
@@ -31,6 +34,8 @@ func setTile(pos:Vector2i):
 		movedToNewTile.emit(tilePos)
 
 func _ready() -> void:
+	captureContainer.hide()
+	attackContainer.hide()
 	texture = cursorTexture
 
 func setEnnemyList(eList:Array):
@@ -41,14 +46,22 @@ func setEnnemyList(eList:Array):
 			entity = ennemyList[i]
 			ennemyListPos = 1
 			break
-	if(ennemyList[4] == entity):texture = captureTexture
-	else:texture = attackTexture
+	if(ennemyList[4] == entity):
+		texture = captureTexture
+		captureContainer.show()
+		attackContainer.hide()
+	else:
+		texture = attackTexture
+		captureContainer.hide()
+		attackContainer.show()
 	position = entity.position
 	tilePos = entity.tilePos
 	enable()
 	
 func clearEnnemyList():
 	ennemyList.clear()
+	captureContainer.hide()
+	attackContainer.hide()
 	texture = cursorTexture
 	
 
@@ -86,8 +99,14 @@ func _process(delta: float) -> void:
 						ennemyListPos = target_index
 						position = ennemyList[target_index].position
 						tilePos = ennemyList[target_index].tilePos
-				if(ennemyListPos == 4):texture = captureTexture
-				else:texture = attackTexture
+				if(ennemyListPos == 4):
+					texture = captureTexture
+					captureContainer.show()
+					attackContainer.hide()
+				else:
+					texture = attackTexture
+					captureContainer.hide()
+					attackContainer.show()
 	
 	elif entityFollow != null:
 		position = entityFollow.position

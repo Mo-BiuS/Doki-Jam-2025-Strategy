@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhdsiv24l5m1b"]
+[gd_scene load_steps=22 format=3 uid="uid://bhdsiv24l5m1b"]
 
 [ext_resource type="Script" uid="uid://dmeggih4p2o84" path="res://Node/Game/Game.gd" id="1_6e2ot"]
 [ext_resource type="Script" uid="uid://d8i4qk7qi425" path="res://Node/Game/BuildingHandler.gd" id="2_8v1kq"]
@@ -8,12 +8,15 @@
 [ext_resource type="Script" uid="uid://bdjkx32t0cint" path="res://Node/Game/EntityHandler.gd" id="3_8v1kq"]
 [ext_resource type="Script" uid="uid://cbjdh6pkrtsw7" path="res://Node/Game/Cursor.gd" id="6_g1w7o"]
 [ext_resource type="PackedScene" uid="uid://d2sc4mbovli68" path="res://Node/UI/GameUI.tscn" id="7_yq4x2"]
+[ext_resource type="StyleBox" uid="uid://cgvcog7ihft55" path="res://Node/UI/AttackBox.tres" id="8_81hta"]
 [ext_resource type="Texture2D" uid="uid://ig04wo0yma7" path="res://Ressources/Sprite/UI/MovementArea.png" id="8_mcxou"]
 [ext_resource type="Script" uid="uid://dt1s7m33c2fs6" path="res://Node/Game/MovementArea.gd" id="9_5s4hk"]
+[ext_resource type="StyleBox" uid="uid://d2qqyox7p7hyt" path="res://Node/UI/CaptureBox.tres" id="9_s4qid"]
 [ext_resource type="Texture2D" uid="uid://bb7w44imokim2" path="res://Ressources/Sprite/UI/ArrowMovement.png" id="10_7aoj4"]
 [ext_resource type="Script" uid="uid://jc2lvo8lf0kt" path="res://Node/Game/MovementArrow.gd" id="11_054nj"]
 [ext_resource type="AudioStream" uid="uid://8ciny6urd4wm" path="res://Ressources/Music/OFF THE ROAD - Zarii.mp3" id="13_y6d2w"]
 [ext_resource type="AudioStream" uid="uid://ctq0hka7tnqi4" path="res://Ressources/Music/Ancient Trials - Mark Hutson.mp3" id="14_81hta"]
+[ext_resource type="PackedScene" uid="uid://b26r74dlvlxyo" path="res://Node/UI/GameDialogUI.tscn" id="15_1s574"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5s4hk"]
 texture = ExtResource("8_mcxou")
@@ -373,7 +376,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_y6d2w")
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "iaActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "cursor", "dokiMusic", "triksterMusic")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("playerActionMachine", "iaActionMachine", "arenaHandler", "buildingHandler", "entityHandler", "gameUI", "gameDialogUI", "cursor", "dokiMusic", "triksterMusic")]
 y_sort_enabled = true
 script = ExtResource("1_6e2ot")
 playerActionMachine = NodePath("PlayerActionMachine")
@@ -382,6 +385,7 @@ arenaHandler = NodePath("ArenaHandler")
 buildingHandler = NodePath("BuildingHandler")
 entityHandler = NodePath("EntityHandler")
 gameUI = NodePath("GameUI")
+gameDialogUI = NodePath("GameDialogUI")
 cursor = NodePath("InteractiveUI/SelectCursor")
 dokiMusic = NodePath("dokiMusic")
 triksterMusic = NodePath("triksterMusic")
@@ -442,18 +446,44 @@ y_sort_enabled = true
 
 [node name="InteractiveUI" type="Node2D" parent="."]
 
-[node name="SelectCursor" type="Sprite2D" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "iaActionMachine")]
+[node name="SelectCursor" type="Sprite2D" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "iaActionMachine", "captureContainer", "attackContainer")]
 z_index = 3
 texture_filter = 1
 scale = Vector2(2, 2)
 script = ExtResource("6_g1w7o")
 arenaHandler = NodePath("../../ArenaHandler")
 iaActionMachine = NodePath("../../IaActionMachine")
+captureContainer = NodePath("CaptureContainer")
+attackContainer = NodePath("AttackContainer")
 
 [node name="Camera" type="Camera2D" parent="InteractiveUI/SelectCursor"]
 scale = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 4.0
+
+[node name="AttackContainer" type="PanelContainer" parent="InteractiveUI/SelectCursor"]
+offset_left = -18.0
+offset_top = -40.0
+offset_right = 54.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = ExtResource("8_81hta")
+
+[node name="label" type="Label" parent="InteractiveUI/SelectCursor/AttackContainer"]
+layout_mode = 2
+text = "Attack"
+horizontal_alignment = 1
+
+[node name="CaptureContainer" type="PanelContainer" parent="InteractiveUI/SelectCursor"]
+offset_left = -18.0
+offset_top = -40.0
+offset_right = 54.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/panel = ExtResource("9_s4qid")
+
+[node name="label" type="Label" parent="InteractiveUI/SelectCursor/CaptureContainer"]
+layout_mode = 2
+text = "Capture"
+horizontal_alignment = 1
 
 [node name="MovementArea" type="TileMapLayer" parent="InteractiveUI" node_paths=PackedStringArray("arenaHandler", "entityHandler")]
 z_index = 3
@@ -478,14 +508,14 @@ arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 
+[node name="GameDialogUI" parent="." instance=ExtResource("15_1s574")]
+
 [node name="dokiMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_y6d2w")
 volume_db = -16.0
-autoplay = true
 
 [node name="triksterMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_81hta")
-autoplay = true
 
 [connection signal="playerLost" from="BuildingHandler" to="." method="_on_building_handler_player_lost"]
 [connection signal="attackAt" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_attack_at"]
@@ -496,5 +526,8 @@ autoplay = true
 [connection signal="endTurn" from="GameUI" to="." method="_on_game_ui_end_turn"]
 [connection signal="surrender" from="GameUI" to="." method="_on_game_ui_surrender"]
 [connection signal="toMainMenu" from="GameUI" to="." method="_on_game_ui_to_main_menu"]
+[connection signal="toNextMission" from="GameUI" to="." method="_on_game_ui_to_next_mission"]
+[connection signal="introOver" from="GameDialogUI" to="." method="start"]
+[connection signal="outroOver" from="GameDialogUI" to="." method="displayEndGameScreen"]
 [connection signal="finished" from="dokiMusic" to="." method="_on_doki_music_finished"]
 [connection signal="finished" from="triksterMusic" to="." method="_on_trikster_music_finished"]

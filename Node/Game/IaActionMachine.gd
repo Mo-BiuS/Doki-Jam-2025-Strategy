@@ -66,7 +66,7 @@ func base()->bool:
 		var base:Base = baseList[0]
 		cursor.setTile(base.tilePos)
 		var weightedTeam = entityHandler.getWeightedTeam()
-		if(VarGame.turn < 2):weightedTeam[CONST_UNIT.UNIT_BEEG] = 100.0
+		if(VarGame.turn <= 4):weightedTeam[CONST_UNIT.UNIT_BEEG] = 100.0
 		
 		var simpleLowest = 0
 		var simpleLowestValue = weightedTeam[0]

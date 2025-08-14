@@ -16,9 +16,16 @@ class_name EndGameScreen extends PanelContainer
 @export var TricksterProducedLong:Label
 @export var TricksterProducedBeeg:Label
 
+@export var nextMissionButton:Button
+
 signal toMainMenu
+signal toNextMission
 
 func display():
+	if(CONST_CAMPAIGN.isInCampaign && VarGame.winner == 0):nextMissionButton.show()
+	else:nextMissionButton.hide()
+		
+	
 	match VarGame.winner:
 		0:winnerLabel.text = "Winner : Dokibird!"
 		1:winnerLabel.text = "Winner : The Trikster!"
@@ -44,3 +51,5 @@ func display():
 
 func _on_to_main_menu_pressed() -> void:
 	toMainMenu.emit()
+func _on_next_mission_pressed() -> void:
+	toNextMission.emit()
