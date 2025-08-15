@@ -5,12 +5,13 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lj7hp"]
 border_width_bottom = 8
 
-[node name="CampaignMenu" type="CanvasLayer" node_paths=PackedStringArray("missionButton0", "missionButton1", "missionButton2", "missionButton3")]
+[node name="CampaignMenu" type="CanvasLayer" node_paths=PackedStringArray("missionButton0", "missionButton1", "missionButton2", "missionButton3", "missionButton4")]
 script = ExtResource("1_lj7hp")
 missionButton0 = NodePath("PanelContainer/MarginContainer/VBoxContainer/Mission1")
 missionButton1 = NodePath("PanelContainer/MarginContainer/VBoxContainer/Mission2")
 missionButton2 = NodePath("PanelContainer/MarginContainer/VBoxContainer/Mission3")
 missionButton3 = NodePath("PanelContainer/MarginContainer/VBoxContainer/Mission4")
+missionButton4 = NodePath("PanelContainer/MarginContainer/VBoxContainer/Mission5")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -67,6 +68,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "Mission 4"
 
+[node name="Mission5" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Mission 4"
+
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 16
@@ -82,4 +88,5 @@ text = "Return"
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Mission2" to="." method="_on_mission_2_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Mission3" to="." method="_on_mission_3_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Mission4" to="." method="_on_mission_4_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Mission5" to="." method="_on_mission_5_pressed"]
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/ReturnButton" to="." method="_on_return_button_pressed"]

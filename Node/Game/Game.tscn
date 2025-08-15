@@ -508,7 +508,8 @@ arenaHandler = NodePath("../ArenaHandler")
 buildingHandler = NodePath("../BuildingHandler")
 entityHandler = NodePath("../EntityHandler")
 
-[node name="GameDialogUI" parent="." instance=ExtResource("15_1s574")]
+[node name="GameDialogUI" parent="." node_paths=PackedStringArray("cursor") instance=ExtResource("15_1s574")]
+cursor = NodePath("../InteractiveUI/SelectCursor")
 
 [node name="dokiMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_y6d2w")

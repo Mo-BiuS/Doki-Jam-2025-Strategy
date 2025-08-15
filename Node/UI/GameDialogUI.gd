@@ -11,12 +11,17 @@ signal outroOver
 @export var leftSprite:Sprite2D
 @export var rightSprite:Sprite2D
 
+@export var cursor:SelectCursor
+
 var mode:int = MODE_STANDBY
 var wait:float = 0
 
 func _process(delta: float) -> void:
+	if(mode != MODE_STANDBY):cursor.disable() #BRUH, very bad programming here but hey, it works (kinda)
+	
 	if(wait < .2):wait+=delta
 	elif(mode != MODE_STANDBY):
+		cursor.disable()
 		if(Input.is_action_just_pressed("action")):
 			match mode:
 				MODE_INTRO:

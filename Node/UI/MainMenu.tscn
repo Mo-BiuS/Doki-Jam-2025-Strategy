@@ -138,18 +138,17 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Campaign"
 
-[node name="TutorialMode" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(256, 64)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-disabled = true
-text = "Tutorial"
-
 [node name="SkirmishMod" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Skirmish"
+
+[node name="TutorialMode" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Tutorial"
 
 [node name="SubViewportContainer2" type="SubViewportContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -205,5 +204,5 @@ scale = Vector2(8, 8)
 texture = ExtResource("7_dws3o")
 
 [connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CampagnMode" to="." method="_on_campagn_mode_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TutorialMode" to="." method="_on_tutorial_mode_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SkirmishMod" to="." method="_on_skirmish_mod_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TutorialMode" to="." method="_on_tutorial_mode_pressed"]

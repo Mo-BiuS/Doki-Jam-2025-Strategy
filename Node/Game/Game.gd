@@ -27,6 +27,9 @@ func _ready() -> void:
 	cursor.setTile(buildingHandler.getCapitalPos(0))
 	CONST_CAMPAIGN.dialogPointer = 0
 	if(CONST_CAMPAIGN.isInCampaign && CONST_CAMPAIGN.hasIntroLeft()):
+		
+		playerActionMachine.isPlaying = false
+		iaActionMachine.isPlaying = false
 		cursor.disable()
 		gameUI.hide()
 		gameDialogUI.show()
@@ -35,6 +38,7 @@ func _ready() -> void:
 		start()
 
 func start():
+	playerActionMachine.isPlaying = true
 	gameDialogUI.hide()
 	gameUI.show()
 	cursor.enable()
@@ -94,7 +98,6 @@ func _on_building_handler_player_lost(int: Variant) -> void:
 	playerActionMachine.isPlaying = false
 	iaActionMachine.isPlaying = false
 	cursor.disable()
-	
 	if(VarGame.winner == 0 && CONST_CAMPAIGN.isInCampaign && CONST_CAMPAIGN.hasOutroLeft()):
 		gameUI.hide()
 		gameDialogUI.show()

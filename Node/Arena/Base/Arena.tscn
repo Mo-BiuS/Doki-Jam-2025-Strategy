@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://chud2bv8sugni"]
+[gd_scene load_steps=52 format=3 uid="uid://chud2bv8sugni"]
 
 [ext_resource type="Script" uid="uid://dh6x3vcllw00p" path="res://Node/Arena/Base/Arena.gd" id="1_iqjot"]
 [ext_resource type="Texture2D" uid="uid://4liskld5bbcx" path="res://Ressources/Sprite/Map/Lem/sable_eau.png" id="2_4s7bu"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://6nmmxvwabgxm" path="res://Ressources/Sprite/Unit/Icon/Icon-B-CHICK.png" id="9_uucu8"]
 [ext_resource type="Texture2D" uid="uid://cyqaanwiotthu" path="res://Ressources/Sprite/Unit/Icon/Icon-B-EGG.png" id="10_4s7bu"]
 [ext_resource type="Texture2D" uid="uid://n4jx0rnqbeij" path="res://Ressources/Sprite/Unit/Icon/Icon-B-LONG.png" id="11_4qfkn"]
+[ext_resource type="Texture2D" uid="uid://cxaowwi2vcphg" path="res://Ressources/Sprite/Map/Lem/creation_pont.png" id="11_bpoxo"]
 [ext_resource type="Texture2D" uid="uid://jpam6laju7ck" path="res://Ressources/Sprite/Unit/Icon/Icon-A-BEEG.png" id="12_bpoxo"]
 [ext_resource type="Texture2D" uid="uid://kggywtsksotk" path="res://Ressources/Sprite/Unit/Icon/Icon-A-CHICK.png" id="13_ps5vn"]
 
@@ -1137,6 +1138,16 @@ sources/0 = SubResource("TileSetAtlasSource_yjgxj")
 sources/1 = SubResource("TileSetAtlasSource_nuk72")
 sources/3 = SubResource("TileSetAtlasSource_hq67c")
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_04hxk"]
+texture = ExtResource("11_bpoxo")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 1
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_juk54"]
 texture = ExtResource("6_eesa5")
 texture_region_size = Vector2i(128, 128)
@@ -1234,7 +1245,10 @@ tile_size = Vector2i(128, 128)
 terrain_set_0/mode = 2
 terrain_set_0/terrain_0/name = "Road"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "Bridge"
+terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
 sources/2 = SubResource("TileSetAtlasSource_juk54")
+sources/0 = SubResource("TileSetAtlasSource_04hxk")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wqmmu"]
 texture = ExtResource("9_4qfkn")

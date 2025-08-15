@@ -7,12 +7,14 @@ signal toCampaign(arena:PackedScene, campaignNumber:int)
 @export var missionButton1:Button
 @export var missionButton2:Button
 @export var missionButton3:Button
+@export var missionButton4:Button
 
 func _ready() -> void:
 	missionButton0.text = CONST_CAMPAIGN.campaignName[0]
 	missionButton1.text = CONST_CAMPAIGN.campaignName[1]
 	missionButton2.text = CONST_CAMPAIGN.campaignName[2]
 	missionButton3.text = CONST_CAMPAIGN.campaignName[3]
+	missionButton4.text = CONST_CAMPAIGN.campaignName[4]
 
 func _on_return_button_pressed() -> void:
 	toMainMenu.emit()
@@ -25,3 +27,5 @@ func _on_mission_3_pressed() -> void:
 	toCampaign.emit(CONST_CAMPAIGN.arena[2],2)
 func _on_mission_4_pressed() -> void:
 	toCampaign.emit(CONST_CAMPAIGN.arena[3],3)
+func _on_mission_5_pressed() -> void:
+	toCampaign.emit(CONST_CAMPAIGN.arena[4],4)

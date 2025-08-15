@@ -4,6 +4,7 @@ class_name Main extends Node2D
 var mainMenuPacked:PackedScene = preload("res://Node/UI/MainMenu.tscn")
 var campaignMenuPacked:PackedScene = preload("res://Node/UI/CampaignMenu.tscn")
 var skirmishMenuPacked:PackedScene = preload("res://Node/UI/SkirmishMenu.tscn")
+var tutorialMenuPacked:PackedScene = preload("res://Node/UI/TutorialMenu.tscn")
 var gamePacked:PackedScene = preload("res://Node/Game/Game.tscn")
 var endScreenPacked:PackedScene = preload("res://Node/UI/EndScreen.tscn")
 
@@ -14,7 +15,7 @@ func loadMainMenu()->void:
 	for i in get_children():i.queue_free()
 	var mainMenu:MainMenu = mainMenuPacked.instantiate()
 	mainMenu.goCampagn.connect(loadCampaignMenu)
-	mainMenu.goTutorial
+	mainMenu.goTutorial.connect(loadTutorialMenu)
 	mainMenu.goSkirmish.connect(loadSkirmishMenu)
 	add_child(mainMenu)
 func loadCampaignMenu()->void:
@@ -23,13 +24,19 @@ func loadCampaignMenu()->void:
 	campaignMenu.toMainMenu.connect(loadMainMenu)
 	campaignMenu.toCampaign.connect(loadGame)
 	add_child(campaignMenu)
-	
 func loadSkirmishMenu()->void:
 	for i in get_children():i.queue_free()
 	var skirmishMenu:SkirmishMenu = skirmishMenuPacked.instantiate()
 	skirmishMenu.toMainMenu.connect(loadMainMenu)
 	skirmishMenu.toGame.connect(loadGame)
 	add_child(skirmishMenu)
+func loadTutorialMenu()->void:
+	for i in get_children():i.queue_free()
+	var tutorialMenu:TutorialMenu = tutorialMenuPacked.instantiate()
+	tutorialMenu.toMainMenu.connect(loadMainMenu)
+	add_child(tutorialMenu)
+	
+	
 func loadGame(arena:PackedScene, campaignNumber:int)->void:
 	if(campaignNumber != -1):
 		CONST_CAMPAIGN.campaignNumber = campaignNumber
