@@ -1,15 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://dds2h7w4fnm8j"]
+[gd_scene load_steps=11 format=3 uid="uid://dds2h7w4fnm8j"]
 
 [ext_resource type="Script" uid="uid://cwit8500xgp6x" path="res://Node/UI/TutorialMenu.gd" id="1_nhyjx"]
 [ext_resource type="Texture2D" uid="uid://cupwphvev4m1" path="res://Ressources/Sprite/Building/Tilemap-Building-Capital.png" id="2_nix6h"]
 [ext_resource type="Texture2D" uid="uid://b16ppnpcnt2om" path="res://Ressources/Sprite/Building/Tilemap-Building-Base.png" id="3_ej72f"]
 [ext_resource type="Texture2D" uid="uid://ct7vtk5faw8td" path="res://Ressources/Sprite/Building/Tilemap-Building-City.png" id="4_ej72f"]
+[ext_resource type="Texture2D" uid="uid://bcnaw0pxg2fqx" path="res://Ressources/Tutoriel/Screenshot 2025-08-15 151838.png" id="5_8y8in"]
+[ext_resource type="Texture2D" uid="uid://b5h8qpyyqnql4" path="res://Ressources/Tutoriel/Screenshot 2025-08-15 153427.png" id="6_elh0o"]
+[ext_resource type="Texture2D" uid="uid://s8q85p7gnegw" path="res://Ressources/Tutoriel/Screenshot 2025-08-15 153437.png" id="7_spbuo"]
+[ext_resource type="Texture2D" uid="uid://rlldmogcyest" path="res://Ressources/Tutoriel/Screenshot 2025-08-15 155432.png" id="8_v66b4"]
+[ext_resource type="Texture2D" uid="uid://ui86nlkoiw8e" path="res://Ressources/Tutoriel/Screenshot 2025-08-15 160231.png" id="9_b1y3s"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnso0"]
 border_width_bottom = 8
 
-[node name="TutorialMenu" type="CanvasLayer"]
+[node name="TutorialMenu" type="CanvasLayer" node_paths=PackedStringArray("tutoContainer")]
 script = ExtResource("1_nhyjx")
+tutoContainer = NodePath("PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 13
@@ -59,33 +65,34 @@ theme_override_styles/separator = SubResource("StyleBoxFlat_cnso0")
 custom_minimum_size = Vector2(768, 572)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel"]
+[node name="TutoContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Tuto0" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer"]
+[node name="Tuto0" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Buildings"
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer/PanelContainer"]
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer/PanelContainer"]
 texture_filter = 1
 position = Vector2(64, 64)
 scale = Vector2(0.75, 0.75)
@@ -93,21 +100,21 @@ texture = ExtResource("2_nix6h")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 text = "This is a Capital. If you capture the ennemy capital you win the game. But if you lose the one you own you lose the game. It also generate 400 gold per turn."
 autowrap_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
-[node name="Sprite2D2" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer2/PanelContainer"]
+[node name="Sprite2D2" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer2/PanelContainer"]
 texture_filter = 1
 position = Vector2(64, 64)
 scale = Vector2(0.75, 0.75)
@@ -115,21 +122,21 @@ texture = ExtResource("3_ej72f")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 text = "This is a base. Allied base can recruit new unit when there is nothing on top of it."
 autowrap_mode = 2
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer3"]
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
 
-[node name="Sprite2D3" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer3/PanelContainer"]
+[node name="Sprite2D3" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer3/PanelContainer"]
 texture_filter = 1
 position = Vector2(64, 64)
 scale = Vector2(0.75, 0.75)
@@ -137,18 +144,249 @@ texture = ExtResource("4_ej72f")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 128)
 
-[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer/HBoxContainer3"]
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 text = "This is a city. Allied city generate 100 gold per turn."
 autowrap_mode = 2
 
-[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/MarginContainer/Tuto0/VBoxContainer"]
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 22
 text = "When an unit start it's turn on an allied building, the unit will regain 5HP.
 Building offers a some defence to unit on top of them."
+autowrap_mode = 2
+
+[node name="Tuto1" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto1/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Controls : the cursor"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto1/VBoxContainer"]
+custom_minimum_size = Vector2(288, 288)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto1/VBoxContainer/PanelContainer"]
+position = Vector2(144, 144)
+scale = Vector2(2, 2)
+texture = ExtResource("5_8y8in")
+region_enabled = true
+region_rect = Rect2(32, 32, 128, 128)
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto1/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "This is the cursor. It can be moved with the WASD keys or the directional arrow.
+
+You can interact with allied Base and Units by going on their position and pressing space.
+
+Moving on tile, building or unit will display informational notes on the bottom left of your screen."
+autowrap_mode = 2
+
+[node name="Tuto2" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Control : Moving unit"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "First put your cursor on the unit you want to deplace. Then press space. This will show an area that indicate where you can deplace the unit and how the unit will deplace itself. When in this mode you can go back by pressing escape."
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(288, 288)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer/HBoxContainer/PanelContainer"]
+position = Vector2(144, 144)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_elh0o")
+region_enabled = true
+region_rect = Rect2(12, 0, 512, 512)
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(288, 288)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer/HBoxContainer/PanelContainer2"]
+position = Vector2(144, 144)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_spbuo")
+region_enabled = true
+region_rect = Rect2(12, 0, 512, 512)
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Select the desired tile and press space to confirm the deplacement."
+autowrap_mode = 2
+
+[node name="Tuto3" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Control : Capturing building"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "At the end of the deplacement, if you are on top of an enemy or neutral building, you will be offered the choice to capture it. You can press space to capture it or escape finish the unit turn.
+Capture of the building will stop if you don't have any allied units on top of the building at the start of your turn.
+Your capture power depend of your HP"
+autowrap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3/VBoxContainer"]
+custom_minimum_size = Vector2(224, 224)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3/VBoxContainer/PanelContainer"]
+position = Vector2(112, 112)
+texture = ExtResource("8_v66b4")
+region_enabled = true
+region_rect = Rect2(5, 0, 192, 192)
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "If you started your turn on top of  building you want to capture, you can proceed by pressing space on your position at the moving stage."
+autowrap_mode = 2
+
+[node name="Tuto4" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Control : Attacking"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "At the end of your deplacement, if you are adjacent to an enemy unit, you will be offered the choice to attack it. You can press space to attack it or escape to finish the unit turn."
+autowrap_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer"]
+custom_minimum_size = Vector2(288, 224)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Sprite2D" type="Sprite2D" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer/PanelContainer"]
+position = Vector2(144, 112)
+texture = ExtResource("9_b1y3s")
+region_enabled = true
+region_rect = Rect2(5, 0, 256, 192)
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Be careful because the enemy will attack you immediately after your attack. This can be deadly on powerfull opponents.
+Your attack power depends on your life and the defence of your opponent. Those statistics are shown in the bottom left menu."
+autowrap_mode = 2
+
+[node name="Tuto5" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto5"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto5/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Control : Buying new unit"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto5/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "If a base is empty of unit, you can place the cursor on top and then press space to open the buy menu.
+You can move around the options with the WASD key or the directionnal keys.
+You can validate by pressing space.
+You can quit the menu by pressing escape.
+
+You will need gold to buy the units."
+autowrap_mode = 2
+
+[node name="Tuto6" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
+visible = false
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto6"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto6/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Control : Choosing a target"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto6/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "At the end of your deplacement there can be multiple target. Building to capture and multiple ennemy to attack.
+You can choose between thoses target with the WASD keys or the directionnal keys and then validate your target with space. "
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto6/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Control : End of turn"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto6/VBoxContainer"]
+custom_minimum_size = Vector2(736, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "When you have finish the actions you wanted to take on this turn, press escape then finish turn."
 autowrap_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
