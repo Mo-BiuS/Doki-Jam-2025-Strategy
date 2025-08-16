@@ -1,0 +1,212 @@
+[gd_scene load_steps=4 format=3 uid="uid://ldrucw270lk4"]
+
+[ext_resource type="StyleBox" uid="uid://coybo3bjkx2wb" path="res://Node/UI/InfoBoxStyle.tres" id="1_ix7ey"]
+[ext_resource type="Script" uid="uid://bcvy1dwrq6k1f" path="res://Node/UI/BattleUI.gd" id="1_mcr4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ix7ey"]
+border_width_right = 7
+
+[node name="BattleUI" type="PanelContainer" node_paths=PackedStringArray("captureUI", "attackUI", "buildingLabel", "buildingHpBefore", "buildingHpAfter", "ennemyBefore", "ennemyAfter", "alliedBefore", "alliedAfter")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_styles/panel = ExtResource("1_ix7ey")
+script = ExtResource("1_mcr4b")
+captureUI = NodePath("CaptureUI")
+attackUI = NodePath("BattleUI")
+buildingLabel = NodePath("CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer3/BuildingLabel")
+buildingHpBefore = NodePath("CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer/BuildingHPBefore")
+buildingHpAfter = NodePath("CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer2/BuildingHPafter")
+ennemyBefore = NodePath("BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer/EnnemyBefore")
+ennemyAfter = NodePath("BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer2/EnnemyAfter")
+alliedBefore = NodePath("BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer/AlliedBefore")
+alliedAfter = NodePath("BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer2/AlliedAfter")
+
+[node name="CaptureUI" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CaptureUI"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CaptureUI/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_ix7ey")
+
+[node name="Label2" type="Label" parent="CaptureUI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Action : Capture"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CaptureUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CaptureUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="BuildingLabel" type="Label" parent="CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Building"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="CaptureUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ix7ey")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CaptureUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Before"
+horizontal_alignment = 1
+
+[node name="BuildingHPBefore" type="Label" parent="CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "null"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="CaptureUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ix7ey")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CaptureUI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "After"
+horizontal_alignment = 1
+
+[node name="BuildingHPafter" type="Label" parent="CaptureUI/VBoxContainer/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "null"
+horizontal_alignment = 1
+
+[node name="BattleUI" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="BattleUI/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_ix7ey")
+
+[node name="Label" type="Label" parent="BattleUI/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Action : Attack"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="BattleUI/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="BattleUI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Ennemy"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer3"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Allied"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="BattleUI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ix7ey")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BattleUI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Before"
+horizontal_alignment = 1
+
+[node name="EnnemyBefore" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+horizontal_alignment = 1
+
+[node name="AlliedBefore" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="BattleUI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxFlat_ix7ey")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="BattleUI/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "After"
+horizontal_alignment = 1
+
+[node name="EnnemyAfter" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+horizontal_alignment = 1
+
+[node name="AlliedAfter" type="Label" parent="BattleUI/VBoxContainer/HBoxContainer3/VBoxContainer2"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "NULL"
+horizontal_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2sc4mbovli68"]
+[gd_scene load_steps=10 format=3 uid="uid://d2sc4mbovli68"]
 
 [ext_resource type="Script" uid="uid://ccmgvcir3pve6" path="res://Node/UI/GameUI.gd" id="1_aapge"]
 [ext_resource type="PackedScene" uid="uid://def6suo0utm66" path="res://Node/UI/BuildingInfoBox.tscn" id="2_je0ey"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dq4m0cbjapxge" path="res://Node/UI/TerrainInfoBox.tscn" id="6_d673b"]
 [ext_resource type="PackedScene" uid="uid://ccdu4too320ja" path="res://Node/UI/RessourcePanel.tscn" id="7_je0ey"]
 [ext_resource type="PackedScene" uid="uid://bpmb4d2uowa2q" path="res://Node/UI/BuyMenu.tscn" id="8_un1m2"]
+[ext_resource type="PackedScene" uid="uid://ldrucw270lk4" path="res://Node/UI/BattleUI.tscn" id="9_0hixd"]
 [ext_resource type="PackedScene" uid="uid://dxfa67okjqeh0" path="res://Node/UI/EscapeMenu.tscn" id="9_22fib"]
 [ext_resource type="PackedScene" uid="uid://c0uu53qy83vl1" path="res://Node/UI/EndGameScreen.tscn" id="10_0hixd"]
 
@@ -35,6 +36,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TerrainInfoBox" parent="MarginContainer/VBoxContainer" instance=ExtResource("6_d673b")]
+layout_mode = 2
+
+[node name="BattleUI" parent="MarginContainer/VBoxContainer" instance=ExtResource("9_0hixd")]
 layout_mode = 2
 
 [node name="BuyMenu" parent="." instance=ExtResource("8_un1m2")]

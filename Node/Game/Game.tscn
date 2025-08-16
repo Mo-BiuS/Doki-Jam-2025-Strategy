@@ -520,9 +520,11 @@ stream = ExtResource("14_81hta")
 
 [connection signal="playerLost" from="BuildingHandler" to="." method="_on_building_handler_player_lost"]
 [connection signal="attackAt" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_attack_at"]
+[connection signal="attackAt" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_select_cursor_attack_at"]
 [connection signal="followingEntityEndedMovement" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_following_entity_ended_movement"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="PlayerActionMachine" method="_on_select_cursor_moved_to_new_tile"]
 [connection signal="movedToNewTile" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_cursor_moved_to_new_tile"]
+[connection signal="selectActionAt" from="InteractiveUI/SelectCursor" to="GameUI" method="_on_select_cursor_select_action_at"]
 [connection signal="buyUnit" from="GameUI" to="EntityHandler" method="_on_game_ui_buy_unit"]
 [connection signal="endTurn" from="GameUI" to="." method="_on_game_ui_end_turn"]
 [connection signal="surrender" from="GameUI" to="." method="_on_game_ui_surrender"]

@@ -25,6 +25,7 @@ var ennemyListPos:int = -1
 
 signal movedToNewTile(tPos:Vector2i)
 signal attackAt(tpos:Vector2i)
+signal selectActionAt(tpos:Vector2i)
 
 func setTile(pos:Vector2i):
 	if(pos != Vector2i(-1,-1) && arenaHandler.arena.isIn(pos)):
@@ -54,6 +55,7 @@ func setEnnemyList(eList:Array):
 		texture = attackTexture
 		captureContainer.hide()
 		attackContainer.show()
+	selectActionAt.emit(tilePos, entity.tilePos)
 	position = entity.position
 	tilePos = entity.tilePos
 	enable()
@@ -107,6 +109,7 @@ func _process(delta: float) -> void:
 					texture = attackTexture
 					captureContainer.hide()
 					attackContainer.show()
+				selectActionAt.emit(Vector2i(-1,-1), tilePos)
 	
 	elif entityFollow != null:
 		position = entityFollow.position
