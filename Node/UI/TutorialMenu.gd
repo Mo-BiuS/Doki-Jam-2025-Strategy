@@ -3,6 +3,7 @@ class_name TutorialMenu extends CanvasLayer
 signal toMainMenu
 
 @export var tutoContainer:Control
+@export var nLabel:Label
 var pointer = 0
 
 func _ready() -> void:
@@ -20,6 +21,7 @@ func _on_to_main_menu_pressed() -> void:
 	toMainMenu.emit()
 
 func refreshTuto():
+	nLabel.text = str(pointer+1)+"/"+str(tutoContainer.get_children().size())
 	for j in tutoContainer.get_children():
 		if(j.name == "Tuto"+str(pointer)):j.show()
 		else:j.hide()

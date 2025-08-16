@@ -1,26 +1,62 @@
-[gd_scene load_steps=9 format=3 uid="uid://duix8heiu1hiw"]
+[gd_scene load_steps=11 format=3 uid="uid://duix8heiu1hiw"]
 
 [ext_resource type="Script" uid="uid://ctc8ygnlm62ne" path="res://Node/UI/MainMenu.gd" id="1_i26rj"]
-[ext_resource type="SpriteFrames" uid="uid://dbqioprmab1qb" path="res://Ressources/Sprite/Unit/DragoonEgg.tres" id="2_r4d64"]
-[ext_resource type="SpriteFrames" uid="uid://cgf145o1ycv7p" path="res://Ressources/Sprite/Unit/DragoonChick.tres" id="3_1rcs1"]
-[ext_resource type="SpriteFrames" uid="uid://c8gg7bpg4e7y0" path="res://Ressources/Sprite/Unit/DragoonLong.tres" id="4_7tfds"]
-[ext_resource type="SpriteFrames" uid="uid://d7hklam06qko" path="res://Ressources/Sprite/Unit/DragoonBeeg.tres" id="5_dws3o"]
+[ext_resource type="Shader" uid="uid://deyimwq4gij6t" path="res://Ressources/Shader/ScrollShaded.gdshader" id="2_r4d64"]
+[ext_resource type="Texture2D" uid="uid://dovj3a4f5svn5" path="res://Ressources/Sprite/Map/Lem/herbe_1.png" id="3_oxe6f"]
 [ext_resource type="Texture2D" uid="uid://nsa2a2g8uaf4" path="res://Ressources/Sprite/Char/Bouffon.png" id="6_7tfds"]
 [ext_resource type="Texture2D" uid="uid://cysn8mbd5u0wu" path="res://Ressources/Sprite/Char/Doki.png" id="7_dws3o"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkogl"]
+shader = ExtResource("2_r4d64")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oxe6f"]
+bg_color = Color(1, 0.834692, 0.484317, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(1, 0.894118, 0.678431, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1rcs1"]
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4tj11"]
 border_width_bottom = 8
 
-[node name="MainMenu" type="CanvasLayer" node_paths=PackedStringArray("eggUp", "chickUp", "longUp", "beegUp", "eggDown", "chickDown", "longDown", "beegDown")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4d64"]
+bg_color = Color(0.294118, 0.196078, 0.294118, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.627451, 0.439216, 0.666667, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_i26rj")
-eggUp = NodePath("VBoxContainer/SubViewportContainer/SubViewport/egg")
-chickUp = NodePath("VBoxContainer/SubViewportContainer/SubViewport/chick")
-longUp = NodePath("VBoxContainer/SubViewportContainer/SubViewport/long")
-beegUp = NodePath("VBoxContainer/SubViewportContainer/SubViewport/beeg")
-eggDown = NodePath("VBoxContainer/SubViewportContainer2/SubViewport/egg")
-chickDown = NodePath("VBoxContainer/SubViewportContainer2/SubViewport/chick")
-longDown = NodePath("VBoxContainer/SubViewportContainer2/SubViewport/long")
-beegDown = NodePath("VBoxContainer/SubViewportContainer2/SubViewport/beeg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hkogl")
+position = Vector2(800, 450)
+scale = Vector2(2, 2)
+texture = ExtResource("3_oxe6f")
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 450)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -28,181 +64,133 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -272.0
-offset_top = -394.0
-offset_right = 272.0
-offset_bottom = 394.0
+offset_left = -624.0
+offset_top = -296.0
+offset_right = 624.0
+offset_bottom = 296.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer"]
-handle_input_locally = false
-size = Vector2i(480, 112)
-render_target_update_mode = 4
-
-[node name="egg" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
-texture_filter = 1
-position = Vector2(32, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_r4d64")
-animation = &"0-MovingEast"
-frame_progress = 0.537001
-
-[node name="chick" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
-texture_filter = 1
-position = Vector2(160, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("3_1rcs1")
-animation = &"0-MovingEast"
-frame_progress = 0.979297
-
-[node name="long" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
-texture_filter = 1
-position = Vector2(288, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("4_7tfds")
-animation = &"0-MovingEast"
-frame_progress = 0.430663
-
-[node name="beeg" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer/SubViewport"]
-texture_filter = 1
-position = Vector2(416, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("5_dws3o")
-animation = &"0-MovingEast"
-frame_progress = 0.681271
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 24
-
-[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_oxe6f")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer/MarginContainer2"]
+texture_filter = 1
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+texture = ExtResource("7_dws3o")
+stretch_mode = 5
+
+[node name="PanelContainer3" type="PanelContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_1rcs1")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Dokibird"
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "VS"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "The divine trickster"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxFlat_4tj11")
 
-[node name="CampagnMode" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="CampagnMode" type="Button" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Campaign"
 
-[node name="SkirmishMod" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="SkirmishMod" type="Button" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Skirmish"
 
-[node name="TutorialMode" type="Button" parent="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="TutorialMode" type="Button" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Tutorial"
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="VBoxContainer"]
+[node name="PanelContainer2" type="PanelContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r4d64")
 
-[node name="SubViewport" type="SubViewport" parent="VBoxContainer/SubViewportContainer2"]
-handle_input_locally = false
-size = Vector2i(480, 112)
-render_target_update_mode = 4
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="egg" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer2/SubViewport"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer2/MarginContainer2"]
 texture_filter = 1
-position = Vector2(432, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("2_r4d64")
-animation = &"1-MovingWest"
-frame_progress = 0.550261
-
-[node name="chick" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer2/SubViewport"]
-texture_filter = 1
-position = Vector2(304, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("3_1rcs1")
-animation = &"1-MovingWest"
-frame_progress = 0.676148
-
-[node name="long" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer2/SubViewport"]
-texture_filter = 1
-position = Vector2(176, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("4_7tfds")
-animation = &"1-MovingWest"
-frame_progress = 0.122852
-
-[node name="beeg" type="AnimatedSprite2D" parent="VBoxContainer/SubViewportContainer2/SubViewport"]
-texture_filter = 1
-position = Vector2(48, 40)
-scale = Vector2(3, 3)
-sprite_frames = ExtResource("5_dws3o")
-animation = &"1-MovingWest"
-frame_progress = 0.795231
-
-[node name="Bouffon" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(416, 450)
-scale = Vector2(8, 8)
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
 texture = ExtResource("6_7tfds")
+stretch_mode = 5
 
-[node name="Doki" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1184, 450)
-scale = Vector2(8, 8)
-texture = ExtResource("7_dws3o")
-
-[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/CampagnMode" to="." method="_on_campagn_mode_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SkirmishMod" to="." method="_on_skirmish_mod_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/TutorialMode" to="." method="_on_tutorial_mode_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/CampagnMode" to="." method="_on_campagn_mode_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/SkirmishMod" to="." method="_on_skirmish_mod_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer3/HBoxContainer/PanelContainer3/MarginContainer/VBoxContainer/TutorialMode" to="." method="_on_tutorial_mode_pressed"]

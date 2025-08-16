@@ -1,0 +1,103 @@
+[gd_resource type="TileSet" load_steps=17 format=3 uid="uid://mivh8cbdvprw"]
+
+[ext_resource type="Texture2D" uid="uid://b0icwws0spkgx" path="res://Ressources/Sprite/Unit/Icon/Icon-A-EGG.png" id="1_n0vv4"]
+[ext_resource type="Texture2D" uid="uid://d0xy3nkdum5np" path="res://Ressources/Sprite/Unit/Icon/Icon-A-LONG.png" id="2_gtmyj"]
+[ext_resource type="Texture2D" uid="uid://bfr6inai1m0ya" path="res://Ressources/Sprite/Unit/Icon/Icon-B-BEEG.png" id="3_vyvt6"]
+[ext_resource type="Texture2D" uid="uid://6nmmxvwabgxm" path="res://Ressources/Sprite/Unit/Icon/Icon-B-CHICK.png" id="4_vy5dc"]
+[ext_resource type="Texture2D" uid="uid://cyqaanwiotthu" path="res://Ressources/Sprite/Unit/Icon/Icon-B-EGG.png" id="5_yr1a3"]
+[ext_resource type="Texture2D" uid="uid://n4jx0rnqbeij" path="res://Ressources/Sprite/Unit/Icon/Icon-B-LONG.png" id="6_lpdxd"]
+[ext_resource type="Texture2D" uid="uid://jpam6laju7ck" path="res://Ressources/Sprite/Unit/Icon/Icon-A-BEEG.png" id="7_gworv"]
+[ext_resource type="Texture2D" uid="uid://kggywtsksotk" path="res://Ressources/Sprite/Unit/Icon/Icon-A-CHICK.png" id="8_d2egv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wcmcb"]
+texture = ExtResource("1_n0vv4")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8ljag"]
+texture = ExtResource("2_gtmyj")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u50vo"]
+texture = ExtResource("3_vyvt6")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 1
+0:0/0/terrain = 3
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bdnur"]
+texture = ExtResource("4_vy5dc")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 1
+0:0/0/terrain = 1
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pya4o"]
+texture = ExtResource("5_yr1a3")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 1
+0:0/0/terrain = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s84i6"]
+texture = ExtResource("6_lpdxd")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 1
+0:0/0/terrain = 2
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cants"]
+texture = ExtResource("7_gworv")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 0
+0:0/0/terrain = 3
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nlfwr"]
+texture = ExtResource("8_d2egv")
+texture_region_size = Vector2i(48, 48)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, 12)
+0:0/0/terrain_set = 0
+0:0/0/terrain = 1
+
+[resource]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 2
+terrain_set_0/terrain_0/name = "EGG"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_0/terrain_1/name = "CHICK"
+terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_0/terrain_2/name = "LONG"
+terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
+terrain_set_0/terrain_3/name = "BEEG"
+terrain_set_0/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
+terrain_set_1/mode = 2
+terrain_set_1/terrain_0/name = "EGG"
+terrain_set_1/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+terrain_set_1/terrain_1/name = "CHICK"
+terrain_set_1/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_1/terrain_2/name = "LONG"
+terrain_set_1/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
+terrain_set_1/terrain_3/name = "BEEG"
+terrain_set_1/terrain_3/color = Color(0.375, 0.5, 0.25, 1)
+sources/8 = SubResource("TileSetAtlasSource_cants")
+sources/9 = SubResource("TileSetAtlasSource_nlfwr")
+sources/10 = SubResource("TileSetAtlasSource_wcmcb")
+sources/11 = SubResource("TileSetAtlasSource_8ljag")
+sources/12 = SubResource("TileSetAtlasSource_u50vo")
+sources/13 = SubResource("TileSetAtlasSource_bdnur")
+sources/14 = SubResource("TileSetAtlasSource_pya4o")
+sources/15 = SubResource("TileSetAtlasSource_s84i6")

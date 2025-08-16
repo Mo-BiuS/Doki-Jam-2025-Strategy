@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dd1m8fsdt8o08" path="res://Node/UI/RessourcePanel.gd" id="2_13rbq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7jlf"]
-bg_color = Color(1, 0.894118, 0.678431, 1)
+bg_color = Color(0.995602, 0.666768, 0.529268, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4

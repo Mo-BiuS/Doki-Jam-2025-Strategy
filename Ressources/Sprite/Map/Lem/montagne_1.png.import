@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxaowwi2vcphg"
-path="res://.godot/imported/creation_pont.png-0210ca345cbdc1a697a6898e38c77d7a.ctex"
+uid="uid://dy6qkaqqvcdb2"
+path="res://.godot/imported/montagne_1.png-e58348663732991d3c4514f6c4ed023f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Ressources/Sprite/Map/Lem/creation_pont.png"
-dest_files=["res://.godot/imported/creation_pont.png-0210ca345cbdc1a697a6898e38c77d7a.ctex"]
+source_file="res://Ressources/Sprite/Map/Lem/montagne_1.png"
+dest_files=["res://.godot/imported/montagne_1.png-e58348663732991d3c4514f6c4ed023f.ctex"]
 
 [params]
 

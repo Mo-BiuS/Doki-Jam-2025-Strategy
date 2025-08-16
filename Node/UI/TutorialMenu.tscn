@@ -13,9 +13,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnso0"]
 border_width_bottom = 8
 
-[node name="TutorialMenu" type="CanvasLayer" node_paths=PackedStringArray("tutoContainer")]
+[node name="TutorialMenu" type="CanvasLayer" node_paths=PackedStringArray("tutoContainer", "nLabel")]
 script = ExtResource("1_nhyjx")
 tutoContainer = NodePath("PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer")
+nLabel = NodePath("PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/nlabel")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 13
@@ -104,7 +105,7 @@ region_rect = Rect2(0, 0, 128, 128)
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "This is a Capital. If you capture the ennemy capital you win the game. But if you lose the one you own you lose the game. It also generate 400 gold per turn."
+text = "This is a Capital. If you capture the ennemy capital you win the game. But if you lose the one you own you lose the game. It also generates 400 gold per turn."
 autowrap_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
@@ -126,7 +127,7 @@ region_rect = Rect2(0, 0, 128, 128)
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "This is a base. Allied base can recruit new unit when there is nothing on top of it."
+text = "This is a base. Allied Bases can recruit new units when there is no unit on top of it."
 autowrap_mode = 2
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
@@ -148,14 +149,14 @@ region_rect = Rect2(0, 0, 128, 128)
 custom_minimum_size = Vector2(512, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "This is a city. Allied city generate 100 gold per turn."
+text = "This is a city. Allied Cities generate 100 gold per turn."
 autowrap_mode = 2
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto0/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "When an unit start it's turn on an allied building, the unit will regain 5HP.
-Building offers a some defence to unit on top of them."
+text = "When a unit starts its turnn on an allied building, the unit will regain 5HP.
+Buildings offer a degree of defense to any unit on top."
 autowrap_mode = 2
 
 [node name="Tuto1" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
@@ -187,11 +188,11 @@ region_rect = Rect2(32, 32, 128, 128)
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "This is the cursor. It can be moved with the WASD keys or the directional arrow.
+text = "This is the cursor. It can be moved with the WASD keys or the directions arrows.
 
-You can interact with allied Base and Units by going on their position and pressing space.
+You can interact with allied Bases and units by moving the cursor on top of their position and pressing space.
 
-Moving on tile, building or unit will display informational notes on the bottom left of your screen."
+Moving on tile, building or unit will display the related information on the bottom left of your screen."
 autowrap_mode = 2
 
 [node name="Tuto2" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
@@ -211,7 +212,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "First put your cursor on the unit you want to deplace. Then press space. This will show an area that indicate where you can deplace the unit and how the unit will deplace itself. When in this mode you can go back by pressing escape."
+text = "First put your cursor on the unit you want to move, then press \"Spacebar\". This will display the area where you can move the selected unit as well as the unit's route. When in this mode you can go back by ppressing \"Escape\"."
 autowrap_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto2/VBoxContainer"]
@@ -247,7 +248,7 @@ region_rect = Rect2(12, 0, 512, 512)
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "Select the desired tile and press space to confirm the deplacement."
+text = "Select the desired tile and press \"Spacebar\" to confirm the movement."
 autowrap_mode = 2
 
 [node name="Tuto3" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
@@ -267,9 +268,9 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "At the end of the deplacement, if you are on top of an enemy or neutral building, you will be offered the choice to capture it. You can press space to capture it or escape finish the unit turn.
-Capture of the building will stop if you don't have any allied units on top of the building at the start of your turn.
-Your capture power depend of your HP"
+text = "After moving a unit, if the unit is on top of an enemy or neutral building, you will be offered the choice to capture it. You can press \"Spacebar\" to capture it or \"Escape\" to end the unit's turn.
+The capturing of a Building will stop if you don't have any allied units on top of it at the start of your turn.
+Your capture power depends on your HP."
 autowrap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto3/VBoxContainer"]
@@ -287,7 +288,7 @@ region_rect = Rect2(5, 0, 192, 192)
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 22
-text = "If you started your turn on top of  building you want to capture, you can proceed by pressing space on your position at the moving stage."
+text = "If you started your turn on top of a Building you'd like to capture, you can proceed by pressing \"Spacebar\" on the Building's position at the moving stage."
 autowrap_mode = 2
 
 [node name="Tuto4" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
@@ -307,7 +308,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "At the end of your deplacement, if you are adjacent to an enemy unit, you will be offered the choice to attack it. You can press space to attack it or escape to finish the unit turn."
+text = "At the end of the unit's movement, if you are adjacent to an enemy unit, you will be offered the choice to attack it. You can press \"Spacebar\" to attack it or \"Escape\" to finis the unit's turn."
 autowrap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer"]
@@ -325,8 +326,8 @@ region_rect = Rect2(5, 0, 256, 192)
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "Be careful because the enemy will attack you immediately after your attack. This can be deadly on powerfull opponents.
-Your attack power depends on your life and the defence of your opponent. Those statistics are shown in the bottom left menu."
+text = "Be careful because the enemy will attack you immediately after your attack. This can be deadly when facing powerful opponents. Your attack power depends on your HP and on the ennemy defense.
+Your attack power depends on your HP and the defence of your opponent. Those statistics are shown in the bottom left menu."
 autowrap_mode = 2
 
 [node name="Tuto5" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
@@ -346,10 +347,10 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "If a base is empty of unit, you can place the cursor on top and then press space to open the buy menu.
-You can move around the options with the WASD key or the directionnal keys.
-You can validate by pressing space.
-You can quit the menu by pressing escape.
+text = "If a Base has no unit on it, you can move the cursor on top of it and press \"Spacebar\" to open the shop.
+You can move around the options with the WASD keys or the directional arrows.
+You can validate a purchase by pressing \"Spacebar\".
+You can qui the shop by pressing \"Escape\".
 
 You will need gold to buy the units."
 autowrap_mode = 2
@@ -372,8 +373,8 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "At the end of your deplacement there can be multiple target. Building to capture and multiple ennemy to attack.
-You can choose between thoses target with the WASD keys or the directionnal keys and then validate your target with space. "
+text = "At the end of your movement there can be multiple targets, Buildings to capture or enemies to attack.
+You can choose between thoses target with the WASD keys or the directional arrows and validate your choice with \"Spacebar\"."
 autowrap_mode = 2
 
 [node name="Label3" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto6/VBoxContainer"]
@@ -386,7 +387,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "When you have finish the actions you wanted to take on this turn, press escape then finish turn."
+text = "When you have done all the desired actions, you can press \"Escape\" to end your turn."
 autowrap_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/MarginContainer/VBoxContainer"]
@@ -405,6 +406,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 24
 text = "prev"
 
+[node name="nlabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "0/0"
+horizontal_alignment = 1
+
 [node name="PrevTutoriel" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(128, 48)
 layout_mode = 2
@@ -417,7 +425,7 @@ theme_override_constants/separation = 8
 theme_override_styles/separator = SubResource("StyleBoxFlat_cnso0")
 
 [node name="ToMainMenu" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(271, 48)
+custom_minimum_size = Vector2(415, 48)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
