@@ -308,7 +308,6 @@ text = "If you started your turn on top of a Building you'd like to capture, you
 autowrap_mode = 2
 
 [node name="Tuto4" type="CenterContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer"]
-visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4"]
@@ -324,7 +323,7 @@ horizontal_alignment = 1
 custom_minimum_size = Vector2(736, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
-text = "At the end of the unit's movement, if you are adjacent to an enemy unit, you will be offered the choice to attack it. You can press \"Spacebar\" to attack it or \"Escape\" to finis the unit's turn."
+text = "At the end of the unit's movement, if you are adjacent to an enemy unit, you will be offered the choice to attack it. You can press \"Spacebar\" to attack it or \"Escape\" to finish the unit's turn."
 autowrap_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer/Panel/TutoContainer/Tuto4/VBoxContainer"]
