@@ -121,7 +121,7 @@ func heal():
 	if(life < 10):life = min(life+4,10)
 	if(life < 10):
 		lifeCounterContainer.show()
-		lifeCounterLabel.text = str(life)
+		lifeCounterLabel.text = str(life)+"HP"
 	else:lifeCounterContainer.hide()
 
 func goCapture(b:Building)->void:
