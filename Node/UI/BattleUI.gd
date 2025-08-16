@@ -31,7 +31,7 @@ func refresh(allyPos:Vector2i,ennemyPos:Vector2i):
 				
 				buildingHpBefore.text = str(ennemyBuilding.capture) + "/10"
 				
-				var after = ennemyBuilding.capture - alliedEntity.getCapture()
+				var after = ennemyBuilding.capture - min(1,alliedEntity.getCapture())
 				if(after <= 0):buildingHpAfter.text = "Captured"
 				else:buildingHpAfter.text = str(float(int(after*10))/10)+"/10"
 		else:

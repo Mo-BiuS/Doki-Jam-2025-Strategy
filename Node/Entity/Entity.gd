@@ -102,7 +102,7 @@ func capture(building:Building):
 	if(building.teamCapturng != team):
 		building.teamCapturng = team
 		building.capture = 10
-	building.capture-=getCapture()
+	building.capture-=min(1,getCapture())
 	if(building.capture < 10):
 		building.captureCounterContainer.show()
 		building.captureCounterLabel.text = str(int(building.capture)) + "HP"
