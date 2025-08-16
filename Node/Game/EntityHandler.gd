@@ -170,3 +170,15 @@ func _on_game_ui_buy_unit(n: int) -> void:
 func refreshCapture():
 	VarGame.goldNext[VarGame.teamTurn] = buildingHandler.getGoldFromPlayer(VarGame.teamTurn)
 	gameUI.refreshRessourcePanel()
+
+func getAveragePositionOfTeam(team:int)->Vector2i:
+	var rep:Vector2i = Vector2i(0,0)
+	
+	var list
+	match VarGame.teamTurn:
+		0:list = team0.get_children()
+		1:list = team1.get_children()
+	if(list.size() == 0):return Vector2i(-1,-1)
+	for i in list:
+		if i is Entity:rep+=i.tilePos
+	return rep/list.size()

@@ -73,11 +73,11 @@ func endTurn():
 	match VarGame.player[VarGame.teamTurn]:
 		"player":
 			cursor.controledByIa = false
-			#cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
+			cursor.setTile(entityHandler.getAveragePositionOfTeam(VarGame.teamTurn))
 			playerActionMachine.reset()
 		"IA":
 			cursor.controledByIa = true
-			#cursor.setTile(buildingHandler.getCapitalPos(VarGame.teamTurn))
+			cursor.setTile(entityHandler.getAveragePositionOfTeam(VarGame.teamTurn))
 			iaActionMachine.initTurn()
 			iaActionMachine.start()
 	
