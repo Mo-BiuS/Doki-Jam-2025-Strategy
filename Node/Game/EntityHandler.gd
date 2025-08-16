@@ -182,3 +182,17 @@ func getAveragePositionOfTeam(team:int)->Vector2i:
 	for i in list:
 		if i is Entity:rep+=i.tilePos
 	return rep/list.size()
+
+func getClosestAlliedEntityFromPointWichCanPlay(player:int, pos:Vector2i)->Entity:
+	var rep:Entity = null
+	
+	var list
+	match player:
+		0:list = team0.get_children()
+		1:list = team1.get_children()
+	for i in list:
+		if i is Entity:
+			if i.isActivated:
+				if rep == null:rep = i
+				elif(i.tilePos.distance_to(pos) < rep.tilePos.distance_to(pos)):rep = i
+	return rep

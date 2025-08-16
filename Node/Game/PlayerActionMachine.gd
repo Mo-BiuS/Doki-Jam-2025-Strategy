@@ -21,29 +21,36 @@ func _process(_delta: float) -> void:
 
 func processInput():
 	if(!escapeMenuOpened):
-		if(cursor.ennemyList.is_empty() && selectedBase == null && !cursor.isMoving() && Input.is_action_just_pressed("action")):
-			var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
-			var base:Base = buildingHandler.getBaseFromTeamAt(VarGame.teamTurn,cursor.tilePos)
-			if(selectedEnity == null && entity != null && selectedBase == null && entity.isActivated):
-				selectedEnity = entity
-				movementArrow.selectedEntity = entity
-				movementArea.selectedEntity = entity
-				movementArea.refresh()
-			elif(selectedEnity != null && (movementArrow.get_cell_tile_data(cursor.tilePos) != null || selectedEnity.tilePos == cursor.tilePos)):
-				selectedEnity.isMoving = true
-				cursor.entityFollow = selectedEnity
-				movementArrow.selectedEntity = null
-				movementArea.selectedEntity = null
-				movementArea.clear()
-				movementArrow.clear()
-				cursor.disable()
-			elif(entityHandler.getUnitAt(cursor.tilePos) == null && base != null && entity == null):
-				reset()
-				selectedBase = base
-				cursor.disable()
-				gameUI.showBuildMenu()
-			else:
-				reset()
+		if(cursor.ennemyList.is_empty() && selectedBase == null && !cursor.isMoving() && (Input.is_action_just_pressed("action") || Input.is_action_just_pressed("ui_focus_next"))):
+			if(Input.is_action_just_pressed("action")):
+				var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
+				var base:Base = buildingHandler.getBaseFromTeamAt(VarGame.teamTurn,cursor.tilePos)
+				if(selectedEnity == null && entity != null && selectedBase == null && entity.isActivated):
+					selectedEnity = entity
+					movementArrow.selectedEntity = entity
+					movementArea.selectedEntity = entity
+					movementArea.refresh()
+				elif(selectedEnity != null && (movementArrow.get_cell_tile_data(cursor.tilePos) != null || selectedEnity.tilePos == cursor.tilePos)):
+					selectedEnity.isMoving = true
+					cursor.entityFollow = selectedEnity
+					movementArrow.selectedEntity = null
+					movementArea.selectedEntity = null
+					movementArea.clear()
+					movementArrow.clear()
+					cursor.disable()
+				elif(entityHandler.getUnitAt(cursor.tilePos) == null && base != null && entity == null):
+					reset()
+					selectedBase = base
+					cursor.disable()
+					gameUI.showBuildMenu()
+				else:
+					reset()
+			elif Input.is_action_just_pressed("ui_focus_next"):
+				var entity:Entity = entityHandler.getUnitFromTeamAt(VarGame.teamTurn,cursor.tilePos)
+				if(entity == null || entity.isActivated == false):
+					entity = entityHandler.getClosestAlliedEntityFromPointWichCanPlay(VarGame.teamTurn,cursor.tilePos)
+					if(entity != null):
+						cursor.setTile(entity.tilePos)
 				
 		elif(Input.is_action_just_pressed("return")):
 			if(selectedEnity == null && selectedBase == null):
